@@ -7,3 +7,13 @@ C:\Users\LENOVO\source\repos\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien
 C:\Users\LENOVO\source\repos\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
 C:\Users\LENOVO\source\repos\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe
 C:\Users\LENOVO\source\repos\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.pdb
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.exe.config
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.exe
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.pdb
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.AssemblyReference.cache
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe.config
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.Properties.Resources.resources
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.GenerateResource.cache
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe
+C:\subjects\PPPTPM_OOP\LAB_Buoi02\LAB_AT_OOSD\LAB2\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.pdb
