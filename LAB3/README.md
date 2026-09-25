@@ -173,8 +173,7 @@ Các bước kiểm tra:
 | Không có phiếu để chọn tại màn hình dịch vụ/trả phòng | Kiểm tra đã tạo phiếu đặt và hoàn tất nhận phòng; danh sách lấy theo phiếu đang ở |
 | Trùng mã khi lập phiếu | Chọn mã mới và kiểm tra dữ liệu hiện có, không chạy lại SQL chỉ để xóa lỗi trùng mã |
 
-## Báo cáo và bằng chứng
-
+## Báo cáo
 [Tải báo cáo Word LAB3](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
 
 [Quay về danh sách bài Lab](../README.md).
