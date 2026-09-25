@@ -162,8 +162,6 @@ Các bước kiểm tra:
 4. Dừng phiên debug hiện tại, build lại và chạy chương trình để sử dụng cấu hình mới nhất.
 5. Nếu lỗi còn xuất hiện, lấy đầy đủ **Copy Details** của exception, đặc biệt mã lỗi, để xác định nguyên nhân.
 
-**Tình trạng:** lượt kiểm tra ngày 25/09/2026 kết nối và truy vấn CSDL thành công. Chưa xác định được nguyên nhân chính xác của lần lỗi trong ảnh trước đó vì thông báo chưa đầy đủ; chưa kết luận lỗi đã được khắc phục dứt điểm.
-
 ### Các tình huống khi chạy trên máy khác
 
 | Hiện tượng | Cách xử lý |
