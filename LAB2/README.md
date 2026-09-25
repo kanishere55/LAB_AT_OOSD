@@ -106,8 +106,6 @@ Ngày **25/09/2026**:
 - Kết nối `(localdb)\ProjectModels` bằng Windows Authentication thành công.
 - Database `QuanLyThuVienDB` có **9 bảng**.
 
-Lần kiểm tra này xác nhận khả năng biên dịch và truy vấn CSDL hiện có. Chưa chạy lại toàn bộ thao tác thêm/sửa/xóa và luồng mượn/trả trong lần kiểm tra này. Trình tự ở trên được cung cấp để kiểm tra nghiệp vụ trên dữ liệu thực hành.
-
 ## Lỗi gặp phải và cách khắc phục
 
 Không phát sinh lỗi trong lần rebuild và truy vấn CSDL nêu trên. Các tình huống có thể gặp khi thiết lập máy khác:
