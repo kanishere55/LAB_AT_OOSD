@@ -50,12 +50,3 @@ LAB_AT_OOSD/
 Môi trường đã kiểm tra ngày **25/09/2026**: Windows 11, JDK **23.0.1**, Visual Studio Community 2022 **17.14.41**, .NET Framework **4.7.2**, SQL Server LocalDB **15.0.4382.1**. Chi tiết kết quả và giới hạn kiểm tra được ghi tại README từng Lab.
 
 LAB2 sử dụng `(localdb)\ProjectModels` với database `QuanLyThuVienDB`; LAB3 sử dụng `(localdb)\MSSQLLocalDB` với database `QuanLyKhachSan`. Cần chọn đúng instance khi chạy SQL và cấu hình ứng dụng.
-
-**Lưu ý về dữ liệu:** các script SQL có lệnh xóa và tạo lại bảng. Chỉ chạy để khởi tạo môi trường thực hành mới hoặc khi chủ động đặt lại dữ liệu; sao lưu trước nếu CSDL đã có dữ liệu cần giữ.
-
-## Quy ước lưu trữ
-
-- Mỗi Lab có README, mã nguồn và báo cáo riêng trong thư mục của bài đó.
-- Các thư mục `bin`, `obj`, `.vs`, file Java đã biên dịch và file khóa Word được bỏ qua bởi `.gitignore`. Visual Studio/JDK sẽ tạo lại đầu ra khi build.
-- Cấu hình kết nối hiện dùng Windows Authentication. Không đưa mật khẩu, khóa truy cập hoặc dữ liệu cá nhân thực tế vào repository công khai.
-- Khi nộp bài, kiểm tra các thay đổi đã được commit/push và mở repository trên GitHub để xác nhận README, mã nguồn, SQL và báo cáo truy cập được.
