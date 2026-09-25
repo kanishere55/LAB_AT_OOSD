@@ -59,7 +59,7 @@ Dien tich: 25.132742
 Chu vi: 19.869177
 ```
 
-Kết quả trên tương ứng với dữ liệu được khai báo trong `Main.java`. Lần kiểm tra này xác nhận bộ dữ liệu mẫu đó; chưa kiểm tra toàn bộ trường hợp đầu vào hình học không hợp lệ.
+
 
 ## Lỗi gặp phải và cách khắc phục
 
