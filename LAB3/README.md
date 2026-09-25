@@ -177,6 +177,4 @@ Các bước kiểm tra:
 
 [Tải báo cáo Word LAB3](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
 
-Báo cáo hiện có phần giao diện, cơ sở dữ liệu từ máy cá nhân và các biểu mẫu. Mở file Word để xem hình ảnh và chú thích tương ứng. Nếu bài tập yêu cầu video, bổ sung liên kết video ở đầu báo cáo trước khi nộp.
-
 [Quay về danh sách bài Lab](../README.md).
