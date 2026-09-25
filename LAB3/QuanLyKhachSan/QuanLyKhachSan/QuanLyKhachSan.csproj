@@ -96,6 +96,7 @@
     <Compile Include="Forms\FrmTraPhong.Designer.cs">
       <DependentUpon>FrmTraPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReferenceLayout.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

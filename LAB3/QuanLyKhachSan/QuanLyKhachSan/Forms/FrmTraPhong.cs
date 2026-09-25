@@ -15,6 +15,7 @@ namespace QuanLyKhachSan.Forms
         public FrmTraPhong()
         {
             InitializeComponent();
+            ApplyReferenceLayout();
         }
 
         private void Frm_Load(object a, EventArgs e)
@@ -106,8 +107,11 @@ namespace QuanLyKhachSan.Forms
 
         private void btnThanhToan_Click(object a, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMaTT.Text))
+                txtMaTT.Text = "TT" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
             var k = s.ThanhToan(txtMaTT.Text.Trim(), txtHDChon.Text.Trim(), DateTime.Now, cboHT.Text, numTienTT.Value);
             MessageBox.Show(k.ThongBao);
+            if (k.ThanhCong) txtMaTT.Clear();
             Tai();
         }
 

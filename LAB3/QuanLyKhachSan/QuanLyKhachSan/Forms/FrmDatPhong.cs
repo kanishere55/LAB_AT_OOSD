@@ -15,6 +15,7 @@ namespace QuanLyKhachSan.Forms
         public FrmDatPhong()
         {
             InitializeComponent();
+            ApplyReferenceLayout();
         }
 
         private void Frm_Load(object a, EventArgs e)

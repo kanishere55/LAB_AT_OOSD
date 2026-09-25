@@ -11,6 +11,7 @@ namespace QuanLyKhachSan.Forms
         public FrmDanhMuc()
         {
             InitializeComponent();
+            ApplyReferenceLayout();
         }
 
         private void FrmDanhMuc_Load(object a, EventArgs e)

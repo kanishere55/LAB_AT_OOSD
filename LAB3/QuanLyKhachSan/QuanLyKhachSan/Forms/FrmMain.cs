@@ -8,6 +8,7 @@ namespace QuanLyKhachSan.Forms
         public FrmMain()
         {
             InitializeComponent();
+            ApplyReferenceLayout();
         }
 
         private void btnDanhMuc_Click(object s, EventArgs e)

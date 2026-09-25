@@ -13,6 +13,7 @@ namespace QuanLyKhachSan.Forms
         public FrmDichVu()
         {
             InitializeComponent();
+            ApplyReferenceLayout();
         }
 
         private void Frm_Load(object a, EventArgs e)
