@@ -16,6 +16,7 @@ Bài thực hành học phần **Phương pháp phát triển phần mềm hư�
 | LAB1 | Các lớp hình học, kế thừa và đa hình bằng Java | [README LAB1](LAB1/README.md) | [Báo cáo LAB1](LAB1/1250080021_NguyenThanhCan_CNPM1_LAB01.docx) |
 | LAB2 | Hệ thống quản lý thư viện | [README LAB2](LAB2/README.md) | [Báo cáo LAB2](LAB2/1250080021_NguyenThanhCan_CNPM1_LAB02.docx) |
 | LAB3 | Hệ thống quản lý khách sạn | [README LAB3](LAB3/README.md) | [Báo cáo LAB3](LAB3/1250080021_NguyenThanhCan_CNPM1_LAB03.docx) |
+| LAB4 | Hệ thống cửa hàng online e-SHOPPING | [README LAB4](LAB4/README.md) | [Báo cáo LAB4](LAB4/1250080021_NguyenThanhCan_CNPM1_LAB04_HOANCHINH.docx) |
 
 ## Cấu trúc thư mục
 

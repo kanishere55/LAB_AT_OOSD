@@ -28,3 +28,7 @@
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Generated Lab 4 test executables
+LAB4/Tests/*.exe
+LAB4/Tests/*.exe.config
