@@ -1,0 +1,34 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+left to right direction
+usecase "UC02 Quản lý giỏ hàng\n(xem giỏ)" as C
+usecase "Thêm sản phẩm\nvào giỏ" as A
+usecase "Cập nhật số lượng" as U
+usecase "Xóa sản phẩm\nkhỏi giỏ" as D
+usecase "Kiểm tra\ncòn hàng" as V
+A ..> C : <<extend>>\n[chọn thêm]
+U ..> C : <<extend>>\n[chọn cập nhật]
+D ..> C : <<extend>>\n[chọn xóa]
+A ..> V : <<include>>
+A -[hidden]down-> U
+U -[hidden]down-> D
+
+@enduml

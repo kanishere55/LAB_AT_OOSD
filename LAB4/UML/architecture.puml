@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+top to bottom direction
+package "UI – WinForms" {
+ [FrmMain] as UI
+[Các Form nghiệp vụ] as F
+}
+package "Service và Adapter" {
+ [ProductService / CartService] as S1
+[AccountService / CheckoutService / EmailService] as S2
+[ProductCatalogAdapter] as A1
+[PaymentGatewayAdapter] as A2
+[EmailGatewayAdapter] as A3
+}
+package "Data" {
+ [SqlRepository] as R
+[Db] as DB
+database "SQL Server\ndbo + catalog mô phỏng" as D
+}
+UI --> F
+F --> S1
+F --> S2
+S1 --> A1
+S2 --> A1
+S2 --> A2
+S2 --> A3
+S2 --> R
+A1 --> R : adapter mô phỏng
+R --> DB
+DB --> D
+
+
+@enduml

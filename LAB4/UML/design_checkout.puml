@@ -1,0 +1,39 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+top to bottom direction
+class CheckoutService <<control>> {
+-session : AppSession
+-catalog : IProductCatalog
+-repo : SqlRepository
+-payment : IPaymentGateway
+-email : EmailService
++Quote(recipient : NguoiNhan, cardType : string) : CheckoutQuote
++Place(key : Guid, recipient : NguoiNhan, card : CardInfo, accepted : CheckoutQuote) : DonHang
++{static} Shipping(subtotal : decimal, type : string, basic : decimal) : decimal
++{static} ValidateCard(card : CardInfo, now : DateTime) : void
+}
+class EmailService <<control>> {
+-repo : SqlRepository
+-gateway : IEmailGateway
++Send(order : DonHang) : string
++{static} Body(order : DonHang) : string
+}
+CheckoutService --> EmailService
+@enduml

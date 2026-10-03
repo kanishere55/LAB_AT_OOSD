@@ -1,0 +1,86 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+top to bottom direction
+class DonHang <<entity>> {
++MaDH : int
++MaYeuCau : Guid
++NguoiMua : KhachHang
++NguoiNhan : NguoiNhan
++Quote : CheckoutQuote
++ThoiDiem : DateTime
++LoaiThe : string
++BonSoCuoi : string
++MaGiaoDich : string
++EmailStatus : string
+}
+class KhachHang <<entity>> {
++MaKH : int
++HoTen : string
++NgaySinh : DateTime
++GiayTo : string
++DiaChi : string
++DienThoai : string
++TenDangNhap : string
++MatKhauHash : byte[]
++Salt : byte[]
++Email : string
+}
+class NguoiNhan <<DTO>> {
++HoTen : string
++DiaChi : string
++DienThoai : string
++KhuVuc : string
++LoaiGiao : string
+}
+class CheckoutQuote <<DTO>> {
++Items : List<CartItem>
++TienHang : decimal
++PhiGiao : decimal
++PhiThe : decimal
++/TongTien : decimal
++LoaiThe : string
+}
+class CartItem <<entity>> {
++MaSP : string
++TenSP : string
++SoLuong : int
++DonGia : decimal
++/ThanhTien : decimal
++Copy() : CartItem
+}
+class GioHang <<entity>> {
++Items : List<CartItem>
++Busy : bool
++/TienHang : decimal
+}
+class AppSession <<entity>> {
++Customer : KhachHang
++Cart : GioHang
+}
+DonHang "0..*" --> "1" KhachHang : NguoiMua
+DonHang "1" *-- "1" NguoiNhan
+DonHang "1" *-- "1" CheckoutQuote
+CheckoutQuote "1" *-- "1..*" CartItem : bản sao dòng đặt
+AppSession "1" *-- "1" GioHang
+AppSession "0..*" --> "0..1" KhachHang
+GioHang "1" *-- "0..*" CartItem
+
+@enduml

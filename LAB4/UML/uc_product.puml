@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+left to right direction
+usecase "UC01 Xem sản phẩm\n(xem danh sách)" as P
+usecase "Xem danh sách\ntheo nhóm" as L
+usecase "Tìm theo từ khóa" as S
+usecase "Xem chi tiết\nsản phẩm" as D
+P ..> L : <<include>>
+S ..> P : <<extend>>\n[có từ khóa]
+D ..> P : <<extend>>\n[chọn xem chi tiết]
+L -[hidden]down-> S
+S -[hidden]down-> D
+
+@enduml

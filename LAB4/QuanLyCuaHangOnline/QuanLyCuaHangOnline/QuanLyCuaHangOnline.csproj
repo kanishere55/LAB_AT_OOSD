@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B82B304F-23B8-49E6-9F66-DA5E76B1CA77}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>QuanLyCuaHangOnline</RootNamespace>
+    <AssemblyName>QuanLyCuaHangOnline</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    <Reference Include="Microsoft.CSharp"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Deployment"/>
+    <Reference Include="System.Drawing"/>
+    <Reference Include="System.Net.Http"/>
+    <Reference Include="System.Windows.Forms"/>
+    <Reference Include="System.Xml"/>
+  <Reference Include="System.Configuration"/></ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  <Compile Include="Models\AppSession.cs"/><Compile Include="Models\CardInfo.cs"/><Compile Include="Models\CartItem.cs"/><Compile Include="Models\CheckoutQuote.cs"/><Compile Include="Models\DonHang.cs"/><Compile Include="Models\GioHang.cs"/><Compile Include="Models\KhachHang.cs"/><Compile Include="Models\NguoiNhan.cs"/><Compile Include="Models\NhomSanPham.cs"/><Compile Include="Models\PaymentResult.cs"/><Compile Include="Models\SanPham.cs"/><Compile Include="Services\AccountService.cs"/><Compile Include="Services\AppContext.cs"/><Compile Include="Services\CartService.cs"/><Compile Include="Services\CheckoutService.cs"/><Compile Include="Services\EmailService.cs"/><Compile Include="Services\ProductService.cs"/><Compile Include="Adapters\EmailGatewayAdapter.cs"/><Compile Include="Adapters\IEmailGateway.cs"/><Compile Include="Adapters\IPaymentGateway.cs"/><Compile Include="Adapters\IProductCatalog.cs"/><Compile Include="Adapters\PaymentGatewayAdapter.cs"/><Compile Include="Adapters\ProductCatalogAdapter.cs"/><Compile Include="Data\Db.cs"/><Compile Include="Data\SqlRepository.cs"/><Compile Include="Forms\FormHelper.cs"/><Compile Include="Forms\FrmCheckout.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmCheckout.Designer.cs"><DependentUpon>FrmCheckout.cs</DependentUpon></Compile><Compile Include="Forms\FrmChiTietSanPham.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmChiTietSanPham.Designer.cs"><DependentUpon>FrmChiTietSanPham.cs</DependentUpon></Compile><Compile Include="Forms\FrmGioHang.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmGioHang.Designer.cs"><DependentUpon>FrmGioHang.cs</DependentUpon></Compile><Compile Include="Forms\FrmMain.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmMain.Designer.cs"><DependentUpon>FrmMain.cs</DependentUpon></Compile><Compile Include="Forms\FrmSanPham.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmSanPham.Designer.cs"><DependentUpon>FrmSanPham.cs</DependentUpon></Compile><Compile Include="Forms\FrmTaiKhoan.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmTaiKhoan.Designer.cs"><DependentUpon>FrmTaiKhoan.cs</DependentUpon></Compile><Compile Include="Forms\FrmThanhToan.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmThanhToan.Designer.cs"><DependentUpon>FrmThanhToan.cs</DependentUpon></Compile><Compile Include="Forms\FrmXacNhanDonHang.cs"><SubType>Form</SubType></Compile><Compile Include="Forms\FrmXacNhanDonHang.Designer.cs"><DependentUpon>FrmXacNhanDonHang.cs</DependentUpon></Compile></ItemGroup>
+  <ItemGroup>
+    <None Include="App.config"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+<ItemGroup><Content Include="Assets\SP01_1.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content><Content Include="Assets\SP01_2.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content><Content Include="Assets\SP02_1.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content><Content Include="Assets\SP03_1.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content><Content Include="Assets\SP04_1.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content></ItemGroup></Project>

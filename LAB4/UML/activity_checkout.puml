@@ -1,0 +1,58 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 18
+skinparam conditionStyle diamond
+skinparam activityBackgroundColor white
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+|Khách hàng|
+start
+:Chọn tính tiền;
+|e-SHOPPING|
+if (Giỏ trống?) then (Có)
+ :Báo giỏ trống;
+ stop
+else (Không)
+endif
+if (Đã đăng nhập?) then (Chưa)
+ |Khách hàng|
+ :Đăng nhập hoặc đăng ký;
+ |e-SHOPPING|
+ if (Thành công?) then (Không)
+  :Giữ giỏ và dừng;
+  stop
+ else (Có)
+ endif
+else (Rồi)
+endif
+|Khách hàng|
+:Nhập người nhận, vùng, loại giao;
+|e-SHOPPING|
+:Đọc giá và tình trạng qua catalog;
+if (Giá đổi hoặc hết hàng?) then (Có)
+ :Báo xem lại giỏ;
+ stop
+else (Không)
+endif
+:Kiểm tra chính sách giao và tính tổng;
+|Khách hàng|
+:Xác nhận báo giá;
+:Chuyển sang hoạt động thanh toán;
+stop
+
+@enduml

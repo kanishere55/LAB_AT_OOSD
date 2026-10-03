@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+left to right direction
+class NhomSanPham <<entity>> {
++MaNhom : string
++TenNhom : string
+}
+class SanPham <<entity>> {
++MaSP : string
++MaNhom : string
++TenSP : string
++NhaSanXuat : string
++MoTa : string
++ThongSo : string
++GiaHienHanh : decimal
++ConHang : bool
++HinhAnh : List<string>
+}
+class CardInfo <<DTO tạm>> {
++LoaiThe : string
++SoThe : string
++ChuThe : string
++CSV : string
++HetHan : DateTime
+}
+class PaymentResult <<DTO>> {
++Approved : bool
++MaGiaoDich : string
++Message : string
+}
+NhomSanPham "1" -- "0..*" SanPham
+CardInfo -[hidden]down-> PaymentResult
+
+@enduml

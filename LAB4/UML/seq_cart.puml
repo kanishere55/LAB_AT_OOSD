@@ -1,0 +1,40 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+actor KhachHang as K
+boundary FrmGioHang as F
+control CartService as S
+entity "AppSession.Cart" as C
+K -> F : cập nhật số lượng
+F -> S : Update(MaSP, qty)
+activate S
+alt qty < 0 hoặc Busy
+S --> F : thông báo lỗi
+else qty = 0
+S -> C : xóa dòng
+else qty > 0
+S -> C : cập nhật số lượng
+end
+F -> C : đọc Items, TienHang
+C --> F : dữ liệu giỏ
+F --> K : hiển thị tổng mới
+
+deactivate S
+@enduml

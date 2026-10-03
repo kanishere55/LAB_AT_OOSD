@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 18
+skinparam conditionStyle diamond
+skinparam activityBackgroundColor white
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+|Khách hàng|
+start
+:Chọn nhóm hoặc từ khóa;
+|e-SHOPPING|
+:Lấy danh mục qua ProductCatalogAdapter;
+:Hiển thị danh sách hoặc chi tiết;
+|Khách hàng|
+:Chọn sản phẩm và số lượng;
+|e-SHOPPING|
+if (Số lượng > 0 và còn hàng?) then (Có)
+ :Thêm mới hoặc cộng số lượng;
+else (Không)
+ :Thông báo lý do;
+ stop
+endif
+|Khách hàng|
+:Mở giỏ và cập nhật;
+|e-SHOPPING|
+if (Số lượng = 0?) then (Có)
+ :Xóa dòng;
+else (Không)
+ if (Số lượng > 0?) then (Có)
+  :Ghi số lượng mới;
+ else (Không)
+  :Giữ số lượng cũ và báo lỗi;
+ endif
+endif
+:Tính lại tiền hàng;
+stop
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+left to right direction
+class FrmCheckout <<boundary>> {
+-Recipient() : NguoiNhan
++Preview()
+-btnThanhToan_Click()
+}
+class CheckoutService <<control>> {
++Quote(recipient, cardType)
++Shipping(subtotal, type, basic)
+}
+class NguoiNhan <<DTO>> {
++HoTen : string
++DiaChi : string
++DienThoai : string
++KhuVuc : string
++LoaiGiao : string
+}
+class CheckoutQuote <<DTO>> {
++TienHang : decimal
++PhiGiao : decimal
++PhiThe : decimal
++/TongTien : decimal
+}
+class SqlRepository <<data>> {
++BaseShipping(region, type)
+}
+class ProductCatalogAdapter <<adapter>> {
++Get(code)
+}
+FrmCheckout --> CheckoutService
+FrmCheckout ..> NguoiNhan
+CheckoutService --> SqlRepository
+CheckoutService --> ProductCatalogAdapter
+CheckoutService ..> CheckoutQuote
+@enduml

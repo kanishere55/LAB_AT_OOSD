@@ -1,0 +1,83 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+top to bottom direction
+class KhachHang {
+MaKH : Integer
+HoTen : String
+NgaySinh : Date
+GiayTo : String
+DiaChi : String
+DienThoai : String
+TenDangNhap : String
+MatKhauHash : Bytes
+Salt : Bytes
+Email : String [0..1]
+}
+class DonHang {
+MaDH : Integer
+MaYeuCau : Identifier
+ThoiDiem : DateTime
+TenNguoiMua : String
+EmailNguoiMua : String [0..1]
+TenNguoiNhan : String
+DiaChiNhan : String
+DienThoaiNhan : String
+KhuVucGiao : String
+LoaiGiao : String
+TienHang : Decimal
+PhiGiao : Decimal
+PhiThe : Decimal
+/TongTien : Decimal
+}
+class ChiTietDonHang {
+MaSP : String
+TenSP : String
+SoLuong : Integer
+DonGia : Decimal
+/ThanhTien : Decimal
+}
+class PhiGiaoHang {
+KhuVuc : String
+LoaiGiao : String
+PhiCoBan : Decimal
+}
+class ThanhToan {
+LoaiThe : String
+BonSoCuoi : String
+MaGiaoDich : String
+SoTien : Decimal
+ThoiDiem : DateTime
+}
+class EmailXacNhan {
+DiaChiEmail : String
+NoiDung : String
+TrangThai : String
+ThoiDiem : DateTime
+}
+KhachHang "1" -right- "0..*" DonHang : đặt
+DonHang "1" *-right- "1..*" ChiTietDonHang
+DonHang "0..*" -down- "1" PhiGiaoHang : áp dụng
+DonHang "1" *-down- "1" ThanhToan
+DonHang "1" *-down- "0..1" EmailXacNhan
+PhiGiaoHang -[hidden]right- ThanhToan
+ThanhToan -[hidden]right- EmailXacNhan
+
+@enduml

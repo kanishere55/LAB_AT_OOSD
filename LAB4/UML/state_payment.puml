@@ -1,0 +1,40 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 18
+skinparam stateBackgroundColor white
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+
+top to bottom direction
+state "Chờ kiểm tra" as A
+state "Đang xác minh" as B
+state "Bị từ chối" as C
+state "Được chấp nhận" as D
+state "Đã ghi nhận đơn" as E
+state "Lỗi lưu" as F
+[*] --> A
+A --> C : ValidateCard / Quote\n[dữ liệu sai]
+A --> B : Pay() [dữ liệu hợp lệ]
+B --> C : nhận kết quả [Approved = false]
+B --> D : nhận kết quả [Approved = true]
+D --> E : SaveOrder() [ghi thành công]\n/ commit
+D --> F : SaveOrder() [lỗi SQL]\n/ rollback
+C --> [*] : trả lỗi, giữ giỏ
+E --> [*] : trả đơn đã ghi nhận
+F --> [*] : trả lỗi, giữ giỏ
+
+@enduml

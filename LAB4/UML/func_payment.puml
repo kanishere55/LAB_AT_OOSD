@@ -1,0 +1,58 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+left to right direction
+class FrmThanhToan <<boundary>> {
+-requestKey : Guid
+--
+-UpdateQuote()
+-btnXacNhan_Click()
+}
+class FrmXacNhanDonHang <<boundary>> {
++FrmXacNhanDonHang(app, order)
+}
+class CheckoutService <<control>> {
++Quote(recipient, cardType)
++Place(key, recipient, card, accepted)
++ValidateCard(card, now)
+}
+class PaymentGatewayAdapter <<adapter>> {
++Pay(key, card, total)
+}
+class SqlRepository <<data>> {
++FindOrder(key)
++SaveOrder(order)
+}
+class EmailService <<control>> {
++Send(order)
++Body(order)
+}
+class DonHang <<entity>> {
++MaDH : int
++NguoiNhan : NguoiNhan
++Quote : CheckoutQuote
++BonSoCuoi : string
+}
+FrmThanhToan --> CheckoutService
+CheckoutService --> PaymentGatewayAdapter
+CheckoutService --> SqlRepository
+CheckoutService --> EmailService
+CheckoutService ..> DonHang
+FrmXacNhanDonHang ..> DonHang
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+left to right direction
+class FrmTaiKhoan <<boundary>> {
+-btnDangNhap_Click()
+-btnDangKy_Click()
+}
+class AccountService <<control>> {
+-repo : SqlRepository
+--
++Register(customer, password)
++Login(user, password)
++Hash(password, salt)
+}
+class KhachHang <<entity>> {
++MaKH : int
++TenDangNhap : string
++MatKhauHash : byte[]
++Salt : byte[]
++Email : string
+}
+class AppSession <<entity>> {
++Customer : KhachHang
++Cart : GioHang
+}
+class SqlRepository <<data>> {
++Register(customer)
++FindCustomer(username)
+}
+FrmTaiKhoan --> AccountService
+FrmTaiKhoan --> AppSession
+AccountService --> SqlRepository
+AccountService ..> KhachHang
+AppSession "0..*" --> "0..1" KhachHang
+@enduml

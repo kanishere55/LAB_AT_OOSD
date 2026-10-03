@@ -1,0 +1,58 @@
+@startuml
+skinparam backgroundColor white
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Times New Roman
+skinparam defaultFontSize 18
+skinparam dpi 180
+skinparam classAttributeIconSize 0
+skinparam roundcorner 0
+skinparam packageStyle rectangle
+skinparam classBackgroundColor white
+skinparam usecaseBackgroundColor white
+skinparam nodesep 75
+skinparam ranksep 85
+skinparam ArrowFontSize 15
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+hide circle
+hide empty members
+left to right direction
+class FrmGioHang <<boundary>> {
++Reload()
+-btnCapNhat_Click()
+-btnXoa_Click()
+-btnCheckout_Click()
+}
+class CartService <<control>> {
++Add(code, qty)
++Update(code, qty)
++Remove(code)
+}
+class AppSession <<entity>> {
++Customer : KhachHang
++Cart : GioHang
+}
+class GioHang <<entity>> {
++Items : List<CartItem>
++Busy : bool
++/TienHang : decimal
+}
+class CartItem <<entity>> {
++MaSP : string
++SoLuong : int
++DonGia : decimal
++/ThanhTien : decimal
+--
++Copy()
+}
+class ProductCatalogAdapter <<adapter>> {
++Get(code)
+}
+FrmGioHang --> CartService
+FrmGioHang --> AppSession
+CartService --> AppSession
+CartService --> ProductCatalogAdapter
+AppSession "1" *-- "1" GioHang
+GioHang "1" *-- "0..*" CartItem
+@enduml
