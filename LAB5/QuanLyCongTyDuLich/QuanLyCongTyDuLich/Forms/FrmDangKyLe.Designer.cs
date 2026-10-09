@@ -38,7 +38,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.MinimumSize = new System.Drawing.Size(1356,587);
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(32,18,124,24);
+            this.label1.SetBounds(32,18,118,24);
             this.label1.Text = "Số đăng ký:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label1);
@@ -49,7 +49,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.txtSo);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(391,18,80,24);
+            this.label2.SetBounds(391,18,74,24);
             this.label2.Text = "Chuyến:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label2);
@@ -62,7 +62,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.cboChuyen.SelectedIndexChanged += TinhTien;
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(32,53,124,24);
+            this.label3.SetBounds(32,53,118,24);
             this.label3.Text = "Điểm bán vé:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label3);
@@ -74,7 +74,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.cboDiemBan);
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(478,53,139,24);
+            this.label4.SetBounds(478,53,133,24);
             this.label4.Text = "Người đăng ký:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label4);
@@ -85,7 +85,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.txtTen);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(961,53,102,24);
+            this.label5.SetBounds(961,53,96,24);
             this.label5.Text = "Điện thoại:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label5);
@@ -96,7 +96,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.txtDT);
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(32,88,124,24);
+            this.label6.SetBounds(32,88,118,24);
             this.label6.Text = "Số người:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label6);
@@ -111,7 +111,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.numNguoi.ValueChanged += TinhTien;
             this.label7 = new Label();
             this.label7.Name = "label7";
-            this.label7.SetBounds(303,88,132,24);
+            this.label7.SetBounds(303,88,126,24);
             this.label7.Text = "Thành tiền:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);

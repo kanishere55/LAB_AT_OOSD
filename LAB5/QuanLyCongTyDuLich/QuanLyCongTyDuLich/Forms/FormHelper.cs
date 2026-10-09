@@ -96,6 +96,9 @@ namespace QuanLyCongTyDuLich.Forms
             int used = 0;
             foreach (var column in columns) used += column.Width;
             if (used < available) columns[columns.Count - 1].Width += available - used;
+            // Tính lại chiều cao sau khi TẤT CẢ cột đã có độ rộng cuối cùng.
+            // Khi sửa nhiều ô liên tiếp, chiều cao cũ có thể còn ứng với độ rộng trước đó.
+            grid.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
         }
 
         public static void LoiNhapBang(object sender, DataGridViewDataErrorEventArgs e)

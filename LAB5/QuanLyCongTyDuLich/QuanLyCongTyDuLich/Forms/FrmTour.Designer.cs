@@ -71,7 +71,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.MinimumSize = new System.Drawing.Size(1356,647);
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(29,18,323,24);
+            this.label1.SetBounds(29,18,317,24);
             this.label1.Text = "Tour đang chọn (cho các tab hành trình):";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label1);
@@ -221,7 +221,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dgvTQ.CellValueChanged += FormHelper.DuLieuOThayDoi;
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(16,329,106,24);
+            this.label2.SetBounds(16,329,100,24);
             this.label2.Text = "Mã tour:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label2);
@@ -232,7 +232,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage0.Controls.Add(this.txtMa);
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(319,329,106,24);
+            this.label3.SetBounds(319,329,100,24);
             this.label3.Text = "Tên tour:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label3);
@@ -243,7 +243,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage0.Controls.Add(this.txtTen);
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(16,399,106,24);
+            this.label4.SetBounds(16,399,100,24);
             this.label4.Text = "Mô tả:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label4);
@@ -254,7 +254,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage0.Controls.Add(this.txtMoTa);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(16,364,106,24);
+            this.label5.SetBounds(16,364,100,24);
             this.label5.Text = "Số ngày:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label5);
@@ -268,7 +268,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage0.Controls.Add(this.numNgay);
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(319,364,92,24);
+            this.label6.SetBounds(319,364,86,24);
             this.label6.Text = "Số đêm:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label6);
@@ -282,7 +282,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage0.Controls.Add(this.numDem);
             this.label7 = new Label();
             this.label7.Name = "label7";
-            this.label7.SetBounds(557,364,145,24);
+            this.label7.SetBounds(557,364,139,24);
             this.label7.Text = "Đơn giá / khách:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage0.Controls.Add(this.label7);
@@ -308,7 +308,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemTour.Click += btnThemTour_Click;
             this.label8 = new Label();
             this.label8.Name = "label8";
-            this.label8.SetBounds(16,329,92,24);
+            this.label8.SetBounds(16,329,86,24);
             this.label8.Text = "Thứ tự:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage1.Controls.Add(this.label8);
@@ -322,7 +322,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage1.Controls.Add(this.numThuTu);
             this.label9 = new Label();
             this.label9.Name = "label9";
-            this.label9.SetBounds(227,329,132,24);
+            this.label9.SetBounds(227,329,126,24);
             this.label9.Text = "Tên điểm dừng:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage1.Controls.Add(this.label9);
@@ -349,7 +349,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.chkKS.CheckedChanged += chkKS_CheckedChanged;
             this.label10 = new Label();
             this.label10.Name = "label10";
-            this.label10.SetBounds(557,364,86,24);
+            this.label10.SetBounds(557,364,80,24);
             this.label10.Text = "Hạng sao:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage1.Controls.Add(this.label10);
@@ -364,7 +364,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.numSao.Enabled = false;
             this.label11 = new Label();
             this.label11.Name = "label11";
-            this.label11.SetBounds(16,399,92,24);
+            this.label11.SetBounds(16,399,86,24);
             this.label11.Text = "Ghi chú:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage1.Controls.Add(this.label11);
@@ -385,7 +385,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemDD.Click += btnThemDD_Click;
             this.label12 = new Label();
             this.label12.Name = "label12";
-            this.label12.SetBounds(16,329,99,24);
+            this.label12.SetBounds(16,329,93,24);
             this.label12.Text = "Chặng thứ:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage2.Controls.Add(this.label12);
@@ -399,7 +399,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage2.Controls.Add(this.numChang);
             this.label13 = new Label();
             this.label13.Name = "label13";
-            this.label13.SetBounds(240,329,112,24);
+            this.label13.SetBounds(240,329,106,24);
             this.label13.Text = "Phương tiện:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage2.Controls.Add(this.label13);
@@ -411,7 +411,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage2.Controls.Add(this.cboPT);
             this.label14 = new Label();
             this.label14.Name = "label14";
-            this.label14.SetBounds(16,364,99,24);
+            this.label14.SetBounds(16,364,93,24);
             this.label14.Text = "Ghi chú:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage2.Controls.Add(this.label14);
@@ -432,14 +432,14 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemChang.Click += btnThemChang_Click;
             this.label15 = new Label();
             this.label15.Name = "label15";
-            this.label15.SetBounds(16,399,1002,24);
+            this.label15.SetBounds(16,399,996,24);
             this.label15.Text = "Chặng k là đoạn đi tới điểm dừng thứ k; một chặng có thể dùng nhiều phương tiện.";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label15.ForeColor = System.Drawing.Color.Gray;
             this.tabTourPage2.Controls.Add(this.label15);
             this.label16 = new Label();
             this.label16.Name = "label16";
-            this.label16.SetBounds(16,329,138,24);
+            this.label16.SetBounds(16,329,132,24);
             this.label16.Text = "Điểm tham quan:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage3.Controls.Add(this.label16);
@@ -451,7 +451,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTourPage3.Controls.Add(this.cboDTQ);
             this.label17 = new Label();
             this.label17.Name = "label17";
-            this.label17.SetBounds(517,329,79,24);
+            this.label17.SetBounds(517,329,73,24);
             this.label17.Text = "Thứ tự:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTourPage3.Controls.Add(this.label17);

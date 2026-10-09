@@ -204,7 +204,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dgvDTQ.CellValueChanged += FormHelper.DuLieuOThayDoi;
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(18,324,117,24);
+            this.label1.SetBounds(18,324,111,24);
             this.label1.Text = "Mã PT:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage0.Controls.Add(this.label1);
@@ -215,7 +215,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage0.Controls.Add(this.txtPTMa);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(427,324,117,24);
+            this.label2.SetBounds(427,324,111,24);
             this.label2.Text = "Tên PT:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage0.Controls.Add(this.label2);
@@ -226,7 +226,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage0.Controls.Add(this.txtPTTen);
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(18,359,117,24);
+            this.label3.SetBounds(18,359,111,24);
             this.label3.Text = "Ghi chú:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage0.Controls.Add(this.label3);
@@ -247,7 +247,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemPT.Click += btnThemPT_Click;
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(18,324,129,24);
+            this.label4.SetBounds(18,324,123,24);
             this.label4.Text = "Mã điểm bán:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage1.Controls.Add(this.label4);
@@ -258,7 +258,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage1.Controls.Add(this.txtDBMa);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(427,324,129,24);
+            this.label5.SetBounds(427,324,123,24);
             this.label5.Text = "Tên điểm bán:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage1.Controls.Add(this.label5);
@@ -269,7 +269,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage1.Controls.Add(this.txtDBTen);
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(18,359,129,24);
+            this.label6.SetBounds(18,359,123,24);
             this.label6.Text = "Địa chỉ:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage1.Controls.Add(this.label6);
@@ -280,7 +280,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage1.Controls.Add(this.txtDBDiaChi);
             this.label7 = new Label();
             this.label7.Name = "label7";
-            this.label7.SetBounds(18,394,129,24);
+            this.label7.SetBounds(18,394,123,24);
             this.label7.Text = "Điện thoại:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage1.Controls.Add(this.label7);
@@ -301,7 +301,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemDB.Click += btnThemDB_Click;
             this.label8 = new Label();
             this.label8.Name = "label8";
-            this.label8.SetBounds(18,324,129,24);
+            this.label8.SetBounds(18,324,123,24);
             this.label8.Text = "Mã HDV:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage2.Controls.Add(this.label8);
@@ -312,7 +312,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage2.Controls.Add(this.txtHDVMa);
             this.label9 = new Label();
             this.label9.Name = "label9";
-            this.label9.SetBounds(427,324,129,24);
+            this.label9.SetBounds(427,324,123,24);
             this.label9.Text = "Họ tên:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage2.Controls.Add(this.label9);
@@ -323,7 +323,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage2.Controls.Add(this.txtHDVTen);
             this.label10 = new Label();
             this.label10.Name = "label10";
-            this.label10.SetBounds(18,359,129,24);
+            this.label10.SetBounds(18,359,123,24);
             this.label10.Text = "Điện thoại:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage2.Controls.Add(this.label10);
@@ -334,7 +334,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage2.Controls.Add(this.txtHDVDT);
             this.label11 = new Label();
             this.label11.Name = "label11";
-            this.label11.SetBounds(427,359,161,24);
+            this.label11.SetBounds(427,359,155,24);
             this.label11.Text = "Lương cơ bản:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage2.Controls.Add(this.label11);
@@ -360,7 +360,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThemHDV.Click += btnThemHDV_Click;
             this.label12 = new Label();
             this.label12.Name = "label12";
-            this.label12.SetBounds(18,324,129,24);
+            this.label12.SetBounds(18,324,123,24);
             this.label12.Text = "Mã điểm TQ:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage3.Controls.Add(this.label12);
@@ -371,7 +371,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage3.Controls.Add(this.txtDTQMa);
             this.label13 = new Label();
             this.label13.Name = "label13";
-            this.label13.SetBounds(427,324,129,24);
+            this.label13.SetBounds(427,324,123,24);
             this.label13.Text = "Tên điểm TQ:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage3.Controls.Add(this.label13);
@@ -382,7 +382,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage3.Controls.Add(this.txtDTQTen);
             this.label14 = new Label();
             this.label14.Name = "label14";
-            this.label14.SetBounds(18,359,129,24);
+            this.label14.SetBounds(18,359,123,24);
             this.label14.Text = "Địa điểm:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage3.Controls.Add(this.label14);
@@ -393,7 +393,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage3.Controls.Add(this.txtDTQDiaDiem);
             this.label15 = new Label();
             this.label15.Name = "label15";
-            this.label15.SetBounds(18,394,129,24);
+            this.label15.SetBounds(18,394,123,24);
             this.label15.Text = "Nội dung:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage3.Controls.Add(this.label15);
@@ -404,7 +404,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabDanhMucPage3.Controls.Add(this.txtDTQNoiDung);
             this.label16 = new Label();
             this.label16.Name = "label16";
-            this.label16.SetBounds(18,429,129,24);
+            this.label16.SetBounds(18,429,123,24);
             this.label16.Text = "Ý nghĩa:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabDanhMucPage3.Controls.Add(this.label16);

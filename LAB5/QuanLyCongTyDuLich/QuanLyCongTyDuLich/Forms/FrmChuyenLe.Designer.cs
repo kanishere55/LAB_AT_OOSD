@@ -35,7 +35,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.MinimumSize = new System.Drawing.Size(1356,567);
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(32,18,117,24);
+            this.label1.SetBounds(32,18,111,24);
             this.label1.Text = "Mã chuyến:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label1);
@@ -46,7 +46,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.txtMa);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(376,18,59,24);
+            this.label2.SetBounds(376,18,53,24);
             this.label2.Text = "Tour:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label2);
@@ -59,7 +59,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.cboTour.SelectedIndexChanged += TinhNgayVe;
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(32,53,117,24);
+            this.label3.SetBounds(32,53,111,24);
             this.label3.Text = "Ngày đi:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label3);
@@ -72,7 +72,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dtDi.ValueChanged += TinhNgayVe;
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(376,53,102,24);
+            this.label4.SetBounds(376,53,96,24);
             this.label4.Text = "Ngày về:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label4);
@@ -85,7 +85,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.lblNgayVe);
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(32,88,139,24);
+            this.label6.SetBounds(32,88,133,24);
             this.label6.Text = "Địa điểm đón:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label6);

@@ -101,7 +101,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dgvDoan.SelectionChanged += dgvDoan_SelectionChanged;
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(17,347,132,24);
+            this.label1.SetBounds(17,347,126,24);
             this.label1.Text = "Số thanh toán:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage0.Controls.Add(this.label1);
@@ -112,7 +112,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage0.Controls.Add(this.txtSoTT);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(350,347,111,24);
+            this.label2.SetBounds(350,347,105,24);
             this.label2.Text = "Phiếu đoàn:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage0.Controls.Add(this.label2);
@@ -124,7 +124,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage0.Controls.Add(this.txtSoDK);
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(669,347,153,24);
+            this.label3.SetBounds(669,347,147,24);
             this.label3.Text = "Ngày thanh toán:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage0.Controls.Add(this.label3);
@@ -136,7 +136,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage0.Controls.Add(this.dtTT);
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(17,382,132,24);
+            this.label4.SetBounds(17,382,126,24);
             this.label4.Text = "Số tiền:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage0.Controls.Add(this.label4);
@@ -152,7 +152,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage0.Controls.Add(this.numTien);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(391,382,83,24);
+            this.label5.SetBounds(391,382,77,24);
             this.label5.Text = "Ghi chú:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage0.Controls.Add(this.label5);
@@ -173,7 +173,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnThanhToan.Click += btnThanhToan_Click;
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(17,14,104,24);
+            this.label6.SetBounds(17,14,98,24);
             this.label6.Text = "Loại khách:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label6);
@@ -186,7 +186,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.cboLoaiKS.SelectedIndexChanged += cboLoaiKS_SelectedIndexChanged;
             this.label7 = new Label();
             this.label7.Name = "label7";
-            this.label7.SetBounds(259,14,180,24);
+            this.label7.SetBounds(259,14,174,24);
             this.label7.Text = "Đăng ký đã kết thúc:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label7);
@@ -198,7 +198,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage1.Controls.Add(this.cboDangKy);
             this.label8 = new Label();
             this.label8.Name = "label8";
-            this.label8.SetBounds(835,14,69,24);
+            this.label8.SetBounds(835,14,63,24);
             this.label8.Text = "Mã KS:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label8);
@@ -209,7 +209,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage1.Controls.Add(this.txtMaKS);
             this.label9 = new Label();
             this.label9.Name = "label9";
-            this.label9.SetBounds(17,49,104,24);
+            this.label9.SetBounds(17,49,98,24);
             this.label9.Text = "Ngày gửi:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label9);
@@ -259,7 +259,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dgvKS.SelectionChanged += dgvKS_SelectionChanged;
             this.label10 = new Label();
             this.label10.Name = "label10";
-            this.label10.SetBounds(17,362,111,24);
+            this.label10.SetBounds(17,362,105,24);
             this.label10.Text = "Phiếu chọn:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label10);
@@ -271,7 +271,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage1.Controls.Add(this.txtKSChon);
             this.label11 = new Label();
             this.label11.Name = "label11";
-            this.label11.SetBounds(294,362,132,24);
+            this.label11.SetBounds(294,362,126,24);
             this.label11.Text = "Ngày phản hồi:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label11);
@@ -283,7 +283,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage1.Controls.Add(this.dtPH);
             this.label12 = new Label();
             this.label12.Name = "label12";
-            this.label12.SetBounds(627,362,111,24);
+            this.label12.SetBounds(627,362,105,24);
             this.label12.Text = "Điểm (1-5):";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label12);
@@ -297,7 +297,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabKTPage1.Controls.Add(this.numDiem);
             this.label13 = new Label();
             this.label13.Name = "label13";
-            this.label13.SetBounds(17,397,111,24);
+            this.label13.SetBounds(17,397,105,24);
             this.label13.Text = "Góp ý:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabKTPage1.Controls.Add(this.label13);

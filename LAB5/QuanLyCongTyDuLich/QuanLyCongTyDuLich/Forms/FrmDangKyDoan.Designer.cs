@@ -62,7 +62,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.grpDoan);
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(13,28,145,24);
+            this.label1.SetBounds(13,28,139,24);
             this.label1.Text = "Mã đoàn:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDoan.Controls.Add(this.label1);
@@ -73,7 +73,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDoan.Controls.Add(this.txtMaDoan);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(13,63,145,24);
+            this.label2.SetBounds(13,63,139,24);
             this.label2.Text = "Cơ quan / gia đình:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDoan.Controls.Add(this.label2);
@@ -84,7 +84,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDoan.Controls.Add(this.txtTenCQ);
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(13,98,145,24);
+            this.label3.SetBounds(13,98,139,24);
             this.label3.Text = "Địa chỉ:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDoan.Controls.Add(this.label3);
@@ -95,7 +95,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDoan.Controls.Add(this.txtDiaChi);
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(13,133,145,24);
+            this.label4.SetBounds(13,133,139,24);
             this.label4.Text = "Điện thoại:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDoan.Controls.Add(this.label4);
@@ -106,7 +106,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDoan.Controls.Add(this.txtDT);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(13,168,145,24);
+            this.label5.SetBounds(13,168,139,24);
             this.label5.Text = "Người đại diện:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDoan.Controls.Add(this.label5);
@@ -122,7 +122,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.Controls.Add(this.grpDangKy);
             this.label6 = new Label();
             this.label6.Name = "label6";
-            this.label6.SetBounds(13,28,119,24);
+            this.label6.SetBounds(13,28,113,24);
             this.label6.Text = "Số phiếu:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label6);
@@ -133,7 +133,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDangKy.Controls.Add(this.txtSo);
             this.label7 = new Label();
             this.label7.Name = "label7";
-            this.label7.SetBounds(317,28,53,24);
+            this.label7.SetBounds(317,28,47,24);
             this.label7.Text = "Tour:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label7);
@@ -146,7 +146,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.cboTour.SelectedIndexChanged += TinhTong;
             this.label8 = new Label();
             this.label8.Name = "label8";
-            this.label8.SetBounds(13,63,119,24);
+            this.label8.SetBounds(13,63,113,24);
             this.label8.Text = "Ngày đi:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label8);
@@ -159,7 +159,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dtDi.ValueChanged += TinhTong;
             this.label9 = new Label();
             this.label9.Name = "label9";
-            this.label9.SetBounds(317,63,86,24);
+            this.label9.SetBounds(317,63,80,24);
             this.label9.Text = "Số người:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label9);
@@ -174,7 +174,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.numNguoi.ValueChanged += TinhTong;
             this.label10 = new Label();
             this.label10.Name = "label10";
-            this.label10.SetBounds(13,98,125,24);
+            this.label10.SetBounds(13,98,119,24);
             this.label10.Text = "Địa điểm đón:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label10);
@@ -185,7 +185,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDangKy.Controls.Add(this.txtDon);
             this.label11 = new Label();
             this.label11.Name = "label11";
-            this.label11.SetBounds(13,133,119,24);
+            this.label11.SetBounds(13,133,113,24);
             this.label11.Text = "Tiền cọc:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label11);
@@ -207,7 +207,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.chkBH.CheckedChanged += chkBH_CheckedChanged;
             this.label12 = new Label();
             this.label12.Name = "label12";
-            this.label12.SetBounds(13,168,119,24);
+            this.label12.SetBounds(13,168,113,24);
             this.label12.Text = "Kết thúc DK:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.grpDangKy.Controls.Add(this.label12);
@@ -220,7 +220,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDangKy.Controls.Add(this.lblKetThuc);
             this.label14 = new Label();
             this.label14.Name = "label14";
-            this.label14.SetBounds(290,168,145,24);
+            this.label14.SetBounds(290,168,139,24);
             this.label14.Text = "Tổng dự kiến:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -235,7 +235,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.grpDangKy.Controls.Add(this.lblTong);
             this.label16 = new Label();
             this.label16.Name = "label16";
-            this.label16.SetBounds(26,230,1187,24);
+            this.label16.SetBounds(26,230,1181,24);
             this.label16.Text = "Danh sách người cùng đi (bắt buộc đủ số người khi mua bảo hiểm):";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label16);
@@ -289,7 +289,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnHuy.Click += btnHuy_Click;
             this.label17 = new Label();
             this.label17.Name = "label17";
-            this.label17.SetBounds(26,451,659,24);
+            this.label17.SetBounds(26,451,653,24);
             this.label17.Text = "Các phiếu đăng ký đoàn:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.Add(this.label17);

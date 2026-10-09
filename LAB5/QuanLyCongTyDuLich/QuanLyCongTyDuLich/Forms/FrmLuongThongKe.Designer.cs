@@ -55,7 +55,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTK.Controls.Add(this.tabTKPage1);
             this.label1 = new Label();
             this.label1.Name = "label1";
-            this.label1.SetBounds(18,14,73,24);
+            this.label1.SetBounds(18,14,67,24);
             this.label1.Text = "Tháng:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTKPage0.Controls.Add(this.label1);
@@ -69,7 +69,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTKPage0.Controls.Add(this.numThang);
             this.label2 = new Label();
             this.label2.Name = "label2";
-            this.label2.SetBounds(208,14,59,24);
+            this.label2.SetBounds(208,14,53,24);
             this.label2.Text = "Năm:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTKPage0.Controls.Add(this.label2);
@@ -93,7 +93,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.btnLuong.Click += btnLuong_Click;
             this.label3 = new Label();
             this.label3.Name = "label3";
-            this.label3.SetBounds(632,14,622,24);
+            this.label3.SetBounds(632,14,616,24);
             this.label3.Text = "Lương = lương căn bản + thù lao các tour kết thúc trong tháng";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label3.ForeColor = System.Drawing.Color.Gray;
@@ -127,7 +127,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.dgvLuong.CellValueChanged += FormHelper.DuLieuOThayDoi;
             this.label4 = new Label();
             this.label4.Name = "label4";
-            this.label4.SetBounds(18,14,95,24);
+            this.label4.SetBounds(18,14,89,24);
             this.label4.Text = "Từ ngày:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTKPage1.Controls.Add(this.label4);
@@ -139,7 +139,7 @@ namespace QuanLyCongTyDuLich.Forms
             this.tabTKPage1.Controls.Add(this.dtTu);
             this.label5 = new Label();
             this.label5.Name = "label5";
-            this.label5.SetBounds(332,14,95,24);
+            this.label5.SetBounds(332,14,89,24);
             this.label5.Text = "Đến ngày:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tabTKPage1.Controls.Add(this.label5);
