@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA5721D5-DD38-4AFE-8F44-F8FC9B5B9AEE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>QuanLyCongTyDuLich</RootNamespace>
+    <AssemblyName>QuanLyCongTyDuLich</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    <Reference Include="Microsoft.CSharp"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Deployment"/>
+    <Reference Include="System.Drawing"/>
+    <Reference Include="System.Net.Http"/>
+    <Reference Include="System.Windows.Forms"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Configuration"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Data\Db.cs"/>
+    <Compile Include="Forms\FormHelper.cs"/>
+    <Compile Include="Forms\FrmChuyenLe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDangKyDoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDangKyLe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmKetThucKhaoSat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLuongThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPhanCongHDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Services\ChuyenLeService.cs"/>
+    <Compile Include="Services\DangKyDoanService.cs"/>
+    <Compile Include="Services\DangKyLeService.cs"/>
+    <Compile Include="Services\DanhMucService.cs"/>
+    <Compile Include="Services\KetThucService.cs"/>
+    <Compile Include="Services\Models.cs"/>
+    <Compile Include="Services\PhanCongService.cs"/>
+    <Compile Include="Services\ThongKeService.cs"/>
+    <Compile Include="Services\TourService.cs"/>
+    <Compile Include="Forms\FrmChuyenLe.Designer.cs">
+      <DependentUpon>FrmChuyenLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDangKyDoan.Designer.cs">
+      <DependentUpon>FrmDangKyDoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDangKyLe.Designer.cs">
+      <DependentUpon>FrmDangKyLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDanhMuc.Designer.cs">
+      <DependentUpon>FrmDanhMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmKetThucKhaoSat.Designer.cs">
+      <DependentUpon>FrmKetThucKhaoSat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLuongThongKe.Designer.cs">
+      <DependentUpon>FrmLuongThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPhanCongHDV.Designer.cs">
+      <DependentUpon>FrmPhanCongHDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTour.Designer.cs">
+      <DependentUpon>FrmTour.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <ItemGroup>
+    <None Include="..\..\Database\QuanLyCongTyDuLich.sql">
+      <Link>Database\QuanLyCongTyDuLich.sql</Link>
+    </None>
+  </ItemGroup>
+</Project>
