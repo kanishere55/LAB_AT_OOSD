@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using QuanLyNhanSu.Data;
 using QuanLyNhanSu.Services;
 
 namespace QuanLyNhanSu.Forms
@@ -62,7 +61,7 @@ namespace QuanLyNhanSu.Forms
             }
             catch (Exception e)
             {
-                Status.Text = Db.Friendly(e);
+                Status.Text = S.ThongBaoLoi(e);
                 Status.ForeColor = Color.Firebrick;
             }
         }
@@ -78,9 +77,9 @@ namespace QuanLyNhanSu.Forms
             }
             catch (Exception e)
             {
-                Status.Text = Db.Friendly(e);
+                Status.Text = S.ThongBaoLoi(e);
                 Status.ForeColor = Color.Firebrick;
-                MessageBox.Show(this, Db.Friendly(e), "Kiểm tra dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, S.ThongBaoLoi(e), "Kiểm tra dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

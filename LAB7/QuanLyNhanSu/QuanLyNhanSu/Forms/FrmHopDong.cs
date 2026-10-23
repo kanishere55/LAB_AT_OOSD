@@ -21,7 +21,7 @@ namespace QuanLyNhanSu.Forms
                 Bind("nv", S.NhanVien());
                 Bind("xnv", S.NhanVien());
                 Tables[0].DataSource = S.DS("HopDong");
-                Tables[1].DataSource = QuanLyNhanSu.Data.Db.Query("SELECT b.* FROM BaoHiem b JOIN HopDong h ON b.SoHD=h.SoHD WHERE h.MaNV=@nv", QuanLyNhanSu.Data.Db.P("nv", V("xnv")));
+                Tables[1].DataSource = S.HoSoBaoHiem(V("xnv"));
             };
         }
     }

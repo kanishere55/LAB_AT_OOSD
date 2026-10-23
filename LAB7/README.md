@@ -33,6 +33,8 @@ Windows 11, Visual Studio Community 2022, C# WinForms **.NET Framework 4.7.2**, 
 
 UI gọi `NhanSuService`, Service chuyển xử lý tới `Data/Db` và stored procedure bằng tham số. Form bố trí bằng C# qua `ModuleForm`. Mô hình lớp thực thể ánh xạ sang SQL; source dùng DataTable để hiển thị dữ liệu. Các vai trò UML là vai trò nghiệp vụ, chưa triển khai đăng nhập/phân quyền.
 
+Bốn tác nhân trực tiếp trong mô hình là phòng nhân sự, trưởng phòng, ban chấm công và kế toán. Giám đốc ký quyết định ngoài phần mềm; kế toán nhập quyết định thưởng/phạt đã ký. Người lao động cung cấp hồ sơ và nhận quyết định qua nhân sự. Tra cứu bảo hiểm, người tham gia phụ trội và thông báo lỗi đều đi qua Service.
+
 ## Cài đặt và chạy
 
 1. Mở `Database/QuanLyNhanSu.sql` trong SSMS và chạy toàn bộ file trên SQL Server có quyền tạo database. File chứa cấu trúc bảng, thủ tục và dữ liệu mẫu ở cuối; không xóa bảng hay ghi đè dữ liệu mẫu đã tồn tại.

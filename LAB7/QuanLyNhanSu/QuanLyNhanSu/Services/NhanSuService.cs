@@ -241,6 +241,21 @@ namespace QuanLyNhanSu.Services
             return Db.Query("SELECT MaNV [Mã NV],GioCong [Giờ công],GioPhuTroi [Giờ phụ trội],TienCong [Tiền công],TienPhuTroi [Tiền phụ trội],BaoHiem [Bảo hiểm],Thuong [Thưởng],Phat [Phạt],ThucLinh [Thực lĩnh] FROM ChiTietBangLuong WHERE MaBL=@ma", Db.P("ma", ma));
         }
 
+        public DataTable HoSoBaoHiem(string maNV)
+        {
+            return Db.Query("SELECT b.* FROM BaoHiem b JOIN HopDong h ON b.SoHD=h.SoHD WHERE h.MaNV=@nv", Db.P("nv", maNV));
+        }
+
+        public DataTable NguoiThamGia(string soPhieu)
+        {
+            return Db.Query("SELECT d.SoPhieu [Số phiếu],d.MaNV [Mã NV],n.HoTen [Họ tên] FROM ChiTietPhuTroi d JOIN NhanVien n ON d.MaNV=n.MaNV WHERE d.SoPhieu=@p", Db.P("p", soPhieu));
+        }
+
+        public string ThongBaoLoi(Exception error)
+        {
+            return Db.Friendly(error);
+        }
+
         public DataTable ThongKe()
         {
             return Db.Query("SELECT b.MaBL [Mã bảng],b.Thang [Tháng],b.Nam [Năm],COUNT(c.MaNV) [Số NV],SUM(c.ThucLinh) [Tổng thực lĩnh] FROM BangLuong b LEFT JOIN ChiTietBangLuong c ON b.MaBL=c.MaBL GROUP BY b.MaBL,b.Thang,b.Nam ORDER BY b.Nam,b.Thang");

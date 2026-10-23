@@ -19,7 +19,7 @@ namespace QuanLyNhanSu.Forms
             Reload = () =>
             {
                 Tables[0].DataSource = S.DS("PhieuPhuTroi");
-                Tables[1].DataSource = QuanLyNhanSu.Data.Db.Query("SELECT d.SoPhieu [Số phiếu],d.MaNV [Mã NV],n.HoTen [Họ tên] FROM ChiTietPhuTroi d JOIN NhanVien n ON d.MaNV=n.MaNV WHERE d.SoPhieu=@p", QuanLyNhanSu.Data.Db.P("p", V("xphieu")));
+                Tables[1].DataSource = S.NguoiThamGia(V("xphieu"));
             };
         }
     }
