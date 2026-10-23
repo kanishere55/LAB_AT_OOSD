@@ -18,6 +18,8 @@ Bài thực hành học phần **Phương pháp phát triển phần mềm hư�
 | LAB3 | Hệ thống quản lý khách sạn | [README LAB3](LAB3/README.md) | [Báo cáo LAB3](LAB3/1250080021_NguyenThanhCan_CNPM1_LAB03.docx) |
 | LAB4 | Cửa hàng online e-SHOPPING | [README LAB4](LAB4/README.md) | [Báo cáo LAB4](LAB4/1250080021_NguyenThanhCan_CNPM1_LAB04.docx) |
 | LAB5 | Công ty du lịch Văn Hóa Việt, đề Bài 6 | [README LAB5](LAB5/README.md) | [Báo cáo LAB5](LAB5/1250080021_NguyenThanhCan_CNPM1_LAB5.docx) |
+| LAB6 | Hồ sơ bệnh án của bệnh nhân, đề Bài 5 | [README LAB6](LAB6/README.md) | [Báo cáo LAB6](LAB6/1250080021_NguyenThanhCan_CNPM1_LAB6.docx) |
+| LAB7 | Nhân sự công ty sơn Đông Á | [README LAB7](LAB7/README.md) | [Báo cáo LAB7](LAB7/1250080021_NguyenThanhCan_CNPM1_LAB7.docx) |
 
 ## Cấu trúc thư mục
 
@@ -29,16 +31,18 @@ LAB_AT_OOSD/
 ├── LAB2/   README, báo cáo, solution WinForms và SQL
 ├── LAB3/   README, báo cáo, Database và solution WinForms
 ├── LAB4/   README, báo cáo, UML, Database, solution, Tests, Evidence
-└── LAB5/
-    ├── README.md
-    ├── 1250080021_NguyenThanhCan_CNPM1_LAB5.docx
-    ├── Database/QuanLyCongTyDuLich.sql
-    └── QuanLyCongTyDuLich/           Solution và project C#
+├── LAB5/
+│   ├── README.md
+│   ├── 1250080021_NguyenThanhCan_CNPM1_LAB5.docx
+│   ├── Database/QuanLyCongTyDuLich.sql
+│   └── QuanLyCongTyDuLich/           Solution và project C#
+├── LAB6/                            Word, UML, SQL, WinForms, Tests và Evidence
+└── LAB7/                            Word, UML từng file, SQL, WinForms, Tests và Evidence
 ```
 
 ## Môi trường và chạy bài
 
-Clone repository hoặc tải ZIP, mở README của bài cần kiểm tra để chọn đúng môi trường và dữ liệu mẫu. LAB1 dùng Java; LAB2 đến LAB5 dùng C# WinForms **.NET Framework 4.7.2** và SQL Server. Visual Studio cần workload .NET desktop development và targeting pack tương ứng.
+Clone repository hoặc tải ZIP, mở README của bài cần kiểm tra để chọn đúng môi trường và dữ liệu mẫu. LAB1 dùng Java; LAB2 đến LAB7 dùng C# WinForms **.NET Framework 4.7.2** và SQL Server. Visual Studio cần workload .NET desktop development và targeting pack tương ứng.
 
 | Bài | Instance trên máy kiểm tra | Database |
 | --- | --- | --- |
@@ -46,12 +50,18 @@ Clone repository hoặc tải ZIP, mở README của bài cần kiểm tra để
 | LAB3 | `(localdb)\MSSQLLocalDB` | QuanLyKhachSan |
 | LAB4 | `.\MSSQLSERVER01` | QuanLyCuaHangOnline |
 | LAB5 | `.\MSSQLSERVER01` | QuanLyCongTyDuLich |
+| LAB6 | `.\MSSQLSERVER01` | QuanLyHoSoBenhAn |
+| LAB7 | `.\MSSQLSERVER01` | QuanLyNhanSu |
 
-Môi trường các bài trước có JDK **23.0.1**, Visual Studio Community 2022 dòng **17.14**, .NET Framework **4.7.2** và LocalDB **15.0.4382.1**. LAB4 và LAB5 đã chạy trên SQL Server 2022 **16.0.1000.6**. Chi tiết cấu hình, ngày kiểm tra và giới hạn của từng bài nằm trong README tương ứng.
+Môi trường các bài trước có JDK **23.0.1**, Visual Studio Community 2022 dòng **17.14**, .NET Framework **4.7.2** và LocalDB **15.0.4382.1**. LAB4, LAB5 và LAB6 đã chạy trên SQL Server 2022 **16.0.1000.6**. Chi tiết cấu hình, ngày kiểm tra và giới hạn của từng bài nằm trong README tương ứng.
 
 Với bài WinForms, chạy script SQL của bài trên đúng instance, sửa Data Source trong cấu hình nếu cần, mở solution, Rebuild rồi F5. Không trộn script hoặc cấu hình của các database khác nhau. Báo cáo Word chứa mô hình và bằng chứng; mã nguồn, SQL và test giúp chạy lại để đối chiếu.
 
 LAB5 có **9 Form, 8 Service và 16 bảng SQL Server**. Báo cáo trình bày phân tích và thiết kế UML, trong đó có 2 sơ đồ phân rã use case, 2 activity và 2 tuần tự cho các chức năng lịch chuyến và điểm tham quan. Báo cáo dùng A4 dọc, có 17 ảnh Form/tab và 2 ảnh đối chiếu CSDL. Cách cấu hình, chạy ứng dụng và các kịch bản kiểm tra được trình bày trong README của LAB5.
+
+LAB6 quản lý hồ sơ bệnh án, gồm 13 lớp nghiệp vụ, 8 hình UML, SQL Server 13 bảng và WinForms 9 Form theo UI → Service → Data. Báo cáo A4 dọc có 20 ảnh Form/tab, 2 ảnh đối chiếu CSDL, đặc tả và truy vết. Đã kiểm tra 50 ca nghiệp vụ/CSDL, 12 luồng ghi từ Form và 265 kiểm tra bố cục. README LAB6 hướng dẫn tạo dữ liệu mẫu, chạy solution và kiểm thử trên CSDL riêng.
+
+LAB7 quản lý nhân sự Đông Á, có 22 bảng SQL, 9 Form và 18 sơ đồ draw.io riêng. Báo cáo A4 theo pha phân tích–thiết kế; 41 kiểm thử nghiệp vụ và 322 kiểm tra Form đạt. Xem README LAB7 để chạy lại và đối chiếu dữ liệu lương mẫu.
 
 ## Quy định cập nhật và nộp bài
 

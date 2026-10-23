@@ -1,0 +1,51 @@
+﻿Ma,NoiDung,KetQua
+T01,"Đăng ký tạo BN - phiếu đăng ký - lệ phí - hồ sơ",PASS
+T02,"Thiếu ảnh bị từ chối và không tạo bệnh nhân",PASS
+T03,"Lệ phí 0 không cấp hồ sơ",PASS
+T04,"Ngày sinh sau ngày đăng ký bị từ chối",PASS
+T05,"Trùng mã hồ sơ hoàn tác ba bảng đã ghi trước",PASS
+T06,"Trùng phiếu đăng ký hoàn tác bệnh nhân mới",PASS
+T07,"Thu lệ phí chồng thời hạn bị từ chối",PASS
+T08,"Gia hạn đúng một năm kế tiếp",PASS
+T09,"Tra cứu bằng mã hồ sơ và điện thoại",PASS
+T10,"Phiếu khám điều trị liên kết hồ sơ - bác sĩ - khoa",PASS
+T11,"FK chặn phiếu khám không có hồ sơ",PASS
+T12,"Khám định kỳ phải miễn phí",PASS
+T13,"Khám định kỳ lần đầu trong quý phí 0",PASS
+T14,"UNIQUE chặn khám định kỳ lặp trong quý",PASS
+T15,"Quý tiếp theo được khám sau gia hạn",PASS
+T16,"Lệ phí hết hiệu lực không khám định kỳ",PASS
+T17,"Đặt hẹn quý chưa sử dụng",PASS
+T18,"UNIQUE chặn hai lịch hẹn cùng quý",PASS
+T19,"Hủy lịch rồi đặt lại trong quý",PASS
+T20,"Không dùng lịch hẹn của hồ sơ khác",PASS
+T21,"Không dùng lịch đã hủy",PASS
+T22,"Đã có lịch hẹn thì cần liên kết đúng mã",PASS
+T23,"Lập phiếu theo lịch cập nhật trạng thái cùng transaction",PASS
+T24,"Không tái sử dụng lịch đã thực hiện",PASS
+T25,"Đổi hẹn sang thời hạn hết quyền lợi bị chặn",PASS
+T26,"Chưa có kết luận không được lập toa",PASS
+T27,"Ghi triệu chứng kết luận và theo dõi",PASS
+T28,"Toa không có dòng thuốc bị từ chối",PASS
+T29,"Bác sĩ kê phải đúng bác sĩ phiếu khám",PASS
+T30,"Chỉ định gắn đúng phiếu khám",PASS
+T31,"Còn xét nghiệm chờ thì chưa lập toa",PASS
+T32,"Ngày trả kết quả không trước chỉ định",PASS
+T33,"Ghi kết quả hợp lệ",PASS
+T34,"Thuốc không tồn tại hoàn tác toa cha",PASS
+T35,"Số lượng 0 hoàn tác toa và chi tiết",PASS
+T36,"Lưu thành công toa có hai chi tiết",PASS
+T37,"Mỗi phiếu có tối đa một toa",PASS
+T38,"Xuất toa có tên thuốc và đủ chi tiết",PASS
+T39,"Chưa xuất viện chưa thanh toán không hoàn tất",PASS
+T40,"Chỉ xuất viện chưa thanh toán không hoàn tất",PASS
+T41,"Đủ thủ tục mới hoàn tất và ghi lịch sử",PASS
+T42,"Không sửa lâm sàng sau hoàn tất",PASS
+T43,"Không thêm xét nghiệm sau hoàn tất",PASS
+T44,"Tra cứu lịch sử phân biệt đợt hoàn tất",PASS
+T45,"Khám định kỳ không phát hiện bệnh có thể không có toa",PASS
+T46,"Hai lần gia hạn đồng thời không chồng thời hạn",PASS
+T47,"Hai lịch hẹn đồng thời cùng quý chỉ nhận một",PASS
+T48,"CHECK chặn kết quả đã hoàn thành nhưng NULL",PASS
+T49,"Không hoàn tất nếu còn xét nghiệm chờ",PASS
+T50,"Lập phiếu lỗi FK không đổi trạng thái lịch hẹn",PASS

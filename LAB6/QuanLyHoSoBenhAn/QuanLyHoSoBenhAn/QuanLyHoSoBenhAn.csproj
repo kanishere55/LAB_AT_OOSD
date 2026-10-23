@@ -1,0 +1,23 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+ <PropertyGroup><Configuration Condition="'$(Configuration)'==''">Debug</Configuration><Platform Condition="'$(Platform)'==''">AnyCPU</Platform><ProjectGuid>{73A8B549-BFBD-462A-8C28-7A6120B39759}</ProjectGuid><OutputType>WinExe</OutputType><RootNamespace>QuanLyHoSoBenhAn</RootNamespace><AssemblyName>QuanLyHoSoBenhAn</AssemblyName><TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion><LangVersion>7.3</LangVersion><AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects></PropertyGroup>
+ <PropertyGroup Condition="'$(Configuration)'=='Debug'"><OutputPath>bin\Debug\</OutputPath><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><DefineConstants>DEBUG;TRACE</DefineConstants></PropertyGroup>
+ <PropertyGroup Condition="'$(Configuration)'=='Release'"><OutputPath>bin\Release\</OutputPath><Optimize>true</Optimize><DebugType>pdbonly</DebugType></PropertyGroup>
+ <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/><Reference Include="System.Data"/><Reference Include="System.Configuration"/><Reference Include="System.Drawing"/><Reference Include="System.Windows.Forms"/><Reference Include="System.Xml"/></ItemGroup>
+ <ItemGroup>    <Compile Include="Data\Db.cs" />
+    <Compile Include="Forms\FrmBenhNhan.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmDanhMuc.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmHoanTat.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmKhamBenh.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmLichHen.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmLichSu.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmMain.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmToaThuoc.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmXetNghiem.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\ModuleForm.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HoSoService.cs" /></ItemGroup>
+ <ItemGroup><None Include="App.config"/></ItemGroup>
+ <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
