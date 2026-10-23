@@ -10,23 +10,22 @@
 
 ## Nội dung và kết quả
 
-Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiểm, lương/chức vụ, kế hoạch tuần, ca/chấm công, phụ trội, khen thưởng/kỷ luật, bảng lương và thống kê. Báo cáo theo pha phân tích → pha thiết kế → CSDL → WinForms → kiểm thử và truy vết.
+Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiểm, lương/chức vụ, kế hoạch tuần, ca/chấm công, phụ trội, khen thưởng/kỷ luật, bảng lương và thống kê. Báo cáo trình bày theo pha phân tích → pha thiết kế → CSDL → WinForms.
 
 - Trả lời 6 câu của đề; 22 lớp/bảng nghiệp vụ, ID, association và multiplicity.
 - 18 sơ đồ: 3 hình lớp, 1 use case tổng quát, 2 phân rã chức năng, 1 trạng thái, 1 sequence khen thưởng, 1 lớp thiết kế tổng thể, 4 thiết kế module, 2 activity và 3 ERD. Mỗi sơ đồ là **một file draw.io riêng**.
 - WinForms có **9 Form**, 8 module; màn hình chính 2 cột và nút Thoát.
 - SQL Server có **22 bảng**, PK/FK/UNIQUE/CHECK, 9 stored procedure, TVP và transaction nhiều bảng.
 - **41/41** kiểm thử nghiệp vụ/CSDL và **322/322** kiểm tra Form đạt; build Release thành công.
-- Báo cáo A4 dọc, không footer; 20 ảnh Form/tab và 2 ảnh metadata SQL thực tế.
+- Báo cáo A4 dọc, không footer; 20 ảnh Form/tab của ứng dụng chạy với dữ liệu SQL Server.
 
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB7.docx).
 - [Đề bài](Bai_7_Quan_ly_nhan_su.docx).
 - [Solution](QuanLyNhanSu/QuanLyNhanSu.sln), [cấu hình](QuanLyNhanSu/QuanLyNhanSu/App.config).
-- [SQL cấu trúc và thủ tục](Database/QuanLyNhanSu.sql), [dữ liệu mẫu](Database/DuLieuMau.sql).
-- [Các file draw.io, PNG và SVG](UML/README.md).
-- [Kịch bản kiểm thử](Tests/KichBanKiemThu.md), [truy vết](Tests/TruyVetYeuCau.md), [bằng chứng](Evidence/README.md).
+- [SQL cấu trúc, thủ tục và dữ liệu mẫu](Database/QuanLyNhanSu.sql).
+- [18 sơ đồ draw.io riêng](UML/README.md).
 
 ## Môi trường
 
@@ -36,7 +35,7 @@ UI gọi `NhanSuService`, Service chuyển xử lý tới `Data/Db` và stored p
 
 ## Cài đặt và chạy
 
-1. Chạy `Database/QuanLyNhanSu.sql`, rồi `Database/DuLieuMau.sql` trên SQL Server có quyền tạo database. Script không xóa bảng hay ghi đè seed đã tồn tại.
+1. Mở `Database/QuanLyNhanSu.sql` trong SSMS và chạy toàn bộ file trên SQL Server có quyền tạo database. File chứa cấu trúc bảng, thủ tục và dữ liệu mẫu ở cuối; không xóa bảng hay ghi đè dữ liệu mẫu đã tồn tại.
 2. Mở solution bằng Visual Studio; kiểm tra `Data Source` trong App.config:
 
    ```text
@@ -71,18 +70,13 @@ UI gọi `NhanSuService`, Service chuyển xử lý tới `Data/Db` và stored p
 
 Mẫu NV001: mức tháng 10 triệu, 208 giờ công, 8 giờ PT, công chuẩn 26 × 8 giờ → công 10 triệu, PT 576923; BH 8000000 × (0,015 + 0,08) = 760000; thưởng 300000, phạt 100000 → **10016923 đ**.
 
-## Chạy lại kiểm thử
+## Kết quả kiểm tra
 
-Từ thư mục LAB7:
+Ngày 23/10/2026: build Release thành công; **41/41** ca kiểm tra nghiệp vụ/CSDL và **322/322** kiểm tra Form đạt. Các ca ghi dữ liệu dùng CSDL kiểm thử riêng. Kiểm tra Form mở đủ 9 Form và 20 màn hình/tab, đọc dữ liệu SQL và kiểm tra vùng nhập/cột ở kích thước mặc định, nhỏ nhất.
 
-```powershell
-.\Tests\Run-Checks.ps1
-.\Tests\Capture-Forms.ps1
-```
+Để kiểm tra lại trực tiếp, chạy script SQL, mở solution và thực hiện các tình huống trong bảng Module ở trên. Đối chiếu BL092026 của NV001: công 208 giờ, phụ trội 8 giờ, tiền công 10.000.000 đ, tiền phụ trội 576.923 đ, bảo hiểm 760.000 đ, thưởng 300.000 đ, phạt 100.000 đ, thực lĩnh **10.016.923 đ**.
 
-Script dùng đường dẫn Visual Studio 2022 Community và SQLCMD ODBC 170 trên máy; chỉnh biến đường dẫn và instance nếu máy khác. Test dùng mã riêng và CSDL riêng. `Capture-Forms` chạy sau build/seed, mở đủ 20 màn hình/tab ở kích thước gốc/nhỏ nhất. Ảnh bằng DrawToBitmap từ Form đang chạy; ảnh SQL là cửa sổ metadata riêng, không phải SSMS.
-
-Kết quả: [41 kiểm thử nghiệp vụ](Tests/BusinessResults.csv), [322 kiểm tra Form](Evidence/FormResults.csv). Kiểm thử nghiệp vụ gọi Service/SQL; kiểm tra Form chưa tự động bấm mọi nút ghi dữ liệu, thử mọi hộp thoại hoặc mọi DPI Windows.
+Ảnh giao diện trong Word được lấy bằng DrawToBitmap từ Form đang chạy với SQL Server. Kiểm tra Form chưa tự động bấm mọi nút ghi dữ liệu, thử mọi hộp thoại hoặc mọi DPI Windows.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -96,6 +90,6 @@ Kết quả: [41 kiểm thử nghiệp vụ](Tests/BusinessResults.csv), [322 ki
 
 ## Nộp bài
 
-Lưu riêng LAB7 gồm Word, source, SQL, UML, Tests, Evidence và README. Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Commit/push trước hạn, mở repository kiểm tra truy cập được rồi nộp URL trên Classroom theo yêu cầu lớp. Nếu có yêu cầu video, đặt link đầu báo cáo.
+Lưu riêng LAB7 gồm Word, source WinForms, một script SQL, các file draw.io và README. Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Commit/push trước hạn, mở repository kiểm tra truy cập được rồi nộp URL trên Classroom theo yêu cầu lớp. Nếu có yêu cầu video, đặt link đầu báo cáo.
 
 [Quay về danh sách bài Lab](../README.md).

@@ -37,7 +37,7 @@ LAB_AT_OOSD/
 │   ├── Database/QuanLyCongTyDuLich.sql
 │   └── QuanLyCongTyDuLich/           Solution và project C#
 ├── LAB6/                            Word, UML, SQL, WinForms, Tests và Evidence
-└── LAB7/                            Word, UML từng file, SQL, WinForms, Tests và Evidence
+└── LAB7/                            Word, UML từng file, SQL kèm dữ liệu mẫu và WinForms
 ```
 
 ## Môi trường và chạy bài
@@ -61,7 +61,7 @@ LAB5 có **9 Form, 8 Service và 16 bảng SQL Server**. Báo cáo trình bày p
 
 LAB6 quản lý hồ sơ bệnh án, gồm 13 lớp nghiệp vụ, 8 hình UML, SQL Server 13 bảng và WinForms 9 Form theo UI → Service → Data. Báo cáo A4 dọc có 20 ảnh Form/tab, 2 ảnh đối chiếu CSDL, đặc tả và truy vết. Đã kiểm tra 50 ca nghiệp vụ/CSDL, 12 luồng ghi từ Form và 265 kiểm tra bố cục. README LAB6 hướng dẫn tạo dữ liệu mẫu, chạy solution và kiểm thử trên CSDL riêng.
 
-LAB7 quản lý nhân sự Đông Á, có 22 bảng SQL, 9 Form và 18 sơ đồ draw.io riêng. Báo cáo A4 theo pha phân tích–thiết kế; 41 kiểm thử nghiệp vụ và 322 kiểm tra Form đạt. Xem README LAB7 để chạy lại và đối chiếu dữ liệu lương mẫu.
+LAB7 quản lý nhân sự Đông Á, có 22 bảng SQL, 9 Form và 18 sơ đồ draw.io riêng. Báo cáo A4 theo pha phân tích–thiết kế; 41 kiểm thử nghiệp vụ và 322 kiểm tra Form đạt. Ảnh Form nằm trong Word; một script SQL gồm cấu trúc và dữ liệu mẫu. Xem README LAB7 để chạy lại và đối chiếu dữ liệu lương mẫu.
 
 ## Quy định cập nhật và nộp bài
 

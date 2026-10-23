@@ -169,3 +169,53 @@ AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON; SET TRANSACTION ISOLATION LEVEL SERI
  IF @@ROWCOUNT=0 THROW 50021,N'Không có chấm công để lập bảng lương.',1;
  COMMIT; END;
 GO
+
+-- DU LIEU MAU THUC HANH
+USE QuanLyNhanSu;
+GO
+SET XACT_ABORT ON;
+IF NOT EXISTS(SELECT 1 FROM PhongBan WHERE MaPB='PB01') INSERT PhongBan VALUES('PB01',N'Phòng kỹ thuật');
+IF NOT EXISTS(SELECT 1 FROM PhongBan WHERE MaPB='PB02') INSERT PhongBan VALUES('PB02',N'Phòng tài chính kế toán');
+IF NOT EXISTS(SELECT 1 FROM ChucVu WHERE MaCV='CV01') INSERT ChucVu VALUES('CV01',N'Chuyên viên');
+IF NOT EXISTS(SELECT 1 FROM CaLam WHERE MaCa='CA01') INSERT CaLam VALUES('CA01',N'Ca hành chính','08:00','17:00',8);
+GO
+IF NOT EXISTS(SELECT 1 FROM NhanVien WHERE MaNV='NV001')
+EXEC TuyenDung 'NV001',N'Nguyễn Minh An','19980112','0900000001',N'Địa chỉ thực hành 01','PB01','TD001','20260601','20260601','20260731',6000000,N'Thử việc tại phòng kỹ thuật theo thỏa thuận hai bên.';
+IF EXISTS(SELECT 1 FROM QuyetDinhTuyenDung WHERE MaNV='NV001' AND KetQua IS NULL) EXEC DanhGia 'NV001','20260801',N'Đạt';
+IF NOT EXISTS(SELECT 1 FROM HopDong WHERE SoHD='HD001') EXEC KyHopDong 'HD001','NV001',N'Dài hạn','20260801','20260801',NULL,N'Hợp đồng chính thức theo thỏa thuận.','BH001','YT000001','XH000001',8000000,0.015,0.08;
+IF NOT EXISTS(SELECT 1 FROM QuyetDinhLuong WHERE SoQD='QL001') INSERT QuyetDinhLuong VALUES('QL001','NV001','20260801',8000000,1000000,500000);
+IF NOT EXISTS(SELECT 1 FROM QuyetDinhChucVu WHERE SoQD='QC001') INSERT QuyetDinhChucVu VALUES('QC001','NV001','CV01','20260801',500000);
+IF NOT EXISTS(SELECT 1 FROM NhanVien WHERE MaNV='NV002') EXEC TuyenDung 'NV002',N'Trần Bảo Bình','20000315','0900000002',N'Địa chỉ thực hành 02','PB01','TD002','20261001','20261001','20261130',6000000,N'Thử việc hai tháng tại phòng kỹ thuật.';
+IF NOT EXISTS(SELECT 1 FROM NhanVien WHERE MaNV='NV003') EXEC TuyenDung 'NV003',N'Lê Thanh Chi','19990520','0900000003',N'Địa chỉ thực hành 03','PB02','TD003','20260801','20260801','20260930',5500000,N'Thử việc tại phòng kế toán.';
+IF EXISTS(SELECT 1 FROM QuyetDinhTuyenDung WHERE MaNV='NV003' AND KetQua IS NULL) EXEC DanhGia 'NV003','20261001',N'Đạt';
+GO
+IF NOT EXISTS(SELECT 1 FROM BangLuong WHERE MaBL='BL092026') BEGIN
+ DECLARE @day date='20260901',@mon date;
+ WHILE @day<'20261001' BEGIN
+ IF DATEDIFF(day,'19000101',@day)%7<>6 BEGIN
+ SET @mon=DATEADD(day,-(DATEDIFF(day,'19000101',@day)%7),@day);
+ IF NOT EXISTS(SELECT 1 FROM KeHoachTuan WHERE MaPB='PB01' AND DauTuan=@mon) INSERT KeHoachTuan VALUES('KH'+CONVERT(char(8),@mon,112),'PB01',@mon,N'Trưởng phòng mẫu');
+ DECLARE @kh varchar(20)='KH'+CONVERT(char(8),@mon,112);
+ IF NOT EXISTS(SELECT 1 FROM PhanCongCa WHERE MaNV='NV001' AND Ngay=@day AND MaCa='CA01') EXEC PhanCong @kh,'NV001',@day,'CA01',2;
+ IF NOT EXISTS(SELECT 1 FROM ChamCong WHERE MaNV='NV001' AND Ngay=@day AND MaCa='CA01') EXEC GhiChamCong 'NV001',@day,'CA01',8,N'Ban chấm công mẫu';
+ END; SET @day=DATEADD(day,1,@day); END;
+END;
+GO
+
+IF NOT EXISTS(SELECT 1 FROM PhieuPhuTroi WHERE SoPhieu='PT001') BEGIN
+DECLARE @nv dbo.DanhSachTien;INSERT @nv VALUES('NV001',0);
+EXEC LapPhuTroi 'PT001','20260915',2,N'Tăng ca',N'Ban chấm công mẫu',@nv;
+EXEC LapPhuTroi 'PT002','20260916',2,N'Ngày lễ',N'Ban chấm công mẫu',@nv;
+EXEC LapPhuTroi 'PT003','20260917',2,N'Ngày nghỉ',N'Ban chấm công mẫu',@nv;
+EXEC LapPhuTroi 'PT004','20260918',2,N'Tăng ca',N'Ban chấm công mẫu',@nv; END;
+GO
+IF NOT EXISTS(SELECT 1 FROM QuyetDinhKhenThuong WHERE SoQD='KT001') BEGIN
+DECLARE @ds dbo.DanhSachTien;INSERT @ds VALUES('NV001',300000);
+EXEC LapKhenThuong 'KT001','20260925','NV001',NULL,N'Hoàn thành kế hoạch tháng',300000,N'Giám đốc mẫu',N'Qua lương','PC001',@ds; END;
+IF NOT EXISTS(SELECT 1 FROM QuyetDinhKyLuat WHERE SoQD='KL001') BEGIN
+DECLARE @phat dbo.DanhSachTien;INSERT @phat VALUES('NV001',100000);
+EXEC LapKyLuat 'KL001','20260926','NV001',NULL,N'Vi phạm nội quy theo biên bản mẫu',100000,N'Giám đốc mẫu',N'Qua lương','TH001',@phat; END;
+GO
+IF NOT EXISTS(SELECT 1 FROM BangLuong WHERE MaBL='BL092026') EXEC LapBangLuong 'BL092026',9,2026,'20261001',26,8;
+IF NOT EXISTS(SELECT 1 FROM KeHoachTuan WHERE MaKH='KH001') INSERT KeHoachTuan VALUES('KH001','PB01','20261019',N'Trưởng phòng kỹ thuật');
+GO
