@@ -56,6 +56,7 @@ Visual Studio cần workload **.NET desktop development** và targeting/develope
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB5.docx): phân tích nghiệp vụ, mô hình UML, thiết kế CSDL, SQL và ảnh kết quả chạy ứng dụng.
+- [20 sơ đồ draw.io riêng](UML): đủ các sơ đồ UML, ERD và điều hướng Form trong báo cáo. Hai biểu đồ trạng thái ChuyenLe và PhieuKhaoSat ở Hình P.6 được lưu thành hai file riêng.
 - [Solution](QuanLyCongTyDuLich/QuanLyCongTyDuLich.sln).
 - [Script tạo CSDL và dữ liệu mẫu](Database/QuanLyCongTyDuLich.sql).
 - [Cấu hình kết nối](QuanLyCongTyDuLich/QuanLyCongTyDuLich/App.config).

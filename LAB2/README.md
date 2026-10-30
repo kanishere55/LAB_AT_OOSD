@@ -34,6 +34,7 @@ Visual Studio cần workload **.NET desktop development** và bộ targeting/dev
 
 ## Các file chính
 
+- [14 sơ đồ draw.io riêng](UML): use case tổng quát, lớp, 5 activity, 5 sequence, ERD và điều hướng Form. Mỗi file chứa một sơ đồ, có thể sửa các đối tượng và nhãn trong diagrams.net.
 - [QuanLyThuVien.sln](QuanLyThuVien.sln): solution mở bằng Visual Studio.
 - [QuanLyThuVien.csproj](QuanLyThuVien/QuanLyThuVien.csproj): project ứng dụng.
 - [SQL.sql](QuanLyThuVien/SQL.sql): khởi tạo 9 bảng, các ràng buộc và dữ liệu mẫu.

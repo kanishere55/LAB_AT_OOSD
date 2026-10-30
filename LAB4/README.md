@@ -11,7 +11,7 @@
 
 Phân tích hệ thống e-SHOPPING của cửa hàng ABC, xác định các chức năng trong ứng dụng và ba hệ thống bên ngoài: quản lý sản phẩm, thanh toán trực tuyến, email.
 
-Báo cáo trình bày pha phân tích và pha thiết kế, gồm biểu đồ use case, lớp phân tích, trạng thái, tuần tự, lớp thiết kế chi tiết, thiết kế riêng từng chức năng và hoạt động. File draw.io có 10 biểu đồ UML tiêu biểu cùng một biểu đồ quan hệ CSDL.
+Báo cáo trình bày pha phân tích và pha thiết kế, gồm biểu đồ use case, lớp phân tích, trạng thái, tuần tự, lớp thiết kế chi tiết, thiết kế riêng từng chức năng và hoạt động. Thư mục UML có 11 file draw.io cho các sơ đồ e-SHOPPING trong báo cáo và 1 file cho sơ đồ lớp của bài tập tổng hợp nhân viên kinh doanh – đơn hàng. Mỗi sơ đồ nằm trong một file riêng.
 
 Ứng dụng C# WinForms tổ chức theo UI → Service/Adapter → Data. Giỏ lưu theo phiên; tài khoản và đơn hàng lưu trên SQL Server. Danh mục sản phẩm mô phỏng nguồn bên ngoài trong schema catalog. Thanh toán và email dùng adapter giả lập; không trừ tiền hoặc gửi email thật.
 
@@ -45,8 +45,8 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 
 ## Các file chính
 
-- [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04_HOANCHINH.docx): nội dung phân tích, thiết kế, SQL, giao diện, kiểm thử và truy vết.
-- [Biểu đồ draw.io](UML/LAB04_UML.drawio): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
+- [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04.docx): nội dung phân tích, thiết kế, SQL, giao diện, kiểm thử và truy vết.
+- [12 sơ đồ draw.io riêng](UML): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
 - [Solution](QuanLyCuaHangOnline/QuanLyCuaHangOnline.sln).
 - [Script khởi tạo CSDL](Database/SQL.sql).
 - [Cấu hình kết nối](QuanLyCuaHangOnline/QuanLyCuaHangOnline/App.config).

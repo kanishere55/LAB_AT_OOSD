@@ -25,7 +25,7 @@ Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiể
 - [Đề bài](Bai_7_Quan_ly_nhan_su.docx).
 - [Solution](QuanLyNhanSu/QuanLyNhanSu.sln), [cấu hình](QuanLyNhanSu/QuanLyNhanSu/App.config).
 - [SQL cấu trúc, thủ tục và dữ liệu mẫu](Database/QuanLyNhanSu.sql).
-- [18 sơ đồ draw.io riêng](UML/README.md).
+- [18 sơ đồ draw.io riêng](UML).
 
 ## Môi trường
 

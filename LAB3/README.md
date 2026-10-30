@@ -43,6 +43,7 @@ Visual Studio cần workload **.NET desktop development** và bộ targeting/dev
 ```text
 LAB3/
 ├── README.md
+├── UML/                              24 sơ đồ draw.io riêng
 ├── Database/
 │   └── SQL.sql
 ├── QuanLyKhachSan/
@@ -59,6 +60,7 @@ LAB3/
 └── 1250080021_NguyenThanhCan_CNPM1_LAB03.docx
 ```
 
+- [24 sơ đồ draw.io riêng](UML): use case tổng quát, 4 phân rã chức năng, lớp phân tích, 2 trạng thái, 6 tuần tự, lớp chi tiết, 6 thiết kế chức năng, activity đặt phòng, ERD và điều hướng Form. Nội dung dùng tên Form/Service và cấu trúc CSDL của project.
 - [Solution](QuanLyKhachSan/QuanLyKhachSan.sln): mở ứng dụng trong Visual Studio.
 - [Script SQL](Database/SQL.sql): bản khởi tạo CSDL dùng cho bài.
 - [App.config](QuanLyKhachSan/QuanLyKhachSan/App.config): chuỗi kết nối `QuanLyKhachSanDB`.

@@ -48,7 +48,7 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
 - [Solution WinForms](QuanLyHoSoBenhAn/QuanLyHoSoBenhAn.sln).
 - [Cấu hình kết nối](QuanLyHoSoBenhAn/QuanLyHoSoBenhAn/App.config).
 - [SQL cấu trúc và thủ tục](Database/QuanLyHoSoBenhAn.sql), [dữ liệu mẫu](Database/DuLieuMau.sql), [truy vấn đối chiếu](Database/KiemTra.sql).
-- [8 file draw.io riêng, mỗi file một sơ đồ](UML/README.md), [mô hình StarUML](UML/LAB6_QuanLyHoSoBenhAn.mdj) và [ảnh UML](UML/README.md).
+- [8 file draw.io riêng, mỗi file một sơ đồ](UML): 2 hình lớp, use case tổng quát, 2 phân rã chức năng, 2 activity và sequence lập toa thuốc.
 - [Kịch bản kiểm thử](Tests/KichBanKiemThu.md) và [truy vết yêu cầu](Tests/TruyVetYeuCau.md).
 - [Bằng chứng chạy ứng dụng và CSDL](Evidence/README.md).
 

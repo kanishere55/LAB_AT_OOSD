@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" type="device" pages="1">
+  <diagram id="19_ChucNangDichVu" name="Thiết kế chức năng sử dụng dịch vụ">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="form" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="62.688" y="45.981" width="100.232" height="68.340" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="" style="shape=ellipse;fillColor=#ffffcc;strokeColor=#d83d70;" vertex="1" parent="form">
+          <mxGeometry x="37.359" y="1.822" width="25.514" height="25.514" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="form">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30.981" y="-3.645" as="sourcePoint"/>
+            <mxPoint x="30.981" y="32.803" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="form">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30.981" y="14.579" as="sourcePoint"/>
+            <mxPoint x="37.359" y="14.579" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="FrmDichVu" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=12.301;fontStyle=4;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="form">
+          <mxGeometry x="19.027" y="38.270" width="62.179" height="16.793" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" value="Load(); nạp danh mục&#10;Nhập và kiểm tra control&#10;Gọi xử lý; hiển thị kết quả" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="1">
+          <mxGeometry x="44.464" y="142.568" width="118.342" height="40.986" as="geometry"/>
+        </mxCell>
+        <mxCell id="svc" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="288.210" y="46.892" width="200.464" height="125.454" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="" style="rounded=0;arcSize=12;html=0;fillColor=#ffffcc;strokeColor=#d83d70;strokeWidth=0.683;" vertex="1" parent="svc">
+          <mxGeometry x="0.000" y="0.000" width="200.464" height="125.454" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="«control»&#10;DichVuService" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.846;fontStyle=1;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="svc">
+          <mxGeometry x="61.059" y="3.645" width="78.345" height="30.234" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="svc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="35.245" as="sourcePoint"/>
+            <mxPoint x="200.464" y="35.245" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="svc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="53.469" as="sourcePoint"/>
+            <mxPoint x="200.464" y="53.469" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="+ LayPhieuDangO()&#10;+ LayDichVu()&#10;+ LayLichSu()&#10;+ GhiNhan()" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.390;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="svc">
+          <mxGeometry x="4.556" y="57.114" width="95.904" height="56.039" as="geometry"/>
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;jumpStyle=arc;jumpSize=6;strokeColor=#d83d70;strokeWidth=0.729;endArrow=open;endFill=0;startArrow=none;startFill=1;exitX=1.0;exitY=0.5;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="form" target="svc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="162.920" y="80.151" as="sourcePoint"/>
+            <mxPoint x="288.210" y="109.619" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="225.565" y="80.151"/>
+              <mxPoint x="225.565" y="109.619"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PhieuDatPhong" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="570.682" y="30.946" width="211.854" height="238.352" as="geometry"/>
+        </mxCell>
+        <mxCell id="e12" value="" style="rounded=0;arcSize=12;html=0;fillColor=#ffffcc;strokeColor=#d83d70;strokeWidth=0.683;" vertex="1" parent="PhieuDatPhong">
+          <mxGeometry x="0.000" y="0.000" width="211.854" height="238.352" as="geometry"/>
+        </mxCell>
+        <mxCell id="e13" value="«entity»&#10;PhieuDatPhong" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.390;fontStyle=1;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuDatPhong">
+          <mxGeometry x="66.233" y="3.645" width="79.388" height="29.158" as="geometry"/>
+        </mxCell>
+        <mxCell id="e14" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="PhieuDatPhong">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="34.170" as="sourcePoint"/>
+            <mxPoint x="211.854" y="34.170" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" value="− SoPhieuDat: String {id}&#10;− NgayLap: DateTime&#10;− NgayNhan: Date&#10;− NgayTraDuKien: Date&#10;− TienCoc: Decimal&#10;− KenhDat: String&#10;− TrangThai: String&#10;− NgayNhanThucTe: DateTime ?&#10;− NgayTraThucTe: DateTime ?" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuDatPhong">
+          <mxGeometry x="4.556" y="37.815" width="150.558" height="118.401" as="geometry"/>
+        </mxCell>
+        <mxCell id="e16" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="PhieuDatPhong">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="168.517" as="sourcePoint"/>
+            <mxPoint x="211.854" y="168.517" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" value="+ taoDatPhong(): KetQuaXuLy&#10;+ nhanPhong(thucTe): KetQuaXuLy&#10;+ danhDauNoShow(): KetQuaXuLy&#10;+ traPhong(ngayTra): KetQuaXuLy" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuDatPhong">
+          <mxGeometry x="4.556" y="172.162" width="163.995" height="53.888" as="geometry"/>
+        </mxCell>
+        <mxCell id="e18" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;jumpStyle=arc;jumpSize=6;strokeColor=#d83d70;strokeWidth=0.729;endArrow=open;endFill=0;startArrow=none;startFill=1;exitX=1.0;exitY=0.13;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="svc" target="PhieuDatPhong">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="488.674" y="63.201" as="sourcePoint"/>
+            <mxPoint x="570.682" y="150.122" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="506.898" y="63.201"/>
+              <mxPoint x="506.898" y="150.122"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DichVu" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="570.682" y="299.750" width="211.854" height="135.131" as="geometry"/>
+        </mxCell>
+        <mxCell id="e19" value="" style="rounded=0;arcSize=12;html=0;fillColor=#ffffcc;strokeColor=#d83d70;strokeWidth=0.683;" vertex="1" parent="DichVu">
+          <mxGeometry x="0.000" y="0.000" width="211.854" height="135.131" as="geometry"/>
+        </mxCell>
+        <mxCell id="e20" value="«entity»&#10;DichVu" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.390;fontStyle=1;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="DichVu">
+          <mxGeometry x="84.969" y="3.645" width="41.915" height="29.158" as="geometry"/>
+        </mxCell>
+        <mxCell id="e21" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="DichVu">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="34.170" as="sourcePoint"/>
+            <mxPoint x="211.854" y="34.170" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e22" value="− MaDV: String {id}&#10;− TenDV: String&#10;− DonViTinh: String&#10;− DonGia: Decimal" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="DichVu">
+          <mxGeometry x="4.556" y="37.815" width="96.233" height="53.888" as="geometry"/>
+        </mxCell>
+        <mxCell id="e23" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="DichVu">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="104.004" as="sourcePoint"/>
+            <mxPoint x="211.854" y="104.004" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e24" value="+ layDonGia(): Decimal" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="DichVu">
+          <mxGeometry x="4.556" y="107.649" width="110.027" height="15.181" as="geometry"/>
+        </mxCell>
+        <mxCell id="e25" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;jumpStyle=arc;jumpSize=6;strokeColor=#d83d70;strokeWidth=0.729;endArrow=open;endFill=0;startArrow=none;startFill=1;exitX=1.0;exitY=0.26;exitPerimeter=0;entryX=0.0;entryY=0.49999999999999983;entryPerimeter=0;" edge="1" parent="1" source="svc" target="DichVu">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="488.674" y="79.510" as="sourcePoint"/>
+            <mxPoint x="570.682" y="367.315" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="515.554" y="79.510"/>
+              <mxPoint x="515.554" y="367.315"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PhieuSuDungDV" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="570.682" y="568.554" width="211.854" height="109.326" as="geometry"/>
+        </mxCell>
+        <mxCell id="e26" value="" style="rounded=0;arcSize=12;html=0;fillColor=#ffffcc;strokeColor=#d83d70;strokeWidth=0.683;" vertex="1" parent="PhieuSuDungDV">
+          <mxGeometry x="0.000" y="0.000" width="211.854" height="109.326" as="geometry"/>
+        </mxCell>
+        <mxCell id="e27" value="«entity»&#10;PhieuSuDungDV" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.390;fontStyle=1;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuSuDungDV">
+          <mxGeometry x="62.702" y="3.645" width="86.450" height="29.158" as="geometry"/>
+        </mxCell>
+        <mxCell id="e28" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="PhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="34.170" as="sourcePoint"/>
+            <mxPoint x="211.854" y="34.170" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e29" value="− SoPhieuSDDV: String {id}&#10;− NgaySuDung: Date" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuSuDungDV">
+          <mxGeometry x="4.556" y="37.815" width="131.998" height="28.083" as="geometry"/>
+        </mxCell>
+        <mxCell id="e30" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="PhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="78.199" as="sourcePoint"/>
+            <mxPoint x="211.854" y="78.199" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e31" value="+ timHoacTaoPhieu(): String" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="PhieuSuDungDV">
+          <mxGeometry x="4.556" y="81.844" width="131.314" height="15.181" as="geometry"/>
+        </mxCell>
+        <mxCell id="e32" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;jumpStyle=arc;jumpSize=6;strokeColor=#d83d70;strokeWidth=0.729;endArrow=open;endFill=0;startArrow=none;startFill=1;exitX=1.0;exitY=0.38999999999999996;exitPerimeter=0;entryX=0.0;entryY=0.5000000000000001;entryPerimeter=0;" edge="1" parent="1" source="svc" target="PhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="488.674" y="95.819" as="sourcePoint"/>
+            <mxPoint x="570.682" y="623.217" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="524.211" y="95.819"/>
+              <mxPoint x="524.211" y="623.217"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ChiTietPhieuSuDungDV" value="" style="group;html=0;container=1;collapsible=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="570.682" y="837.358" width="211.854" height="160.936" as="geometry"/>
+        </mxCell>
+        <mxCell id="e33" value="" style="rounded=0;arcSize=12;html=0;fillColor=#ffffcc;strokeColor=#d83d70;strokeWidth=0.683;" vertex="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry x="0.000" y="0.000" width="211.854" height="160.936" as="geometry"/>
+        </mxCell>
+        <mxCell id="e34" value="«entity»&#10;ChiTietPhieuSuDungDV" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=11.390;fontStyle=1;align=center;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry x="44.024" y="3.645" width="123.806" height="29.158" as="geometry"/>
+        </mxCell>
+        <mxCell id="e35" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="34.170" as="sourcePoint"/>
+            <mxPoint x="211.854" y="34.170" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e36" value="− SoPhieuSDDV: String {id}&#10;− MaDV: String {id}&#10;− SoLuong: int&#10;− DonGia: Decimal&#10;− ThanhTien: Decimal {tính}" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry x="4.556" y="37.815" width="133.140" height="66.791" as="geometry"/>
+        </mxCell>
+        <mxCell id="e37" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;strokeColor=#d83d70;strokeWidth=0.683;endArrow=none;startArrow=none;" edge="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.000" y="116.907" as="sourcePoint"/>
+            <mxPoint x="211.854" y="116.907" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e38" value="+ congDonSoLuong(soLuong)&#10;+ tinhThanhTien(): Decimal" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;fontSize=10.934;fontStyle=0;align=left;verticalAlign=top;spacing=0;whiteSpace=nowrap;overflow=visible;" vertex="1" parent="ChiTietPhieuSuDungDV">
+          <mxGeometry x="4.556" y="120.552" width="137.363" height="28.083" as="geometry"/>
+        </mxCell>
+        <mxCell id="e39" value="" style="edgeStyle=none;noEdgeStyle=1;rounded=0;jumpStyle=arc;jumpSize=6;strokeColor=#d83d70;strokeWidth=0.729;endArrow=open;endFill=0;startArrow=none;startFill=1;exitX=1.0;exitY=0.52;exitPerimeter=0;entryX=0.0;entryY=0.49999999999999967;entryPerimeter=0;" edge="1" parent="1" source="svc" target="ChiTietPhieuSuDungDV">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="488.674" y="112.128" as="sourcePoint"/>
+            <mxPoint x="570.682" y="917.826" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="532.867" y="112.128"/>
+              <mxPoint x="532.867" y="917.826"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,258 @@
+﻿IF DB_ID(N'QuanLyVanPhong') IS NULL CREATE DATABASE QuanLyVanPhong;
+GO
+USE QuanLyVanPhong;
+GO
+SET ANSI_NULLS ON; SET QUOTED_IDENTIFIER ON; SET ANSI_PADDING ON;
+SET ANSI_WARNINGS ON; SET ARITHABORT ON; SET CONCAT_NULL_YIELDS_NULL ON; SET NUMERIC_ROUNDABORT OFF;
+GO
+IF OBJECT_ID('dbo.Tang','U') IS NULL
+CREATE TABLE dbo.Tang(MaTang varchar(20) PRIMARY KEY, SoTang int NOT NULL UNIQUE CHECK(SoTang>=0), TenTang nvarchar(100) NOT NULL);
+GO
+IF OBJECT_ID('dbo.Phong','U') IS NULL
+CREATE TABLE dbo.Phong(MaPhong varchar(20) PRIMARY KEY, MaTang varchar(20) NOT NULL REFERENCES dbo.Tang(MaTang), DienTich decimal(8,2) NOT NULL CHECK(DienTich>0), Huong nvarchar(50) NOT NULL, DonGiaThang decimal(18,0) NOT NULL CHECK(DonGiaThang>0), DangSua bit NOT NULL DEFAULT 0);
+GO
+IF OBJECT_ID('dbo.KhachHang','U') IS NULL
+CREATE TABLE dbo.KhachHang(MaKH varchar(20) PRIMARY KEY, TenCongTy nvarchar(150) NOT NULL, MaSoThue varchar(30) NOT NULL UNIQUE, NguoiDaiDien nvarchar(120) NOT NULL, DienThoai varchar(20) NOT NULL, DiaChi nvarchar(250) NOT NULL);
+GO
+IF OBJECT_ID('dbo.HopDong','U') IS NULL
+CREATE TABLE dbo.HopDong(SoHD varchar(20) PRIMARY KEY, MaKH varchar(20) NOT NULL REFERENCES dbo.KhachHang(MaKH), NgayKy date NOT NULL, TuNgay date NOT NULL, SoThangThue int NOT NULL CHECK(SoThangThue BETWEEN 6 AND 120), DieuKhoan nvarchar(2000) NOT NULL, CHECK(TuNgay>=NgayKy));
+GO
+IF OBJECT_ID('dbo.ChiTietHopDong','U') IS NULL
+CREATE TABLE dbo.ChiTietHopDong(SoHD varchar(20) NOT NULL REFERENCES dbo.HopDong(SoHD), MaPhong varchar(20) NOT NULL REFERENCES dbo.Phong(MaPhong), DonGiaThang decimal(18,0) NOT NULL CHECK(DonGiaThang>0), NgayHetHan date NOT NULL, PRIMARY KEY(SoHD,MaPhong));
+GO
+IF OBJECT_ID('dbo.KyTienThue','U') IS NULL
+CREATE TABLE dbo.KyTienThue(MaKy varchar(70) PRIMARY KEY, SoHD varchar(20) NOT NULL, MaPhong varchar(20) NOT NULL, TuNgay date NOT NULL, DenNgay date NOT NULL, HanThu date NOT NULL, SoThang int NOT NULL CHECK(SoThang IN(1,6)), SoTien decimal(18,0) NOT NULL CHECK(SoTien>0), UNIQUE(SoHD,MaPhong,TuNgay), FOREIGN KEY(SoHD,MaPhong) REFERENCES dbo.ChiTietHopDong(SoHD,MaPhong), CHECK(DenNgay>=TuNgay), CHECK(HanThu<=TuNgay));
+GO
+IF OBJECT_ID('dbo.DichVu','U') IS NULL
+CREATE TABLE dbo.DichVu(MaDV varchar(20) PRIMARY KEY, TenDV nvarchar(100) NOT NULL UNIQUE, DonViTinh nvarchar(30) NOT NULL, DonGia decimal(18,0) NOT NULL CHECK(DonGia>0));
+GO
+IF OBJECT_ID('dbo.SuDungDichVu','U') IS NULL
+CREATE TABLE dbo.SuDungDichVu(MaSD varchar(20) PRIMARY KEY, SoHD varchar(20) NOT NULL, MaPhong varchar(20) NOT NULL, MaDV varchar(20) NOT NULL REFERENCES dbo.DichVu(MaDV), NgaySuDung date NOT NULL, SoLuong decimal(10,2) NOT NULL CHECK(SoLuong>0), DonGia decimal(18,0) NOT NULL CHECK(DonGia>0), FOREIGN KEY(SoHD,MaPhong) REFERENCES dbo.ChiTietHopDong(SoHD,MaPhong));
+GO
+IF OBJECT_ID('dbo.HoaDonDichVu','U') IS NULL
+CREATE TABLE dbo.HoaDonDichVu(MaHDDV varchar(20) PRIMARY KEY, SoHD varchar(20) NOT NULL, MaPhong varchar(20) NOT NULL, Thang int NOT NULL CHECK(Thang BETWEEN 1 AND 12), Nam int NOT NULL CHECK(Nam BETWEEN 2000 AND 2100), NgayLap date NOT NULL, TongTien decimal(18,0) NOT NULL CHECK(TongTien>0), UNIQUE(SoHD,MaPhong,Thang,Nam), FOREIGN KEY(SoHD,MaPhong) REFERENCES dbo.ChiTietHopDong(SoHD,MaPhong), CHECK(NgayLap>=EOMONTH(DATEFROMPARTS(Nam,Thang,1))));
+GO
+IF OBJECT_ID('dbo.ChiTietHoaDonDV','U') IS NULL
+CREATE TABLE dbo.ChiTietHoaDonDV(MaHDDV varchar(20) NOT NULL REFERENCES dbo.HoaDonDichVu(MaHDDV), MaSD varchar(20) NOT NULL UNIQUE REFERENCES dbo.SuDungDichVu(MaSD), PRIMARY KEY(MaHDDV,MaSD));
+GO
+IF OBJECT_ID('dbo.PhieuGiaHan','U') IS NULL
+CREATE TABLE dbo.PhieuGiaHan(SoGH varchar(20) PRIMARY KEY, SoHD varchar(20) NOT NULL REFERENCES dbo.HopDong(SoHD), NgayLap date NOT NULL, NguoiLap nvarchar(120) NOT NULL, UNIQUE(SoGH,SoHD));
+GO
+IF OBJECT_ID('dbo.ChiTietGiaHan','U') IS NULL
+CREATE TABLE dbo.ChiTietGiaHan(SoGH varchar(20) NOT NULL, SoHD varchar(20) NOT NULL, MaPhong varchar(20) NOT NULL, SoThang int NOT NULL CHECK(SoThang>0), TuNgay date NOT NULL, DenNgay date NOT NULL, PRIMARY KEY(SoGH,MaPhong), FOREIGN KEY(SoGH,SoHD) REFERENCES dbo.PhieuGiaHan(SoGH,SoHD), FOREIGN KEY(SoHD,MaPhong) REFERENCES dbo.ChiTietHopDong(SoHD,MaPhong), CHECK(DenNgay>=TuNgay));
+GO
+IF OBJECT_ID('dbo.NhanVien','U') IS NULL
+CREATE TABLE dbo.NhanVien(MaNV varchar(20) PRIMARY KEY, HoTen nvarchar(120) NOT NULL, MaKH varchar(20) NOT NULL REFERENCES dbo.KhachHang(MaKH), MaPhong varchar(20) NOT NULL REFERENCES dbo.Phong(MaPhong), ChucVu nvarchar(100) NOT NULL, NgayBaoCao date NOT NULL, HinhAnh varbinary(max) NOT NULL CHECK(DATALENGTH(HinhAnh)>0));
+GO
+IF OBJECT_ID('dbo.TheGiuXe','U') IS NULL
+CREATE TABLE dbo.TheGiuXe(MaThe varchar(20) PRIMARY KEY, MaNV varchar(20) NOT NULL REFERENCES dbo.NhanVien(MaNV), BienSo varchar(20) NOT NULL UNIQUE, LoaiXe nvarchar(50) NOT NULL, NhanHieu nvarchar(80) NOT NULL, MauXe nvarchar(50) NOT NULL, NgayCap date NOT NULL);
+GO
+IF OBJECT_ID('dbo.DotKiemTra','U') IS NULL
+CREATE TABLE dbo.DotKiemTra(SoDot varchar(20) PRIMARY KEY, NgayKiemTra date NOT NULL, NguoiKiemTra nvarchar(120) NOT NULL, NoiDung nvarchar(500) NOT NULL);
+GO
+IF OBJECT_ID('dbo.ChiTietKiemTra','U') IS NULL
+CREATE TABLE dbo.ChiTietKiemTra(SoDot varchar(20) NOT NULL REFERENCES dbo.DotKiemTra(SoDot), MaPhong varchar(20) NOT NULL REFERENCES dbo.Phong(MaPhong), TinhTrang nvarchar(500) NOT NULL, CanTuSua bit NOT NULL, ViPhamKetCau bit NOT NULL, DeXuat nvarchar(500) NOT NULL, PRIMARY KEY(SoDot,MaPhong));
+GO
+IF OBJECT_ID('dbo.PhieuPhat','U') IS NULL
+CREATE TABLE dbo.PhieuPhat(SoPhat varchar(20) PRIMARY KEY, SoDot varchar(20) NOT NULL, SoHD varchar(20) NOT NULL, MaPhong varchar(20) NOT NULL, NgayLap date NOT NULL, NoiDung nvarchar(500) NOT NULL, SoTien decimal(18,0) NOT NULL CHECK(SoTien>0), UNIQUE(SoDot,MaPhong), FOREIGN KEY(SoDot,MaPhong) REFERENCES dbo.ChiTietKiemTra(SoDot,MaPhong), FOREIGN KEY(SoHD,MaPhong) REFERENCES dbo.ChiTietHopDong(SoHD,MaPhong));
+GO
+IF OBJECT_ID('dbo.ThanhToan','U') IS NULL
+CREATE TABLE dbo.ThanhToan(MaTT varchar(90) PRIMARY KEY, MaKy varchar(70) NULL REFERENCES dbo.KyTienThue(MaKy), MaHDDV varchar(20) NULL REFERENCES dbo.HoaDonDichVu(MaHDDV), SoPhat varchar(20) NULL REFERENCES dbo.PhieuPhat(SoPhat), NgayThu date NOT NULL, SoTien decimal(18,0) NOT NULL CHECK(SoTien>0), HinhThuc nvarchar(30) NOT NULL CHECK(HinhThuc IN(N'Tiền mặt',N'Chuyển khoản')), NguoiThu nvarchar(120) NOT NULL, CHECK((CASE WHEN MaKy IS NULL THEN 0 ELSE 1 END)+(CASE WHEN MaHDDV IS NULL THEN 0 ELSE 1 END)+(CASE WHEN SoPhat IS NULL THEN 0 ELSE 1 END)=1));
+GO
+IF TYPE_ID('dbo.DanhSachPhong') IS NULL EXEC(N'CREATE TYPE dbo.DanhSachPhong AS TABLE(MaPhong varchar(20) PRIMARY KEY, SoThang int NOT NULL)');
+GO
+CREATE OR ALTER VIEW dbo.v_CongNo AS
+ SELECT N'Tiền thuê' Loai,k.MaKy MaKhoan,k.SoHD,k.MaPhong,h.MaKH,k.HanThu,k.SoTien,ISNULL(t.DaThu,0) DaThu,k.SoTien-ISNULL(t.DaThu,0) ConLai
+ FROM dbo.KyTienThue k JOIN dbo.HopDong h ON h.SoHD=k.SoHD OUTER APPLY(SELECT SUM(SoTien) DaThu FROM dbo.ThanhToan WHERE MaKy=k.MaKy)t
+ UNION ALL
+ SELECT N'Dịch vụ',d.MaHDDV,d.SoHD,d.MaPhong,h.MaKH,EOMONTH(DATEFROMPARTS(d.Nam,d.Thang,1)),d.TongTien,ISNULL(t.DaThu,0),d.TongTien-ISNULL(t.DaThu,0)
+ FROM dbo.HoaDonDichVu d JOIN dbo.HopDong h ON h.SoHD=d.SoHD OUTER APPLY(SELECT SUM(SoTien) DaThu FROM dbo.ThanhToan WHERE MaHDDV=d.MaHDDV)t
+ UNION ALL
+ SELECT N'Phạt',p.SoPhat,p.SoHD,p.MaPhong,h.MaKH,p.NgayLap,p.SoTien,ISNULL(t.DaThu,0),p.SoTien-ISNULL(t.DaThu,0)
+ FROM dbo.PhieuPhat p JOIN dbo.HopDong h ON h.SoHD=p.SoHD OUTER APPLY(SELECT SUM(SoTien) DaThu FROM dbo.ThanhToan WHERE SoPhat=p.SoPhat)t;
+GO
+CREATE OR ALTER PROCEDURE dbo.TaoKyTienThue @SoHD varchar(20),@MaPhong varchar(20),@TuNgay date,@SoThang int,@DonGia decimal(18,0),@TraTruoc bit
+AS BEGIN
+ SET NOCOUNT ON;
+ IF @@TRANCOUNT=0 THROW 51001,N'Tạo kỳ thuê phải nằm trong giao dịch hợp đồng hoặc gia hạn.',1;
+ DECLARE @i int=0,@n int,@tu date,@den date,@ky varchar(70),@han date;
+ WHILE @i<@SoThang BEGIN
+  SET @n=CASE WHEN @TraTruoc=1 AND @i=0 THEN 6 ELSE 1 END;
+  SET @tu=DATEADD(month,@i,@TuNgay); SET @den=DATEADD(day,-1,DATEADD(month,@i+@n,@TuNgay));
+  SET @ky=CONCAT(@SoHD,'_',@MaPhong,'_',CONVERT(char(8),@tu,112));
+  SET @han=CASE WHEN @TraTruoc=1 AND @i=0 THEN (SELECT NgayKy FROM dbo.HopDong WHERE SoHD=@SoHD) ELSE DATEFROMPARTS(YEAR(@tu),MONTH(@tu),1) END;
+  INSERT dbo.KyTienThue VALUES(@ky,@SoHD,@MaPhong,@tu,@den,@han,@n,@DonGia*@n);
+  SET @i+=@n;
+ END;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.KyHopDong @SoHD varchar(20),@MaKH varchar(20),@NgayKy date,@TuNgay date,@SoThang int,@DieuKhoan nvarchar(2000),@DaNhanTruoc bit,@HinhThuc nvarchar(30),@NguoiThu nvarchar(120),@DS dbo.DanhSachPhong READONLY
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF @SoThang NOT BETWEEN 6 AND 120 OR @TuNgay<@NgayKy OR LTRIM(RTRIM(@DieuKhoan))='' OR LTRIM(RTRIM(@NguoiThu))='' OR @DaNhanTruoc<>1 THROW 51002,N'Hợp đồng tối thiểu 6 tháng, ngày hợp lệ, đủ điều khoản và xác nhận đã nhận tiền 6 tháng.',1;
+ IF NOT EXISTS(SELECT 1 FROM @DS) OR EXISTS(SELECT 1 FROM @DS d LEFT JOIN dbo.Phong p ON p.MaPhong=d.MaPhong WHERE p.MaPhong IS NULL) THROW 51003,N'Chọn ít nhất một phòng có trong danh mục.',1;
+ DECLARE @den date=DATEADD(day,-1,DATEADD(month,@SoThang,@TuNgay)),@p varchar(20),@gia decimal(18,0),@sua bit;
+ DECLARE rooms CURSOR LOCAL FAST_FORWARD FOR SELECT MaPhong FROM @DS ORDER BY MaPhong;
+ OPEN rooms; FETCH NEXT FROM rooms INTO @p;
+ WHILE @@FETCH_STATUS=0 BEGIN
+  SELECT @gia=DonGiaThang,@sua=DangSua FROM dbo.Phong WITH(UPDLOCK,HOLDLOCK) WHERE MaPhong=@p;
+  IF @sua=1 OR EXISTS(SELECT 1 FROM dbo.ChiTietHopDong c JOIN dbo.HopDong h ON h.SoHD=c.SoHD WHERE c.MaPhong=@p AND h.TuNgay<=@den AND c.NgayHetHan>=@TuNgay) THROW 51004,N'Phòng đang sửa hoặc đã có lịch thuê chồng thời hạn.',1;
+  FETCH NEXT FROM rooms INTO @p;
+ END; CLOSE rooms; DEALLOCATE rooms;
+ INSERT dbo.HopDong VALUES(@SoHD,@MaKH,@NgayKy,@TuNgay,@SoThang,@DieuKhoan);
+ INSERT dbo.ChiTietHopDong SELECT @SoHD,d.MaPhong,p.DonGiaThang,@den FROM @DS d JOIN dbo.Phong p ON p.MaPhong=d.MaPhong;
+ DECLARE bills CURSOR LOCAL FAST_FORWARD FOR SELECT MaPhong,DonGiaThang FROM dbo.ChiTietHopDong WHERE SoHD=@SoHD ORDER BY MaPhong;
+ OPEN bills; FETCH NEXT FROM bills INTO @p,@gia;
+ WHILE @@FETCH_STATUS=0 BEGIN
+  EXEC dbo.TaoKyTienThue @SoHD,@p,@TuNgay,@SoThang,@gia,1;
+  FETCH NEXT FROM bills INTO @p,@gia;
+ END; CLOSE bills; DEALLOCATE bills;
+ INSERT dbo.ThanhToan(MaTT,MaKy,NgayThu,SoTien,HinhThuc,NguoiThu)
+ SELECT 'TT6_'+MaKy,MaKy,@NgayKy,SoTien,@HinhThuc,@NguoiThu FROM dbo.KyTienThue WHERE SoHD=@SoHD AND SoThang=6;
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.GhiDichVu @MaSD varchar(20),@SoHD varchar(20),@MaPhong varchar(20),@MaDV varchar(20),@Ngay date,@SoLuong decimal(10,2)
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF @SoLuong<=0 OR NOT EXISTS(SELECT 1 FROM dbo.ChiTietHopDong c WITH(UPDLOCK,HOLDLOCK) JOIN dbo.HopDong h ON h.SoHD=c.SoHD WHERE c.SoHD=@SoHD AND c.MaPhong=@MaPhong AND @Ngay BETWEEN h.TuNgay AND c.NgayHetHan) THROW 51005,N'Phòng không thuộc thời gian thuê hoặc số lượng dịch vụ không hợp lệ.',1;
+ IF EXISTS(SELECT 1 FROM dbo.HoaDonDichVu WHERE SoHD=@SoHD AND MaPhong=@MaPhong AND Thang=MONTH(@Ngay) AND Nam=YEAR(@Ngay)) THROW 51006,N'Tháng đã lập hóa đơn, không nhận thêm dịch vụ vào tháng đó.',1;
+ IF EXISTS(SELECT 1 FROM dbo.ChiTietGiaHan c JOIN dbo.PhieuGiaHan g ON c.SoGH=g.SoGH WHERE c.SoHD=@SoHD AND c.MaPhong=@MaPhong AND g.NgayLap>=@Ngay) THROW 51007,N'Không ghi lùi dịch vụ vào thời điểm đã xác nhận gia hạn.',1;
+ DECLARE @gia decimal(18,0)=(SELECT DonGia FROM dbo.DichVu WHERE MaDV=@MaDV);
+ IF @gia IS NULL THROW 51008,N'Dịch vụ không tồn tại.',1;
+ INSERT dbo.SuDungDichVu VALUES(@MaSD,@SoHD,@MaPhong,@MaDV,@Ngay,@SoLuong,@gia);
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.LapHoaDonDichVu @MaHDDV varchar(20),@SoHD varchar(20),@MaPhong varchar(20),@Thang int,@Nam int,@NgayLap date
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF @Thang NOT BETWEEN 1 AND 12 OR @Nam NOT BETWEEN 2000 AND 2100 THROW 51009,N'Tháng hoặc năm không hợp lệ.',1;
+ IF @NgayLap<EOMONTH(DATEFROMPARTS(@Nam,@Thang,1)) THROW 51010,N'Hóa đơn dịch vụ lập vào cuối tháng hoặc sau đó.',1;
+ IF NOT EXISTS(SELECT 1 FROM dbo.ChiTietHopDong WITH(UPDLOCK,HOLDLOCK) WHERE SoHD=@SoHD AND MaPhong=@MaPhong) THROW 51011,N'Phòng không thuộc hợp đồng.',1;
+ IF EXISTS(SELECT 1 FROM dbo.HoaDonDichVu WHERE SoHD=@SoHD AND MaPhong=@MaPhong AND Thang=@Thang AND Nam=@Nam) THROW 51012,N'Đã có hóa đơn dịch vụ của phòng trong tháng.',1;
+ DECLARE @tong decimal(18,0);
+ SELECT @tong=SUM(ROUND(s.SoLuong*s.DonGia,0)) FROM dbo.SuDungDichVu s WITH(UPDLOCK,HOLDLOCK) WHERE s.SoHD=@SoHD AND s.MaPhong=@MaPhong AND MONTH(s.NgaySuDung)=@Thang AND YEAR(s.NgaySuDung)=@Nam;
+ IF ISNULL(@tong,0)<=0 THROW 51013,N'Không có dịch vụ phát sinh để lập hóa đơn.',1;
+ INSERT dbo.HoaDonDichVu VALUES(@MaHDDV,@SoHD,@MaPhong,@Thang,@Nam,@NgayLap,@tong);
+ INSERT dbo.ChiTietHoaDonDV SELECT @MaHDDV,MaSD FROM dbo.SuDungDichVu WHERE SoHD=@SoHD AND MaPhong=@MaPhong AND MONTH(NgaySuDung)=@Thang AND YEAR(NgaySuDung)=@Nam;
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.ThuTien @MaTT varchar(90),@Loai nvarchar(20),@MaKhoan varchar(70),@NgayThu date,@SoTien decimal(18,0),@HinhThuc nvarchar(30),@NguoiThu nvarchar(120)
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ DECLARE @tong decimal(18,0),@da decimal(18,0),@lap date;
+ IF @Loai=N'Tiền thuê' BEGIN
+  SELECT @tong=k.SoTien,@lap=h.NgayKy FROM dbo.KyTienThue k WITH(UPDLOCK,HOLDLOCK) JOIN dbo.HopDong h ON k.SoHD=h.SoHD WHERE k.MaKy=@MaKhoan;
+  SELECT @da=SUM(SoTien) FROM dbo.ThanhToan WHERE MaKy=@MaKhoan;
+ END ELSE IF @Loai=N'Dịch vụ' BEGIN
+  SELECT @tong=TongTien,@lap=NgayLap FROM dbo.HoaDonDichVu WITH(UPDLOCK,HOLDLOCK) WHERE MaHDDV=@MaKhoan;
+  SELECT @da=SUM(SoTien) FROM dbo.ThanhToan WHERE MaHDDV=@MaKhoan;
+ END ELSE IF @Loai=N'Phạt' BEGIN
+  SELECT @tong=SoTien,@lap=NgayLap FROM dbo.PhieuPhat WITH(UPDLOCK,HOLDLOCK) WHERE SoPhat=@MaKhoan;
+  SELECT @da=SUM(SoTien) FROM dbo.ThanhToan WHERE SoPhat=@MaKhoan;
+ END ELSE THROW 51014,N'Loại khoản thu không hợp lệ.',1;
+ IF @tong IS NULL OR @NgayThu<@lap OR @SoTien<=0 OR @SoTien>@tong-ISNULL(@da,0) OR LTRIM(RTRIM(@NguoiThu))='' THROW 51015,N'Kiểm tra khoản thu, ngày, người thu và số tiền còn phải trả.',1;
+ INSERT dbo.ThanhToan VALUES(@MaTT,CASE WHEN @Loai=N'Tiền thuê' THEN @MaKhoan END,CASE WHEN @Loai=N'Dịch vụ' THEN @MaKhoan END,CASE WHEN @Loai=N'Phạt' THEN @MaKhoan END,@NgayThu,@SoTien,@HinhThuc,@NguoiThu);
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.LapGiaHan @SoGH varchar(20),@SoHD varchar(20),@NgayLap date,@NguoiLap nvarchar(120),@DS dbo.DanhSachPhong READONLY
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ DECLARE @goc int,@ngayky date;
+ SELECT @goc=SoThangThue,@ngayky=NgayKy FROM dbo.HopDong WITH(UPDLOCK,HOLDLOCK) WHERE SoHD=@SoHD;
+ IF @goc IS NULL OR @NgayLap<@ngayky OR LTRIM(RTRIM(@NguoiLap))='' OR NOT EXISTS(SELECT 1 FROM @DS) THROW 51016,N'Kiểm tra hợp đồng, ngày lập, người lập và danh sách gia hạn.',1;
+ IF EXISTS(SELECT 1 FROM @DS d LEFT JOIN dbo.ChiTietHopDong c ON c.SoHD=@SoHD AND c.MaPhong=d.MaPhong WHERE c.MaPhong IS NULL OR d.SoThang<=0 OR d.SoThang*2>@goc) THROW 51017,N'Mỗi phòng phải thuộc hợp đồng; số tháng gia hạn không vượt 1/2 thời gian thuê ban đầu.',1;
+ DECLARE @p varchar(20),@n int,@cu date,@tu date,@den date,@gia decimal(18,0),@lock varchar(20);
+ DECLARE rooms CURSOR LOCAL FAST_FORWARD FOR SELECT MaPhong,SoThang FROM @DS ORDER BY MaPhong;
+ OPEN rooms; FETCH NEXT FROM rooms INTO @p,@n;
+ WHILE @@FETCH_STATUS=0 BEGIN
+  SELECT @lock=MaPhong FROM dbo.Phong WITH(UPDLOCK,HOLDLOCK) WHERE MaPhong=@p;
+  SELECT @cu=NgayHetHan,@gia=DonGiaThang FROM dbo.ChiTietHopDong WITH(UPDLOCK,HOLDLOCK) WHERE SoHD=@SoHD AND MaPhong=@p;
+  IF EXISTS(SELECT 1 FROM dbo.KyTienThue k WITH(UPDLOCK,HOLDLOCK) WHERE k.SoHD=@SoHD AND k.MaPhong=@p AND k.HanThu<=@NgayLap AND k.SoTien>ISNULL((SELECT SUM(SoTien) FROM dbo.ThanhToan WHERE MaKy=k.MaKy AND NgayThu<=@NgayLap),0)) THROW 51018,N'Phòng còn nợ tiền thuê đến ngày gia hạn.',1;
+  IF EXISTS(SELECT 1 FROM dbo.SuDungDichVu s WHERE s.SoHD=@SoHD AND s.MaPhong=@p AND s.NgaySuDung<=@NgayLap AND NOT EXISTS(SELECT 1 FROM dbo.ChiTietHoaDonDV c WHERE c.MaSD=s.MaSD)) THROW 51019,N'Dịch vụ đã sử dụng chưa được lập hóa đơn.',1;
+  IF EXISTS(SELECT 1 FROM dbo.HoaDonDichVu d WITH(UPDLOCK,HOLDLOCK) WHERE d.SoHD=@SoHD AND d.MaPhong=@p AND d.TongTien>ISNULL((SELECT SUM(SoTien) FROM dbo.ThanhToan WHERE MaHDDV=d.MaHDDV AND NgayThu<=@NgayLap),0)) THROW 51020,N'Phòng chưa thanh toán đủ hóa đơn dịch vụ.',1;
+  SET @tu=DATEADD(day,1,@cu); SET @den=DATEADD(day,-1,DATEADD(month,@n,@tu));
+  IF EXISTS(SELECT 1 FROM dbo.ChiTietHopDong c JOIN dbo.HopDong h ON c.SoHD=h.SoHD WHERE c.MaPhong=@p AND c.SoHD<>@SoHD AND h.TuNgay<=@den AND c.NgayHetHan>=@tu) THROW 51021,N'Khoảng gia hạn chồng lịch thuê của hợp đồng khác.',1;
+  FETCH NEXT FROM rooms INTO @p,@n;
+ END; CLOSE rooms; DEALLOCATE rooms;
+ INSERT dbo.PhieuGiaHan VALUES(@SoGH,@SoHD,@NgayLap,@NguoiLap);
+ DECLARE extend_rooms CURSOR LOCAL FAST_FORWARD FOR SELECT d.MaPhong,d.SoThang,DATEADD(day,1,c.NgayHetHan),c.DonGiaThang FROM @DS d JOIN dbo.ChiTietHopDong c ON c.SoHD=@SoHD AND c.MaPhong=d.MaPhong ORDER BY d.MaPhong;
+ OPEN extend_rooms; FETCH NEXT FROM extend_rooms INTO @p,@n,@tu,@gia;
+ WHILE @@FETCH_STATUS=0 BEGIN
+  SET @den=DATEADD(day,-1,DATEADD(month,@n,@tu));
+  INSERT dbo.ChiTietGiaHan VALUES(@SoGH,@SoHD,@p,@n,@tu,@den);
+  UPDATE dbo.ChiTietHopDong SET NgayHetHan=@den WHERE SoHD=@SoHD AND MaPhong=@p;
+  EXEC dbo.TaoKyTienThue @SoHD,@p,@tu,@n,@gia,0;
+  FETCH NEXT FROM extend_rooms INTO @p,@n,@tu,@gia;
+ END; CLOSE extend_rooms; DEALLOCATE extend_rooms;
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.GhiNhanVien @MaNV varchar(20),@HoTen nvarchar(120),@MaKH varchar(20),@MaPhong varchar(20),@ChucVu nvarchar(100),@NgayBaoCao date,@HinhAnh varbinary(max)
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF LTRIM(RTRIM(@HoTen))='' OR LTRIM(RTRIM(@ChucVu))='' OR ISNULL(DATALENGTH(@HinhAnh),0)=0 OR NOT EXISTS(SELECT 1 FROM dbo.ChiTietHopDong c WITH(UPDLOCK,HOLDLOCK) JOIN dbo.HopDong h ON h.SoHD=c.SoHD WHERE h.MaKH=@MaKH AND c.MaPhong=@MaPhong AND @NgayBaoCao BETWEEN h.TuNgay AND c.NgayHetHan) THROW 51022,N'Nhân viên cần họ tên, chức vụ, ảnh và phòng đang do công ty thuê tại ngày báo cáo.',1;
+ INSERT dbo.NhanVien VALUES(@MaNV,@HoTen,@MaKH,@MaPhong,@ChucVu,@NgayBaoCao,@HinhAnh);
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.CapTheXe @MaThe varchar(20),@MaNV varchar(20),@BienSo varchar(20),@LoaiXe nvarchar(50),@NhanHieu nvarchar(80),@MauXe nvarchar(50),@NgayCap date
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF LTRIM(RTRIM(@BienSo))='' OR LTRIM(RTRIM(@LoaiXe))='' OR LTRIM(RTRIM(@NhanHieu))='' OR LTRIM(RTRIM(@MauXe))='' OR NOT EXISTS(SELECT 1 FROM dbo.NhanVien n JOIN dbo.ChiTietHopDong c ON n.MaPhong=c.MaPhong JOIN dbo.HopDong h ON c.SoHD=h.SoHD AND n.MaKH=h.MaKH WHERE n.MaNV=@MaNV AND n.NgayBaoCao<=@NgayCap AND @NgayCap BETWEEN h.TuNgay AND c.NgayHetHan) THROW 51023,N'Kiểm tra nhân viên đang làm việc, ngày cấp và đủ thông tin xe.',1;
+ INSERT dbo.TheGiuXe VALUES(@MaThe,@MaNV,UPPER(@BienSo),@LoaiXe,@NhanHieu,@MauXe,@NgayCap);
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+CREATE OR ALTER PROCEDURE dbo.LapPhieuPhat @SoPhat varchar(20),@SoDot varchar(20),@SoHD varchar(20),@MaPhong varchar(20),@NgayLap date,@NoiDung nvarchar(500),@SoTien decimal(18,0)
+AS BEGIN SET NOCOUNT ON; SET XACT_ABORT ON;
+ BEGIN TRY BEGIN TRAN;
+ IF @SoTien<=0 OR LTRIM(RTRIM(@NoiDung))='' OR NOT EXISTS(SELECT 1 FROM dbo.ChiTietKiemTra c WITH(UPDLOCK,HOLDLOCK) JOIN dbo.DotKiemTra d ON d.SoDot=c.SoDot JOIN dbo.ChiTietHopDong h ON h.MaPhong=c.MaPhong AND h.SoHD=@SoHD JOIN dbo.HopDong hd ON hd.SoHD=h.SoHD WHERE c.SoDot=@SoDot AND c.MaPhong=@MaPhong AND c.ViPhamKetCau=1 AND @NgayLap>=d.NgayKiemTra AND d.NgayKiemTra BETWEEN hd.TuNgay AND h.NgayHetHan) THROW 51024,N'Chỉ lập phạt khi biên bản xác nhận vi phạm kết cấu của phòng đang thuê, số tiền và ngày hợp lệ.',1;
+ INSERT dbo.PhieuPhat VALUES(@SoPhat,@SoDot,@SoHD,@MaPhong,@NgayLap,@NoiDung,@SoTien);
+ COMMIT; END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+
+
+IF NOT EXISTS(SELECT 1 FROM dbo.Tang WHERE MaTang='T01') INSERT dbo.Tang VALUES('T01',1,N'Tầng 1');
+IF NOT EXISTS(SELECT 1 FROM dbo.Tang WHERE MaTang='T02') INSERT dbo.Tang VALUES('T02',2,N'Tầng 2');
+IF NOT EXISTS(SELECT 1 FROM dbo.Phong WHERE MaPhong='P101') INSERT dbo.Phong VALUES('P101','T01',80,N'Đông',12000000,0);
+IF NOT EXISTS(SELECT 1 FROM dbo.Phong WHERE MaPhong='P102') INSERT dbo.Phong VALUES('P102','T01',60,N'Tây',8000000,0);
+IF NOT EXISTS(SELECT 1 FROM dbo.Phong WHERE MaPhong='P201') INSERT dbo.Phong VALUES('P201','T02',100,N'Nam',15000000,0);
+IF NOT EXISTS(SELECT 1 FROM dbo.Phong WHERE MaPhong='P202') INSERT dbo.Phong VALUES('P202','T02',120,N'Đông Nam',18000000,0);
+IF NOT EXISTS(SELECT 1 FROM dbo.KhachHang WHERE MaKH='KH001') INSERT dbo.KhachHang VALUES('KH001',N'Công ty An Phát','MSTTH001',N'Nguyễn Minh An','0900000001',N'Địa chỉ thực hành 01');
+IF NOT EXISTS(SELECT 1 FROM dbo.KhachHang WHERE MaKH='KH002') INSERT dbo.KhachHang VALUES('KH002',N'Công ty Bình Minh','MSTTH002',N'Trần Bảo Bình','0900000002',N'Địa chỉ thực hành 02');
+IF NOT EXISTS(SELECT 1 FROM dbo.DichVu WHERE MaDV='DIEN') INSERT dbo.DichVu VALUES('DIEN',N'Điện',N'kWh',3000);
+IF NOT EXISTS(SELECT 1 FROM dbo.DichVu WHERE MaDV='NUOC') INSERT dbo.DichVu VALUES('NUOC',N'Nước',N'm³',15000);
+IF NOT EXISTS(SELECT 1 FROM dbo.DichVu WHERE MaDV='NET') INSERT dbo.DichVu VALUES('NET',N'Internet',N'tháng',250000);
+GO
+IF NOT EXISTS(SELECT 1 FROM dbo.HopDong WHERE SoHD='HD001') BEGIN
+ DECLARE @d dbo.DanhSachPhong; INSERT @d VALUES('P101',0),('P102',0);
+ EXEC dbo.KyHopDong 'HD001','KH001','20260325','20260401',12,N'Thuê hai phòng; trả trước 6 tháng; từ tháng 7 thu đầu tháng; dịch vụ thanh toán riêng cuối tháng.',1,N'Chuyển khoản',N'Kế toán',@d;
+END;
+GO
+IF NOT EXISTS(SELECT 1 FROM dbo.HopDong WHERE SoHD='HD002') BEGIN
+ DECLARE @d dbo.DanhSachPhong; INSERT @d VALUES('P201',0);
+ EXEC dbo.KyHopDong 'HD002','KH002','20260425','20260501',6,N'Thuê 6 tháng và có thể gia hạn theo điều kiện công nợ.',1,N'Chuyển khoản',N'Kế toán',@d;
+END;
+GO
+IF NOT EXISTS(SELECT 1 FROM dbo.SuDungDichVu WHERE MaSD='SD001') EXEC dbo.GhiDichVu 'SD001','HD001','P101','DIEN','20260928',100;
+IF NOT EXISTS(SELECT 1 FROM dbo.SuDungDichVu WHERE MaSD='SD002') EXEC dbo.GhiDichVu 'SD002','HD001','P101','NET','20260930',1;
+IF NOT EXISTS(SELECT 1 FROM dbo.HoaDonDichVu WHERE MaHDDV='DV092026') EXEC dbo.LapHoaDonDichVu 'DV092026','HD001','P101',9,2026,'20260930';
+IF NOT EXISTS(SELECT 1 FROM dbo.SuDungDichVu WHERE MaSD='SD003') EXEC dbo.GhiDichVu 'SD003','HD001','P102','NUOC','20261020',5;
+GO
+IF NOT EXISTS(SELECT 1 FROM dbo.PhieuGiaHan WHERE SoGH='GH001') BEGIN
+ DECLARE @d dbo.DanhSachPhong; INSERT @d VALUES('P201',3);
+ EXEC dbo.LapGiaHan 'GH001','HD002','20261030',N'Bộ phận quản lý',@d;
+END;
+GO
+IF NOT EXISTS(SELECT 1 FROM dbo.NhanVien WHERE MaNV='NV001') EXEC dbo.GhiNhanVien 'NV001',N'Nguyễn Minh An','KH001','P101',N'Chuyên viên','20260401',0x89504E470D0A1A0A0000000D49484452000000A0000000C80802000000E00A7D4D000005B749444154789CEDDD4B6854571CC7F1E3641269A9E24A28B5C547A22646476D0A69A054576AF0415088ABD4286E5B39D89245E92AD02ECA050B8542376D365DB469DD1875E30321BE4D6212478D8D561208694915C19A6432147ACB303575266DEE3DE7FFFFCDEF8B0B27196F0EFF8FE7DEC9E4310BC61F3D350CB784EF05B07823307804068FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C5ED2A0177CF353E13BD8034D06B705903FD95014B574B0D180FF372D2A33087024AE90D2080FB262D235711ED959BA77B03300AB762B2BDEC12EB757A0762B6B05763FF140A7B14A605FB30E141AEB03F63BE5409BB1326009F30D04AC011358CE6403312BC1019636D340D87A7403CB9C662072552A811932B0E48D12085E9B0E60F9130C64AF503A309B6704064F34B0F0B39F8A758A0666C8C092B785A2D5CA0566914460F0080C9E5060B19734756B160ACCA28AC0E011183C02834760F0080C1E81C123307804068FC0E00905D6F8E39A56E49A8502B3A822307804064F2EB0CC4B9ABAD5CA0566F8C062B785A2758A0666F38FC0E04907967CF653B142E9C0C2276805AF4D0D30C30796B951ACC855A90416384D2B6C3DEA8145CDD48A590914B090C95A016B8005F63E5FAB4A5725B0C7295B6DBA5A81BDCCDA2AD4550CEC78E256A7AEFA5FE9EFE0E736AD5A5AF53BD8818155AE0BB283F3E3EB26810387F195CFC081F30BF8DA85BE09588C213CC8620522307804068FC0E011183C112FF12EF377C4613C17E6F3F360605739D21E804BCAD5BBB4EB6B7089EB1AE71370B78349EB652B3BDAC1D4F5351317C0D4F53899D881A9EB773EF10253D7FB946204A6AE8459F1A94AF0E202E6F61532B15880A92B676E3C45834760F0A207E6F959D4F4B883C12330781103F3FC2C6D86DCC1E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C1E81C14B80BD0E144036D2197207834760F0A207E6595AD4F4B883C1233078B100F32C2D676E71ED601A0B99184FD1E0C508CC4D2C6156F1EE601A7B9F52ECA7681AFB9D8F8B6B308D3D4EC6D1832C1AFB9A89BB97780FE3AB7618B7FFDD5D7F9AC4AD6CDD7E45D5F50E2ED9DD6C3D7DA5DC277029485BDFDF01210298C5179FAA048FC0E011183C02834760F0080C1E81C123307804068FC0E011183C02834760F0080C9E53E09D07EC87ED5FE46E361DFEE8B9BFCCBE79F26C77E37B477E7FFCA4F0118C315F7F77FCD4B98BB99B6D9F7D39FC703477875DADF668FBB1F04F67D799C287422AE9F28395972767B2D9BEF450AABA6A8EFFE4D28D81A66D5BAEF40E6E7BB7BEF011EA37D51E3F7D7EFB96B78D317F3C9B1CFF6D62E51BAFE5DE9B4C263FFFF883792E4663AE4FD12D7B1B3B7EE89AE39D27A7A69E4D4EEDD8DA70B967A0E811D6AD5E79EFC1C8CC4CD618D33370E7AD544DB48B519A6BE08DEB561B63FA6E0DCDE5CED76EA6EB52D5CB5E5D3AF6EB44263353F8088944A2BA7279FADE7D63CCE5DEC186373744BB18A5393D4587B5EC6BFCF6FB13C12747726FC9643247DB8FE5DF0CFFD27DADFFE75F462E5CE99D78F4F8667A68F3FAB52F3A4258FDE6DAAB7DB76AD7AC4A0FDD7FBFB539FF5DF91FE260F3EE9AAA15850F059307E05475555922D13B78F74517C8F0F14E369B1D1D1BFFEAD3B6702B5FEA19C801CF3E42585DAAE6C753E7DE793052B9FCF5B2B27F9C9C665F830B1F0A263F9F26B5EC6BECE82C72F11BBC3B9C7B94B47EEDAAEBFDB78B1EE195975F5A58517EFAFCC586BA0DD12E466F1E76F05F6095C964D9F4F4DFA7E27FADFB7A7F788D34C62CACA858B278D1C3D1B1A247A8DF54DBD1D97568FF9EE7DE9EC93B45D754AD38D8BCFB3F2D466FFCB659F0F84C167804068FC0E011183C02834760F0080C1E81C123B0C1EE4FA879EA6E30C10E360000000049454E44AE426082;
+IF NOT EXISTS(SELECT 1 FROM dbo.TheGiuXe WHERE MaThe='TX001') EXEC dbo.CapTheXe 'TX001','NV001','59-TH001',N'Xe máy',N'Xe thực hành',N'Đen','20260401';
+IF NOT EXISTS(SELECT 1 FROM dbo.DotKiemTra WHERE SoDot='KT2026') INSERT dbo.DotKiemTra VALUES('KT2026','20261015',N'Bộ phận kỹ thuật',N'Kiểm tra định kỳ năm 2026');
+IF NOT EXISTS(SELECT 1 FROM dbo.ChiTietKiemTra WHERE SoDot='KT2026' AND MaPhong='P101') INSERT dbo.ChiTietKiemTra VALUES('KT2026','P101',N'Tự ý thay đổi vách ngăn kết cấu',1,1,N'Lập phiếu phạt; yêu cầu khôi phục kết cấu');
+IF NOT EXISTS(SELECT 1 FROM dbo.ChiTietKiemTra WHERE SoDot='KT2026' AND MaPhong='P201') INSERT dbo.ChiTietKiemTra VALUES('KT2026','P201',N'Bình thường',0,0,N'Kiểm tra lại sau một năm');
+IF NOT EXISTS(SELECT 1 FROM dbo.PhieuPhat WHERE SoPhat='PP001') EXEC dbo.LapPhieuPhat 'PP001','KT2026','HD001','P101','20261016',N'Tự ý thay đổi kết cấu theo biên bản KT2026',2000000;
+GO
