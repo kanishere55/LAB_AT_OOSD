@@ -64,9 +64,12 @@ namespace QuanLyKhachSan.Services
         {
             if (string.IsNullOrWhiteSpace(soPhieu) || string.IsNullOrWhiteSpace(maTN) || string.IsNullOrWhiteSpace(soPhong) || string.IsNullOrWhiteSpace(tinhTrang) || string.IsNullOrWhiteSpace(maNV))
                 return KetQuaXuLy.Fail("Phiếu lắp đặt chưa đủ thông tin.");
+            using (var cn = Db.OpenConnection())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
+            {
             try
             {
-                Db.Execute("INSERT INTO PhieuLapDat VALUES(@p, @tn, @ph, @n, @tt, @nv, @g)",
+                Db.Execute(cn, tx, "INSERT INTO PhieuLapDat VALUES(@p, @tn, @ph, @n, @tt, @nv, @g)",
                     new SqlParameter("@p", soPhieu),
                     new SqlParameter("@tn", maTN),
                     new SqlParameter("@ph", soPhong),
@@ -75,21 +78,27 @@ namespace QuanLyKhachSan.Services
                     new SqlParameter("@nv", maNV),
                     new SqlParameter("@g", ghiChu));
 
-                Db.Execute("UPDATE TienNghi SET TinhTrangHienTai=@tt WHERE MaTienNghi=@m",
+                Db.Execute(cn, tx, @"UPDATE t SET TinhTrangHienTai=p.TinhTrang FROM TienNghi t
+                    CROSS APPLY(SELECT TOP 1 TinhTrang FROM PhieuLapDat WHERE MaTienNghi=t.MaTienNghi ORDER BY NgayLap DESC) p
+                    WHERE t.MaTienNghi=@m",
                     new SqlParameter("@tt", tinhTrang),
                     new SqlParameter("@m", maTN));
 
+                tx.Commit();
                 return KetQuaXuLy.Ok("Đã lập phiếu lắp đặt.");
             }
             catch (SqlException ex)
             {
+                try { tx.Rollback(); } catch { }
                 if (ex.Number == 2627 || ex.Number == 2601)
                     return KetQuaXuLy.Fail("Thiết bị này đã được lắp cho một phòng khác trong ngày đã chọn.");
                 return KetQuaXuLy.Fail(ex.Message);
             }
             catch (Exception ex)
             {
+                try { tx.Rollback(); } catch { }
                 return KetQuaXuLy.Fail(ex.Message);
+            }
             }
         }
     }

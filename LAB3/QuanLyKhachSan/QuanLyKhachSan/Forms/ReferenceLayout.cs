@@ -56,6 +56,10 @@ namespace QuanLyKhachSan.Forms
             grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(49, 143, 235);
             grid.DefaultCellStyle.SelectionForeColor = Color.White;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            grid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            grid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
             for (int i = 0; i + 1 < columns.Length; i += 2)
             {
@@ -66,6 +70,14 @@ namespace QuanLyKhachSan.Forms
                     HeaderText = columns[i + 1],
                     SortMode = DataGridViewColumnSortMode.Automatic
                 });
+                var column = grid.Columns[grid.Columns.Count - 1];
+                if (column.Name.StartsWith("Ngay", StringComparison.Ordinal))
+                    column.DefaultCellStyle.Format = "dd/MM/yyyy";
+                if (Array.IndexOf(new[] { "DonGia", "DonGiaNgay", "ThanhTien", "TongTien", "TienPhong", "TienDichVu", "TienCoc", "SoTien", "MucDenBu" }, column.Name) >= 0)
+                {
+                    column.DefaultCellStyle.Format = "#,##0";
+                    column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
 
             // Draw the empty rows seen in the reference without inserting fake
@@ -315,7 +327,7 @@ namespace QuanLyKhachSan.Forms
                 ReferenceUi.Bounds(cboPhong, 545, 368, 105, 29);
                 ReferenceUi.Bounds(lblTTLD, 670, 370, 85, 24);
                 ReferenceUi.Bounds(txtTTLD, 755, 368, 125, 29);
-                ReferenceUi.Bounds(btnLapDat, 740, 405, 140, 34);
+                ReferenceUi.Bounds(btnLapDat, 740, 398, 140, 32);
             }
         }
     }
@@ -341,14 +353,14 @@ namespace QuanLyKhachSan.Forms
             ReferenceUi.Bounds(dtLap, 88, 238, 125, 29);
             ReferenceUi.Bounds(dtNhan, 305, 238, 125, 29);
             ReferenceUi.Bounds(dtTra, 514, 238, 125, 29);
-            ReferenceUi.Bounds(cboNV, 700, 238, 145, 29);
+            ReferenceUi.Bounds(cboNV, 715, 238, 195, 29);
             ReferenceUi.Bounds(lblLap, 10, 241, 75, 23);
             lblLap.Text = "Ngày lập:";
             ReferenceUi.Bounds(lblNhan, 225, 241, 80, 23);
             lblNhan.Text = "Ngày nhận:";
             ReferenceUi.Bounds(lblTra, 442, 241, 72, 23);
             lblTra.Text = "Ngày trả:";
-            ReferenceUi.Bounds(lblNV, 652, 241, 45, 23);
+            ReferenceUi.Bounds(lblNV, 650, 241, 60, 23);
             lblNV.Text = "Lễ tân:";
             ReferenceUi.Date(dtLap);
             ReferenceUi.Date(dtNhan);
@@ -359,6 +371,14 @@ namespace QuanLyKhachSan.Forms
             ReferenceUi.Grid(dgvPhieu, "SoPhieuDat", "Số phiếu", "HoTen", "Khách", "NgayNhan", "Ngày nhận", "NgayTraDuKien", "Ngày trả dự kiến", "TienCoc", "Cọc", "KenhDat", "Kênh", "TrangThai", "Trạng thái");
             ReferenceUi.Grid(dgvCT, "SoPhong", "Phòng", "SoNguoi", "Số người", "SoNguoiToiDa", "Sức chứa", "DonGiaNgay", "Đơn giá");
             ReferenceUi.Grid(dgvNguoi, "HoTen", "Họ tên", "SoPhong", "Phòng", "SoCMND", "CCCD", "QuocTich", "Quốc tịch");
+            ReferenceUi.Bounds(btnThemKhach, 800, 15, 110, 34);
+            ReferenceUi.Bounds(numCoc, 780, 12, 140, 29);
+            ReferenceUi.Bounds(dgvCT, 10, 55, 900, 165);
+            ReferenceUi.Bounds(dgvNguoi, 10, 280, 900, 135);
+            ReferenceUi.Bounds(txtNguoiQT, 685, 237, 105, 29);
+            ReferenceUi.Bounds(btnThemNguoi, 800, 235, 110, 32);
+            ReferenceUi.Bounds(btnNhanPhong, 590, 430, 145, 34);
+            ReferenceUi.Bounds(btnNoShow, 745, 430, 165, 34);
         }
     }
 
@@ -403,7 +423,7 @@ namespace QuanLyKhachSan.Forms
             ReferenceUi.Bounds(lblMucDo, 326, 270, 80, 24);
             ReferenceUi.Bounds(txtMucDo, 410, 266, 160, 29);
             ReferenceUi.Bounds(lblDenBu, 595, 270, 70, 24);
-            ReferenceUi.Bounds(numDenBu, 668, 266, 145, 29);
+            ReferenceUi.Bounds(numDenBu, 668, 266, 115, 29);
             ReferenceUi.Bounds(btnThemDB, 790, 262, 95, 35);
             btnThemDB.Text = "Thêm";
             btnThemDB.Visible = true;

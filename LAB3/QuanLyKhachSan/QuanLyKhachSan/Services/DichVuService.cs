@@ -39,14 +39,18 @@ namespace QuanLyKhachSan.Services
                 return KetQuaXuLy.Fail("Thông tin sử dụng dịch vụ không hợp lệ.");
 
             using (var cn = Db.OpenConnection())
-            using (var tx = cn.BeginTransaction())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
             {
                 try
                 {
-                    var st = new SqlCommand("SELECT TrangThai FROM PhieuDatPhong WHERE SoPhieuDat=@s", cn, tx);
+                    var st = new SqlCommand("SELECT TrangThai FROM PhieuDatPhong WITH (UPDLOCK,HOLDLOCK) WHERE SoPhieuDat=@s", cn, tx);
                     st.Parameters.AddWithValue("@s", soPhieuDat);
                     if (Convert.ToString(st.ExecuteScalar()) != "Đang ở")
                         return KetQuaXuLy.Fail("Chỉ ghi nhận dịch vụ cho phiếu đang lưu trú.");
+                    var invoice = new SqlCommand("SELECT COUNT(*) FROM HoaDon WHERE SoPhieuDat=@s", cn, tx);
+                    invoice.Parameters.AddWithValue("@s", soPhieuDat);
+                    if (Convert.ToInt32(invoice.ExecuteScalar()) > 0)
+                        return KetQuaXuLy.Fail("Phiếu đã lập hóa đơn, không thể ghi thêm dịch vụ.");
 
                     var g = new SqlCommand("SELECT DonGia FROM DichVu WHERE MaDV=@d", cn, tx);
                     g.Parameters.AddWithValue("@d", maDV);
@@ -78,7 +82,7 @@ namespace QuanLyKhachSan.Services
 
                     if (Convert.ToInt32(chk.ExecuteScalar()) > 0)
                     {
-                        var u = new SqlCommand("UPDATE ChiTietPhieuSuDungDV SET SoLuong=SoLuong+@sl, DonGia=@g WHERE SoPhieuSDDV=@so AND MaDV=@d", cn, tx);
+                        var u = new SqlCommand("UPDATE ChiTietPhieuSuDungDV SET SoLuong=SoLuong+@sl WHERE SoPhieuSDDV=@so AND MaDV=@d", cn, tx);
                         u.Parameters.AddWithValue("@sl", soLuong);
                         u.Parameters.AddWithValue("@g", gia);
                         u.Parameters.AddWithValue("@so", so);

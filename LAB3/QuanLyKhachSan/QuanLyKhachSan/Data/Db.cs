@@ -45,6 +45,15 @@ namespace QuanLyKhachSan.Data
             }
         }
 
+        public static int Execute(SqlConnection cn, SqlTransaction tx, string sql, params SqlParameter[] ps)
+        {
+            using (var cmd = new SqlCommand(sql, cn, tx))
+            {
+                if (ps != null) cmd.Parameters.AddRange(ps);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public static object Scalar(string sql, params SqlParameter[] ps)
         {
             using (var cn = OpenConnection())

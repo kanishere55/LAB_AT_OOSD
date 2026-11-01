@@ -47,7 +47,7 @@ CREATE TABLE LoaiTienNghi(
 CREATE TABLE TienNghi(
     MaTienNghi varchar(30) NOT NULL PRIMARY KEY,
     MaLoaiTN varchar(20) NOT NULL,
-    SoThuTu int NOT NULL,
+    SoThuTu int NOT NULL CHECK(SoThuTu > 0),
     TinhTrangHienTai nvarchar(100) NULL,
     CONSTRAINT UQ_TienNghi_Loai_STT UNIQUE(MaLoaiTN, SoThuTu),
     CONSTRAINT FK_TienNghi_Loai FOREIGN KEY(MaLoaiTN) REFERENCES LoaiTienNghi(MaLoaiTN)

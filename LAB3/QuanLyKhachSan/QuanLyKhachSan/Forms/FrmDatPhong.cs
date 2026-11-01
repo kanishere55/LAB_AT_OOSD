@@ -83,8 +83,9 @@ namespace QuanLyKhachSan.Forms
 
         private void btnLapPhieu_Click(object a, EventArgs e)
         {
-            H(s.TaoDatPhong(txtSoPhieu.Text.Trim(), V(cboKhach), V(cboNV), dtLap.Value, dtNhan.Value, dtTra.Value, numCoc.Value, cboKenh.Text, new List<PhongDatItem>(chon)));
-            if (chon.Count > 0) chon.Clear();
+            var result = s.TaoDatPhong(txtSoPhieu.Text.Trim(), V(cboKhach), V(cboNV), dtLap.Value, dtNhan.Value, dtTra.Value, numCoc.Value, cboKenh.Text, new List<PhongDatItem>(chon));
+            H(result);
+            if (result.ThanhCong) chon.Clear();
         }
 
         private void dgvPhieu_SelectionChanged(object a, EventArgs e)

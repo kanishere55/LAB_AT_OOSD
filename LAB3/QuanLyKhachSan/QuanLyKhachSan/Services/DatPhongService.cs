@@ -73,18 +73,24 @@ namespace QuanLyKhachSan.Services
                 return KetQuaXuLy.Fail("Phiếu đặt phòng chưa đủ thông tin.");
             if (tra.Date < nhan.Date)
                 return KetQuaXuLy.Fail("Ngày trả dự kiến không được trước ngày nhận.");
+            if (coc < 0 || (kenh != "Điện thoại" && kenh != "Website" && kenh != "Trực tiếp"))
+                return KetQuaXuLy.Fail("Tiền cọc hoặc kênh đặt không hợp lệ.");
+            var phongDaChon = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var x in ds)
+                if (x == null || string.IsNullOrWhiteSpace(x.SoPhong) || !phongDaChon.Add(x.SoPhong))
+                    return KetQuaXuLy.Fail("Danh sách phòng có mã trống hoặc bị lặp.");
 
             using (var cn = Db.OpenConnection())
-            using (var tx = cn.BeginTransaction())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
             {
                 try
                 {
                     foreach (var x in ds)
                     {
-                        var q = new SqlCommand("SELECT SoNguoiToiDa FROM Phong WHERE SoPhong=@p", cn, tx);
+                        var q = new SqlCommand("SELECT SoNguoiToiDa FROM Phong WITH (UPDLOCK, HOLDLOCK) WHERE SoPhong=@p AND TrangThai<>N'Bảo trì'", cn, tx);
                         q.Parameters.AddWithValue("@p", x.SoPhong);
                         var o = q.ExecuteScalar();
-                        if (o == null) return KetQuaXuLy.Fail("Không tìm thấy phòng " + x.SoPhong);
+                        if (o == null) return KetQuaXuLy.Fail("Phòng không tồn tại hoặc đang bảo trì: " + x.SoPhong);
                         if (x.SoNguoi <= 0 || x.SoNguoi > Convert.ToInt32(o))
                             return KetQuaXuLy.Fail("Số người của phòng " + x.SoPhong + " vượt sức chứa.");
                         if (PhongTrungLich(cn, tx, x.SoPhong, nhan, tra))
@@ -111,7 +117,7 @@ namespace QuanLyKhachSan.Services
                         c.Parameters.AddWithValue("@n", x.SoNguoi);
                         c.ExecuteNonQuery();
 
-                        var u = new SqlCommand("UPDATE Phong SET TrangThai=N'Đã đặt' WHERE SoPhong=@p", cn, tx);
+                        var u = new SqlCommand("UPDATE Phong SET TrangThai=N'Đã đặt' WHERE SoPhong=@p AND TrangThai<>N'Đang ở'", cn, tx);
                         u.Parameters.AddWithValue("@p", x.SoPhong);
                         u.ExecuteNonQuery();
                     }
@@ -131,38 +137,50 @@ namespace QuanLyKhachSan.Services
         {
             if (string.IsNullOrWhiteSpace(so) || string.IsNullOrWhiteSpace(phong) || string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(cmnd) || string.IsNullOrWhiteSpace(qt))
                 return KetQuaXuLy.Fail("Thông tin người lưu trú chưa đầy đủ.");
-            try
+            using (var cn = Db.OpenConnection())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
             {
-                int max = Convert.ToInt32(Db.Scalar("SELECT SoNguoi FROM ChiTietDatPhong WHERE SoPhieuDat=@s AND SoPhong=@p",
-                    new SqlParameter("@s", so), new SqlParameter("@p", phong)));
-                int dem = Convert.ToInt32(Db.Scalar("SELECT COUNT(*) FROM NguoiLuuTru WHERE SoPhieuDat=@s AND SoPhong=@p",
-                    new SqlParameter("@s", so), new SqlParameter("@p", phong)));
-
-                if (dem >= max)
-                    return KetQuaXuLy.Fail("Đã đủ số người đăng ký cho phòng này.");
-
-                Db.Execute("INSERT INTO NguoiLuuTru(SoPhieuDat, SoPhong, HoTen, SoCMND, QuocTich) VALUES(@s, @p, @t, @c, @q)",
-                    new SqlParameter("@s", so),
-                    new SqlParameter("@p", phong),
-                    new SqlParameter("@t", ten),
-                    new SqlParameter("@c", cmnd),
-                    new SqlParameter("@q", qt));
-
-                return KetQuaXuLy.Ok("Đã thêm người lưu trú.");
-            }
-            catch (Exception ex)
-            {
-                return KetQuaXuLy.Fail(ex.Message);
+                try
+                {
+                    var q = new SqlCommand(@"SELECT c.SoNguoi FROM ChiTietDatPhong c WITH (UPDLOCK,HOLDLOCK)
+                        JOIN PhieuDatPhong d ON c.SoPhieuDat=d.SoPhieuDat
+                        WHERE c.SoPhieuDat=@s AND c.SoPhong=@p AND d.TrangThai IN(N'Đã đặt',N'Đang ở')", cn, tx);
+                    q.Parameters.AddWithValue("@s", so); q.Parameters.AddWithValue("@p", phong);
+                    object max = q.ExecuteScalar();
+                    if (max == null) return KetQuaXuLy.Fail("Phiếu/phòng không còn nhận người lưu trú.");
+                    var count = new SqlCommand("SELECT COUNT(*) FROM NguoiLuuTru WHERE SoPhieuDat=@s AND SoPhong=@p", cn, tx);
+                    count.Parameters.AddWithValue("@s", so); count.Parameters.AddWithValue("@p", phong);
+                    if (Convert.ToInt32(count.ExecuteScalar()) >= Convert.ToInt32(max))
+                        return KetQuaXuLy.Fail("Đã đủ số người đăng ký cho phòng này.");
+                    var insert = new SqlCommand("INSERT INTO NguoiLuuTru(SoPhieuDat,SoPhong,HoTen,SoCMND,QuocTich) VALUES(@s,@p,@t,@c,@q)", cn, tx);
+                    insert.Parameters.AddWithValue("@s", so); insert.Parameters.AddWithValue("@p", phong);
+                    insert.Parameters.AddWithValue("@t", ten); insert.Parameters.AddWithValue("@c", cmnd); insert.Parameters.AddWithValue("@q", qt);
+                    insert.ExecuteNonQuery(); tx.Commit();
+                    return KetQuaXuLy.Ok("Đã thêm người lưu trú.");
+                }
+                catch (Exception ex)
+                {
+                    try { tx.Rollback(); } catch { }
+                    return KetQuaXuLy.Fail(ex.Message);
+                }
             }
         }
 
         public KetQuaXuLy NhanPhong(string so, DateTime thucTe)
         {
             using (var cn = Db.OpenConnection())
-            using (var tx = cn.BeginTransaction())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
             {
                 try
                 {
+                    var busy = new SqlCommand(@"SELECT COUNT(*) FROM ChiTietDatPhong c
+                        JOIN Phong p WITH (UPDLOCK,HOLDLOCK) ON c.SoPhong=p.SoPhong
+                        WHERE c.SoPhieuDat=@s AND (p.TrangThai=N'Bảo trì' OR EXISTS(
+                        SELECT 1 FROM ChiTietDatPhong x JOIN PhieuDatPhong d ON x.SoPhieuDat=d.SoPhieuDat
+                        WHERE x.SoPhong=c.SoPhong AND d.TrangThai=N'Đang ở' AND d.SoPhieuDat<>@s))", cn, tx);
+                    busy.Parameters.AddWithValue("@s", so);
+                    if (Convert.ToInt32(busy.ExecuteScalar()) > 0)
+                        return KetQuaXuLy.Fail("Có phòng đang lưu trú hoặc bảo trì, chưa thể nhận phòng.");
                     var c = new SqlCommand("UPDATE PhieuDatPhong SET TrangThai=N'Đang ở', NgayNhanThucTe=@n WHERE SoPhieuDat=@s AND TrangThai=N'Đã đặt'", cn, tx);
                     c.Parameters.AddWithValue("@n", thucTe);
                     c.Parameters.AddWithValue("@s", so);
@@ -186,17 +204,26 @@ namespace QuanLyKhachSan.Services
 
         public KetQuaXuLy DanhDauNoShow(string so)
         {
-            try
+            using (var cn = Db.OpenConnection())
+            using (var tx = cn.BeginTransaction(IsolationLevel.Serializable))
             {
-                Db.Execute("UPDATE PhieuDatPhong SET TrangThai=N'No-show' WHERE SoPhieuDat=@s AND TrangThai=N'Đã đặt'",
-                    new SqlParameter("@s", so));
-                Db.Execute("UPDATE Phong SET TrangThai=N'Trống' WHERE SoPhong IN(SELECT SoPhong FROM ChiTietDatPhong WHERE SoPhieuDat=@s)",
-                    new SqlParameter("@s", so));
-                return KetQuaXuLy.Ok("Đã đánh dấu không nhận phòng. Việc mất cọc được giữ theo quy định gốc; đề không nêu thời gian tự động nên thao tác này do nhân viên xác nhận.");
-            }
-            catch (Exception ex)
-            {
-                return KetQuaXuLy.Fail(ex.Message);
+                try
+                {
+                    var q = new SqlCommand("UPDATE PhieuDatPhong SET TrangThai=N'No-show' WHERE SoPhieuDat=@s AND TrangThai=N'Đã đặt'", cn, tx);
+                    q.Parameters.AddWithValue("@s", so);
+                    if (q.ExecuteNonQuery() == 0) return KetQuaXuLy.Fail("Chỉ đánh dấu No-show cho phiếu Đã đặt.");
+                    var u = new SqlCommand(@"UPDATE p SET TrangThai=CASE
+                        WHEN EXISTS(SELECT 1 FROM ChiTietDatPhong c JOIN PhieuDatPhong d ON c.SoPhieuDat=d.SoPhieuDat WHERE c.SoPhong=p.SoPhong AND d.TrangThai=N'Đang ở') THEN N'Đang ở'
+                        WHEN EXISTS(SELECT 1 FROM ChiTietDatPhong c JOIN PhieuDatPhong d ON c.SoPhieuDat=d.SoPhieuDat WHERE c.SoPhong=p.SoPhong AND d.TrangThai=N'Đã đặt') THEN N'Đã đặt'
+                        ELSE N'Trống' END FROM Phong p WHERE p.TrangThai<>N'Bảo trì' AND p.SoPhong IN(SELECT SoPhong FROM ChiTietDatPhong WHERE SoPhieuDat=@s)", cn, tx);
+                    u.Parameters.AddWithValue("@s", so); u.ExecuteNonQuery(); tx.Commit();
+                    return KetQuaXuLy.Ok("Đã đánh dấu không nhận phòng.");
+                }
+                catch (Exception ex)
+                {
+                    try { tx.Rollback(); } catch { }
+                    return KetQuaXuLy.Fail(ex.Message);
+                }
             }
         }
     }

@@ -6,174 +6,114 @@
 - MSSV: **1250080021**.
 - Lớp: **12_ĐH_CNPM1**.
 - Học phần: Phương pháp phát triển phần mềm hướng đối tượng.
+- Ngày hoàn thiện và kiểm tra: **31/10/2026**.
 
-## Mục tiêu và nội dung đã thực hiện
+## Nội dung và kết quả
 
-Xây dựng ứng dụng quản lý khách sạn bằng C# Windows Forms và SQL Server, tổ chức thành phần giao diện, xử lý nghiệp vụ và truy cập dữ liệu.
+Bài làm phân tích phòng theo khu vực, tiện nghi và lịch sử lắp đặt/luân chuyển, khách đại diện, đặt/nhận phòng, người lưu trú, dịch vụ, đền bù, hóa đơn, thanh toán và thống kê.
 
-| Màn hình | Nội dung trong mã nguồn |
+- Báo cáo theo pha **phân tích → thiết kế → CSDL → WinForms → kiểm thử và truy vết**, có đặc tả use case trọng tâm, định danh lớp, association và multiplicity.
+- **37 file draw.io riêng**, nền vàng nhạt, viền hồng: 1 use case tổng quát, 4 phân rã chức năng, 4 hình lớp phân tích, 2 trạng thái, 8 Sequence, 4 hình lớp chi tiết, 6 thiết kế module, 3 Activity, 4 ERD và 1 điều hướng Form. Những lớp lặp ở các nhóm vẫn là cùng một lớp.
+- Workbook **5 sheet**: UseCase, DacTa, ScreenDesign, TestCase, TruyVet; gồm 14 use case, đặc tả 6 nghiệp vụ trọng tâm và thiết kế 15 màn hình/tab.
+- SQL Server có **18 bảng và 22 quan hệ khóa ngoại**, PK, UNIQUE, CHECK; nghiệp vụ nhiều bảng dùng transaction tại Service.
+- Ứng dụng **7 Form**, 6 module; source theo **UI → Service → Data**, C# WinForms .NET Framework 4.7.2.
+- Build Release thành công; **46/46** ca nghiệp vụ/CSDL đạt. Đã mở và rà 15 màn hình/tab với SQL Server, sửa control tràn vùng chứa và cập nhật ảnh vào Word.
+- Báo cáo A4 dọc, không footer; có **15 ảnh Form/tab**, **2 ảnh truy vấn CSDL thực chạy** và giữ các biểu mẫu nghiệp vụ ở phụ lục.
+
+## Các file chính
+
+- [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
+- [Đề bài khách sạn](../CacBaiLab/Bai_3_He_thong_quan_ly_khach_san.pdf).
+- [Workbook Use Case và Screen Design](LAB3_UseCase_ScreenDesign.xlsx).
+- [37 sơ đồ draw.io](UML).
+- [Solution Visual Studio](QuanLyKhachSan/QuanLyKhachSan.sln).
+- [Cấu hình kết nối](QuanLyKhachSan/QuanLyKhachSan/App.config).
+- [SQL cấu trúc và danh mục mẫu](Database/SQL.sql).
+
+## Môi trường
+
+Windows 11; Visual Studio Community 2022; C# WinForms **.NET Framework 4.7.2**, Any CPU; ADO.NET `System.Data.SqlClient`; SQL Server LocalDB **15.0.4382.1**, instance `(localdb)\MSSQLLocalDB`, Windows Authentication. Database ứng dụng **QuanLyKhachSan**.
+
+Visual Studio cần workload **.NET desktop development** và targeting pack .NET Framework 4.7.2. Project không cần gói NuGet ngoài. Có thể dùng SQL Server instance khác nếu sửa đúng `Data Source`.
+
+Các entity trong UML mô tả mô hình dữ liệu và trách nhiệm nghiệp vụ. Source hiện thực các xử lý qua Service và DataTable; `Models.cs` có hai DTO `PhongDatItem`, `DenBuItem` và lớp kết quả `KetQuaXuLy`. Actor là vai trò nghiệp vụ, chưa triển khai đăng nhập/phân quyền.
+
+## Chuẩn bị và chạy
+
+1. Kiểm tra LocalDB và khởi động instance trong PowerShell:
+
+   ```powershell
+   sqllocaldb info
+   sqllocaldb start MSSQLLocalDB
+   ```
+
+   Nếu chưa có instance, tạo bằng `sqllocaldb create MSSQLLocalDB`.
+
+2. Mở SSMS, kết nối `(localdb)\MSSQLLocalDB` bằng Windows Authentication. Chạy [Database/SQL.sql](Database/SQL.sql) để khởi tạo môi trường mới.
+
+   **Script có `DROP TABLE`, sẽ xóa dữ liệu các bảng của bài khi chạy lại. Chỉ dùng khi khởi tạo hoặc chủ động đặt lại môi trường. Nếu CSDL đã đầy đủ và cần giữ dữ liệu, bỏ qua bước này.**
+
+3. Kiểm tra chuỗi kết nối `QuanLyKhachSanDB` trong App.config:
+
+   ```text
+   Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QuanLyKhachSan;Integrated Security=True;
+   ```
+
+4. Mở solution, chọn QuanLyKhachSan làm Startup Project, Rebuild **Release**, rồi chạy F5 hoặc Ctrl+F5. Build lại sau khi đổi cấu hình.
+
+5. Kiểm tra danh mục mẫu: A101 sức chứa 2, giá 600.000 đ/ngày; A102 sức chứa 3, giá 800.000 đ; B201 sức chứa 4, giá 1.200.000 đ. DV01 Ăn sáng 120.000 đ/suất; DV02 Tắm hơi 250.000 đ/lượt; DV03 Karaoke 300.000 đ/giờ. Có NV01/NV02/NV03 và TV01/TV02/TL01.
+
+## Kịch bản kiểm tra lại
+
+Script SQL tạo danh mục, chưa tạo khách, phiếu đặt, dịch vụ phát sinh hay hóa đơn. Các mã sau được nhập theo kịch bản; dùng mã mới nếu đã tồn tại.
+
+| Bước | Dữ liệu và kết quả đối chiếu |
 | --- | --- |
-| `FrmMain` | Điều hướng đến các nhóm chức năng |
-| `FrmDanhMuc` | Khu vực, nhân viên, loại tiện nghi, dịch vụ và quy định đền bù |
-| `FrmPhongTienNghi` | Phòng, tiện nghi, phiếu lắp đặt/luân chuyển |
-| `FrmDatPhong` | Khách hàng, đặt phòng, nhận phòng, người lưu trú và đánh dấu no-show |
-| `FrmDichVu` | Ghi nhận sử dụng dịch vụ và xem lịch sử theo phiếu lưu trú |
-| `FrmTraPhong` | Đền bù, lập hóa đơn, ghi nhận thanh toán và hoàn tất trả phòng |
-| `FrmThongKe` | Tổng hợp phiếu đặt, khách đang ở, hóa đơn, đền bù và dịch vụ theo dữ liệu CSDL |
+| Khách | KH01, tên Khách thực hành, CCCD/hộ chiếu LAB3-0001, quốc tịch Việt Nam. CCCD của khách đại diện không được trùng. |
+| Lắp đặt | LD01, TV01, A101, ngày 31/10/2026, Tốt, NV02. Thử lắp TV01 sang A102 trong cùng ngày phải bị từ chối. |
+| Đặt phòng | DP01, KH01, NV01; A101 2 người; nhận 31/10, trả dự kiến 02/11/2026; Website; cọc 200.000 đ. Thử 3 người hoặc một phiếu chồng lịch phải bị từ chối. |
+| Nhận phòng | Thêm 2 người có họ tên, CCCD LT001/LT002 và quốc tịch. Người thứ 3 bị từ chối; nhận phòng chuyển phiếu và phòng sang Đang ở. |
+| Dịch vụ | DP01/A101, DV01 ngày 31/10/2026: ghi 1 rồi 2 suất. Kết quả đúng một dòng, số lượng **3**, thành tiền **360.000 đ**. |
+| Đền bù | DB01, TV01 hư hỏng nhẹ, 500.000 đ; ghi theo phiếu riêng sau khi kiểm tra phòng. |
+| Hóa đơn | HD01/DP01, xác nhận 2 ngày. Tiền phòng 1.200.000 + dịch vụ 360.000 = **1.560.000 đ**. |
+| Thanh toán | TT01 tiền mặt 600.000 đ: còn 960.000 đ, chưa trả phòng được. Thử thu 1.000.000 đ phải bị từ chối. TT02 chuyển khoản 960.000 đ: hóa đơn Đã thanh toán. |
+| Trả phòng | DP01 Đã trả; A101 Trống khi không còn đặt phòng khác. Không nhận thao tác trả lần hai. |
+| Thống kê | Lọc 31/10/2026: đối chiếu HD01 **1.560.000 đ**, đền bù **500.000 đ**, DV01 **3 suất**. |
 
-CSDL gồm **18 bảng**, có khóa chính, khóa ngoại và các ràng buộc dữ liệu. Script khởi tạo có dữ liệu mẫu cho danh mục, phòng, tiện nghi, dịch vụ và quy định đền bù.
+Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và DP03 đang ở để mở đủ các Form. Ảnh sử dụng CSDL kiểm thử riêng `QuanLyKhachSan_Lab3Review_20261031`; không thay đổi CSDL ứng dụng đã có trên máy. Bảng TestCase ghi kết quả từng thời điểm, trước khi bổ sung lượt dùng để chụp Form.
 
-## Môi trường và phiên bản
+## Quy tắc và transaction
 
-| Thành phần | Cấu hình |
+- Khoảng đặt tính cả hai đầu mút; trùng khi `nhận mới <= trả cũ` và `trả mới >= nhận cũ`. Chỉ các phiếu Đã đặt/Đang ở được xét giữ phòng. Trạng thái phòng là chỉ báo, việc kiểm tra trống dựa vào lịch.
+- Đặt phòng, người lưu trú, nhận phòng, No-show, lắp đặt, dịch vụ, đền bù, hóa đơn, thu tiền và trả phòng dùng transaction; các bước ghi nhiều bảng cùng commit hoặc rollback. Khóa phòng/hóa đơn được giữ trong lúc kiểm tra và cập nhật.
+- `UNIQUE(MaLoaiTN, SoThuTu)` phân biệt thiết bị theo loại; `UNIQUE(MaTienNghi, NgayLap)` ngăn lắp hai phòng cùng ngày. Vị trí hiện tại lấy phiếu lắp mới nhất.
+- Một đầu phiếu dịch vụ cho mỗi lượt–phòng–ngày; PK chi tiết gồm phiếu và mã DV. Ghi lại cùng ngày cộng số lượng và giữ đơn giá dòng.
+- Tiền phòng = tổng giá ngày các phòng × số ngày nhân viên xác nhận. Tiền dịch vụ = tổng chi tiết sử dụng. Tổng hóa đơn = phòng + dịch vụ.
+- Tiền cọc được lưu để theo dõi, **chưa tự đối trừ hoặc hoàn cọc**. Đền bù theo phiếu riêng, **không cộng vào tổng hóa đơn** và chưa có chức năng thu tiền đền bù riêng.
+- Mỗi phiếu có tối đa một hóa đơn. Khi đã có hóa đơn thì không ghi thêm dịch vụ của lượt đó. Hóa đơn 0 đ được xác nhận đã thanh toán ngay.
+- Thu tiền hỗ trợ tiền mặt, chuyển khoản, thẻ và ví điện tử. Mỗi lần thu dương, không vượt số còn lại; đủ tiền mới hoàn tất trả phòng.
+- No-show chỉ áp dụng phiếu Đã đặt. Trạng thái Hủy được dự phòng trong CHECK nhưng chưa có thao tác hủy trên Form.
+
+## Kết quả kiểm tra và giới hạn
+
+Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đạt. Các ca gồm dữ liệu trùng, vượt sức chứa, ngày đảo, phòng bảo trì, trùng lịch, thiết bị/ngày, số người, cộng dồn dịch vụ, rollback đền bù, chốt hóa đơn, thu một phần/vượt/đủ, No-show, trả hai lần và thống kê.
+
+Đã mở **7 Form, 15 màn hình/tab**, nạp dữ liệu SQL và rà control trong vùng chứa ở kích thước mặc định. Các Form cố định kích thước; bảng hỗ trợ wrap tiêu đề/nội dung và hiển thị ngày `dd/MM/yyyy`. Chưa kiểm tra mọi DPI, thao tác đồng thời ở tải lớn, cổng thanh toán thật hoặc máy in. Ảnh Form được ghi bằng DrawToBitmap từ Form đang chạy; ảnh CSDL hiển thị kết quả truy vấn thực tế.
+
+## Lỗi gặp và cách khắc phục
+
+| Tình huống | Cách xử lý |
 | --- | --- |
-| Hệ điều hành kiểm tra | Windows 11 |
-| IDE/build đã kiểm tra | Visual Studio Community 2022 **17.14.41**, MSBuild đi kèm |
-| Project | C#, Windows Forms, **.NET Framework 4.7.2** |
-| Truy cập CSDL | ADO.NET, `System.Data.SqlClient` |
-| CSDL đã kết nối | SQL Server LocalDB **15.0.4382.1** |
-| Instance mặc định | `(localdb)\MSSQLLocalDB` |
-| Database | `QuanLyKhachSan` |
-| Xác thực | Windows Authentication |
+| Lỗi mở kết nối SQL | Kiểm tra instance LocalDB, trạng thái dịch vụ, tên database và App.config; build lại trước khi chạy. |
+| Trùng mã hoặc CCCD | Tra cứu dữ liệu, dùng mã mới; không chạy lại script SQL để xử lý trùng mã. |
+| No-show làm đổi nhầm phòng đang ở | Chỉ đổi phiếu Đã đặt; cập nhật phiếu và phòng trong một transaction, tính lại trạng thái từ các phiếu còn hiệu lực. |
+| Lắp đặt cập nhật dở dang | Ghi phiếu và tình trạng trong cùng transaction; UNIQUE thiết bị/ngày chặn dữ liệu trùng. |
+| Dịch vụ làm lệch hóa đơn đã chốt | Từ chối ghi thêm sau khi lập hóa đơn; giữ giá dòng khi cộng số lượng. |
+| Nút nhận phòng bị khuất, control chồng | Đặt lại kích thước bảng và vị trí nút trên tab, kiểm tra mọi màn hình; thu gọn ô số tiền đền bù để không bị nút Thêm đè lên. |
+| Không hoàn tất trả phòng | Kiểm tra phiếu Đang ở và tổng thanh toán đủ hóa đơn. |
 
-Visual Studio cần workload **.NET desktop development** và bộ targeting/developer pack .NET Framework 4.7.2. Có thể dùng SQL Server instance khác bằng cách điều chỉnh cấu hình kết nối.
+## Nộp bài
 
-## Cấu trúc và các file chính
-
-```text
-LAB3/
-├── README.md
-├── UML/                              24 sơ đồ draw.io riêng
-├── Database/
-│   └── SQL.sql
-├── QuanLyKhachSan/
-│   ├── QuanLyKhachSan.sln
-│   └── QuanLyKhachSan/
-│       ├── QuanLyKhachSan.csproj
-│       ├── App.config
-│       ├── Program.cs
-│       ├── Models.cs
-│       ├── Data/
-│       ├── Forms/
-│       ├── Services/
-│       └── Properties/
-└── 1250080021_NguyenThanhCan_CNPM1_LAB03.docx
-```
-
-- [24 sơ đồ draw.io riêng](UML): use case tổng quát, 4 phân rã chức năng, lớp phân tích, 2 trạng thái, 6 tuần tự, lớp chi tiết, 6 thiết kế chức năng, activity đặt phòng, ERD và điều hướng Form. Nội dung dùng tên Form/Service và cấu trúc CSDL của project.
-- [Solution](QuanLyKhachSan/QuanLyKhachSan.sln): mở ứng dụng trong Visual Studio.
-- [Script SQL](Database/SQL.sql): bản khởi tạo CSDL dùng cho bài.
-- [App.config](QuanLyKhachSan/QuanLyKhachSan/App.config): chuỗi kết nối `QuanLyKhachSanDB`.
-- `Forms`: giao diện; `Services`: xử lý nghiệp vụ; `Data/Db.cs`: kết nối và thực thi truy vấn.
-
-## Hướng dẫn chuẩn bị và chạy lại
-
-### 1. Chuẩn bị LocalDB
-
-Mở PowerShell:
-
-```powershell
-sqllocaldb info
-```
-
-Nếu chưa có instance `MSSQLLocalDB`, tạo bằng `sqllocaldb create MSSQLLocalDB`. Sau đó khởi động:
-
-```powershell
-sqllocaldb start MSSQLLocalDB
-```
-
-### 2. Khởi tạo cơ sở dữ liệu trên máy mới
-
-1. Mở SQL Server Management Studio.
-2. Kết nối server **`(localdb)\MSSQLLocalDB`**, chọn **Windows Authentication**.
-3. Mở [Database/SQL.sql](Database/SQL.sql) và Execute để tạo database, bảng và dữ liệu mẫu.
-
-**Script có `DROP TABLE`: chạy lại sẽ xóa dữ liệu trong các bảng của bài. Chỉ thực hiện khi khởi tạo môi trường mới hoặc chủ động đặt lại dữ liệu, có sao lưu khi cần. Nếu CSDL đã đầy đủ thì bỏ qua bước khởi tạo.**
-
-Kiểm tra sau khi khởi tạo:
-
-```sql
-USE QuanLyKhachSan;
-SELECT name FROM sys.tables ORDER BY name;
-SELECT SoPhong, MaKhuVuc, SoNguoiToiDa, DonGiaNgay, TrangThai
-FROM dbo.Phong;
-```
-
-Script có các phòng mẫu `A101`, `A102`, `B201`, dịch vụ `DV01`, `DV02`, `DV03` và nhân viên `NV01`, `NV02`, `NV03`. Script chưa tạo sẵn khách hàng, phiếu đặt hoặc hóa đơn; cần nhập khách hàng và lập phiếu nếu muốn kiểm tra luồng lưu trú từ đầu.
-
-### 3. Kiểm tra chuỗi kết nối
-
-[App.config](QuanLyKhachSan/QuanLyKhachSan/App.config) đang sử dụng:
-
-```text
-Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QuanLyKhachSan;Integrated Security=True;
-```
-
-Nếu SQL Server trên máy khác có tên instance khác, sửa `Data Source` cho đúng nơi đã chạy script. Giữ đúng tên database `QuanLyKhachSan` hoặc điều chỉnh đồng bộ nếu chủ động đổi tên CSDL. Build lại sau khi sửa cấu hình.
-
-### 4. Build và chạy ứng dụng
-
-1. Mở [QuanLyKhachSan.sln](QuanLyKhachSan/QuanLyKhachSan.sln).
-2. Đặt `QuanLyKhachSan` làm Startup Project nếu cần.
-3. Chọn cấu hình **Debug**, chạy **Build Solution**.
-4. Nhấn **F5** hoặc **Ctrl+F5** để mở form chính.
-5. Mở các chức năng từ form chính và kiểm tra dữ liệu đã khởi tạo.
-
-Có thể build trong Developer PowerShell của Visual Studio, đứng tại `LAB3`:
-
-```powershell
-msbuild .\QuanLyKhachSan\QuanLyKhachSan.sln /t:Rebuild /p:Configuration=Debug
-```
-
-### 5. Trình tự kiểm tra nghiệp vụ
-
-Trên database thực hành:
-
-1. Kiểm tra danh mục, phòng và tiện nghi. Lập phiếu lắp đặt nếu cần theo dõi tiện nghi trong phòng.
-2. Thêm khách hàng, chọn phòng và lập phiếu đặt với ngày nhận/trả dự kiến hợp lệ.
-3. Ghi nhận người lưu trú và nhận phòng theo thông báo kiểm tra của chương trình.
-4. Chọn phiếu đang ở để ghi nhận dịch vụ.
-5. Kiểm tra tiện nghi khi trả phòng; lập phiếu đền bù nếu có phát sinh.
-6. Lập hóa đơn, ghi nhận thanh toán và hoàn tất trả phòng.
-7. Chọn khoảng ngày ở màn hình thống kê để xem dữ liệu tương ứng.
-
-Các bước trên thay đổi dữ liệu thực hành. Dùng mã phiếu mới để tránh trùng khóa với dữ liệu đã có.
-
-## Kết quả kiểm tra
-
-Ngày **25/09/2026**:
-
-- Rebuild solution bằng MSBuild của Visual Studio 2022 thành công sau khi sắp xếp file SQL.
-- Kết nối `(localdb)\MSSQLLocalDB` bằng Windows Authentication thành công.
-- Database `QuanLyKhachSan` có **18 bảng**.
-- File SQL dùng để khởi tạo được đặt tại `Database/SQL.sql`.
-
-Lần kiểm tra này xác nhận khả năng biên dịch và truy vấn CSDL hiện có. Chưa chạy lại toàn bộ thao tác thêm/sửa và chu trình đặt phòng → nhận phòng → dịch vụ → thanh toán trong lần kiểm tra này. Kết quả nghiệp vụ cần đối chiếu với dữ liệu thực tế khi thực hiện trình tự ở trên.
-
-## Lỗi gặp phải và cách khắc phục
-
-### Lỗi kết nối SQL Server khi mở form
-
-Đã gặp `System.Data.SqlClient.SqlException` tại `cn.Open()`, thông báo không tìm thấy hoặc không truy cập được SQL Server (`A network-related or instance-specific error...`).
-
-Các bước kiểm tra:
-
-1. Kiểm tra tên instance trong `App.config` và danh sách `sqllocaldb info`.
-2. Kiểm tra/khởi động instance bằng `sqllocaldb info MSSQLLocalDB` và `sqllocaldb start MSSQLLocalDB`.
-3. Kết nối bằng SSMS với cùng server, xác thực Windows và database `QuanLyKhachSan`.
-4. Dừng phiên debug hiện tại, build lại và chạy chương trình để sử dụng cấu hình mới nhất.
-5. Nếu lỗi còn xuất hiện, lấy đầy đủ **Copy Details** của exception, đặc biệt mã lỗi, để xác định nguyên nhân.
-
-### Các tình huống khi chạy trên máy khác
-
-| Hiện tượng | Cách xử lý |
-| --- | --- |
-| Thiếu .NET Framework 4.7.2 targeting pack | Cài thành phần tương ứng trong Visual Studio Installer rồi build lại |
-| Không tìm thấy database/bảng | Kiểm tra script đã chạy trên đúng instance và đúng database |
-| Không có phiếu để chọn tại màn hình dịch vụ/trả phòng | Kiểm tra đã tạo phiếu đặt và hoàn tất nhận phòng; danh sách lấy theo phiếu đang ở |
-| Trùng mã khi lập phiếu | Chọn mã mới và kiểm tra dữ liệu hiện có, không chạy lại SQL chỉ để xóa lỗi trùng mã |
-
-## Báo cáo
-[Tải báo cáo Word LAB3](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
+LAB3 gồm Word, workbook, từng file draw.io, solution, một script SQL và README. Ảnh giao diện/CSDL nằm trong Word. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push và kiểm tra repository truy cập được trước hạn theo hướng dẫn của lớp.
 
 [Quay về danh sách bài Lab](../README.md).
