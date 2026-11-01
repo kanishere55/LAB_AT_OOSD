@@ -92,7 +92,7 @@ Ngày 23/10/2026: build Release thành công; **41/41** ca kiểm tra nghiệp v
 
 ## Nộp bài
 
-Lưu riêng LAB7 gồm Word, source WinForms, một script SQL, các file draw.io và README. Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Commit/push trước hạn, mở repository kiểm tra truy cập được rồi nộp URL trên Classroom theo yêu cầu lớp. Nếu có yêu cầu video, đặt link đầu báo cáo.
+LAB7 gồm Word, source WinForms, một script SQL và README; các file nguồn sơ đồ nằm tại [IMAGES/LAB7](../IMAGES/LAB7). Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Việc nộp Word tổng hợp, đặt link repository và duy trì quyền Public thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp). Kiểm tra nội dung trên máy trước khi tự commit/push.
 
 [Quay về danh sách bài Lab](../README.md).
 

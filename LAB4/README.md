@@ -45,12 +45,12 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 
 ## Các file chính
 
-- [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04.docx): nội dung phân tích, thiết kế, SQL, giao diện, kiểm thử và truy vết.
+- [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04.docx): nội dung phân tích, thiết kế, SQL, giao diện và các quy tắc hiện thực.
 - [12 sơ đồ draw.io riêng](../IMAGES/LAB4): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
 - [Solution](QuanLyCuaHangOnline/QuanLyCuaHangOnline.sln).
 - [Script khởi tạo CSDL](Database/SQL.sql).
 - [Cấu hình kết nối](QuanLyCuaHangOnline/QuanLyCuaHangOnline/App.config).
-- Ảnh giao diện, ảnh đối chiếu CSDL, kịch bản kiểm thử và bảng truy vết nằm trong báo cáo Word.
+- Ảnh giao diện thực chạy nằm trong báo cáo Word.
 
 ## Hướng dẫn kiểm tra và chạy lại
 
@@ -70,7 +70,6 @@ Kiểm tra lại bằng các bước chạy ứng dụng ở trên và các kị
 - Chạy lại bộ kiểm thử ngày **03/10/2026**: **34 đạt, 0 lỗi**.
 - Đã mở đủ **8 Form**, kiểm tra **9 nội dung đạt**, gồm kết nối SQL, nạp dữ liệu, giỏ phiên, phí giao, che mật khẩu/CSV và đọc đơn đã lưu.
 - Các trường hợp đã kiểm tra gồm giỏ trống, chưa đăng nhập, sai thông tin thẻ, thanh toán bị từ chối, giá đổi/hết hàng, miễn phí giao đúng ngưỡng, rollback, email thất bại và gửi lại cùng mã yêu cầu.
-- Báo cáo có bảng truy vết Yêu cầu → UML → Form/Service → Bảng CSDL → Test case.
 
 ## Lỗi gặp và cách khắc phục
 

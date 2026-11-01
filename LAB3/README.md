@@ -14,17 +14,15 @@ Bài làm phân tích phòng theo khu vực, tiện nghi và lịch sử lắp �
 
 - Báo cáo theo pha **phân tích → thiết kế → CSDL → WinForms → kiểm thử và truy vết**, có đặc tả use case trọng tâm, định danh lớp, association và multiplicity.
 - **37 file draw.io riêng**, nền vàng nhạt, viền hồng: 1 use case tổng quát, 4 phân rã chức năng, 4 hình lớp phân tích, 2 trạng thái, 8 Sequence, 4 hình lớp chi tiết, 6 thiết kế module, 3 Activity, 4 ERD và 1 điều hướng Form. Những lớp lặp ở các nhóm vẫn là cùng một lớp.
-- Workbook **5 sheet**: UseCase, DacTa, ScreenDesign, TestCase, TruyVet; gồm 14 use case, đặc tả 6 nghiệp vụ trọng tâm và thiết kế 15 màn hình/tab.
 - SQL Server có **18 bảng và 22 quan hệ khóa ngoại**, PK, UNIQUE, CHECK; nghiệp vụ nhiều bảng dùng transaction tại Service.
 - Ứng dụng **7 Form**, 6 module; source theo **UI → Service → Data**, C# WinForms .NET Framework 4.7.2.
 - Build Release thành công; **46/46** ca nghiệp vụ/CSDL đạt. Đã mở và rà 15 màn hình/tab với SQL Server, sửa control tràn vùng chứa và cập nhật ảnh vào Word.
-- Báo cáo A4 dọc, không footer; có **15 ảnh Form/tab**, **2 ảnh truy vấn CSDL thực chạy** và giữ các biểu mẫu nghiệp vụ ở phụ lục.
+- Báo cáo A4 dọc, không footer; có **15 ảnh Form/tab thực chạy** và giữ các biểu mẫu nghiệp vụ ở phụ lục.
 
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
 - [Đề bài khách sạn](../CacBaiLab/Bai_3_He_thong_quan_ly_khach_san.pdf).
-- [Workbook Use Case và Screen Design](LAB3_UseCase_ScreenDesign.xlsx).
 - [37 sơ đồ draw.io](../IMAGES/LAB3).
 - [Solution Visual Studio](QuanLyKhachSan/QuanLyKhachSan.sln).
 - [Cấu hình kết nối](QuanLyKhachSan/QuanLyKhachSan/App.config).
@@ -80,7 +78,7 @@ Script SQL tạo danh mục, chưa tạo khách, phiếu đặt, dịch vụ ph�
 | Trả phòng | DP01 Đã trả; A101 Trống khi không còn đặt phòng khác. Không nhận thao tác trả lần hai. |
 | Thống kê | Lọc 31/10/2026: đối chiếu HD01 **1.560.000 đ**, đền bù **500.000 đ**, DV01 **3 suất**. |
 
-Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và DP03 đang ở để mở đủ các Form. Ảnh sử dụng CSDL kiểm thử riêng `QuanLyKhachSan_Lab3Review_20261031`; không thay đổi CSDL ứng dụng đã có trên máy. Bảng TestCase ghi kết quả từng thời điểm, trước khi bổ sung lượt dùng để chụp Form.
+Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và DP03 đang ở để mở đủ các Form. Ảnh sử dụng CSDL kiểm thử riêng `QuanLyKhachSan_Lab3Review_20261031`; không thay đổi CSDL ứng dụng đã có trên máy.
 
 ## Quy tắc và transaction
 
@@ -98,7 +96,7 @@ Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và
 
 Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đạt. Các ca gồm dữ liệu trùng, vượt sức chứa, ngày đảo, phòng bảo trì, trùng lịch, thiết bị/ngày, số người, cộng dồn dịch vụ, rollback đền bù, chốt hóa đơn, thu một phần/vượt/đủ, No-show, trả hai lần và thống kê.
 
-Đã mở **7 Form, 15 màn hình/tab**, nạp dữ liệu SQL và rà control trong vùng chứa ở kích thước mặc định. Các Form cố định kích thước; bảng hỗ trợ wrap tiêu đề/nội dung và hiển thị ngày `dd/MM/yyyy`. Chưa kiểm tra mọi DPI, thao tác đồng thời ở tải lớn, cổng thanh toán thật hoặc máy in. Ảnh Form được ghi bằng DrawToBitmap từ Form đang chạy; ảnh CSDL hiển thị kết quả truy vấn thực tế.
+Đã mở **7 Form, 15 màn hình/tab**, nạp dữ liệu SQL và rà control trong vùng chứa ở kích thước mặc định. Các Form cố định kích thước; bảng hỗ trợ wrap tiêu đề/nội dung và hiển thị ngày `dd/MM/yyyy`. Chưa kiểm tra mọi DPI, thao tác đồng thời ở tải lớn, cổng thanh toán thật hoặc máy in. Ảnh Form được ghi bằng DrawToBitmap từ Form đang chạy với dữ liệu SQL Server.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -114,7 +112,7 @@ Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đ
 
 ## Nộp bài
 
-LAB3 gồm Word, workbook, từng file draw.io, solution, một script SQL và README. Ảnh giao diện/CSDL nằm trong Word. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push và kiểm tra repository truy cập được trước hạn theo hướng dẫn của lớp.
+LAB3 gồm Word, từng file draw.io, solution, một script SQL và README. Ảnh giao diện nằm trong Word. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push và kiểm tra repository truy cập được trước hạn theo hướng dẫn của lớp.
 
 [Quay về danh sách bài Lab](../README.md).
 

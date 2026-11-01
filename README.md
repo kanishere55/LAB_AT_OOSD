@@ -50,7 +50,7 @@ LAB_AT_OOSD/
 ├── CacBaiLab/                     Tài liệu đề bài
 ├── LAB1/                          README, báo cáo và mã nguồn Java
 ├── LAB2/                          README, báo cáo, WinForms và SQL
-├── LAB3/                          README, báo cáo, workbook, WinForms và SQL
+├── LAB3/                          README, báo cáo, WinForms và SQL
 ├── LAB4/                          README, báo cáo chính, bài tập bổ sung, source và SQL
 ├── LAB5/                          README, báo cáo, WinForms và SQL
 ├── LAB6/                          README, báo cáo, WinForms và SQL
@@ -74,9 +74,9 @@ Clone repository hoặc tải ZIP, mở README của bài cần kiểm tra để
 
 Môi trường các bài trước có JDK **23.0.1**, Visual Studio Community 2022 dòng **17.14**, .NET Framework **4.7.2** và LocalDB **15.0.4382.1**. LAB4 đến LAB8 đã chạy trên SQL Server 2022 **16.0.1000.6**. Chi tiết cấu hình, ngày kiểm tra và giới hạn của từng bài nằm trong README tương ứng.
 
-Với bài WinForms, chạy script SQL của bài trên đúng instance, sửa Data Source trong cấu hình nếu cần, mở solution, Rebuild rồi F5. Không trộn script hoặc cấu hình của các database khác nhau. Báo cáo Word chứa mô hình và bằng chứng; mã nguồn, SQL và test giúp chạy lại để đối chiếu.
+Với bài WinForms, chạy script SQL của bài trên đúng instance, sửa Data Source trong cấu hình nếu cần, mở solution, Rebuild rồi F5. Không trộn script hoặc cấu hình của các database khác nhau. Báo cáo Word chứa mô hình và bằng chứng; mã nguồn và SQL giúp chạy lại để đối chiếu.
 
-LAB3 quản lý khách sạn đã có báo cáo theo pha phân tích–thiết kế, workbook Use Case/Screen Design 5 sheet và **37 sơ đồ draw.io riêng**, gồm **3 Activity và 8 Sequence có thanh kích hoạt**. CSDL gồm **18 bảng, 22 quan hệ khóa ngoại**; WinForms có 7 Form, 15 màn hình/tab. Đã build Release, chạy đạt 46/46 ca nghiệp vụ/CSDL và cập nhật ảnh thực chạy vào Word A4. Hướng dẫn, quy ước tiền cọc/đền bù và giới hạn hiện thực nằm trong README LAB3.
+LAB3 quản lý khách sạn đã có báo cáo theo pha phân tích–thiết kế và **37 sơ đồ draw.io riêng**, gồm **3 Activity và 8 Sequence có thanh kích hoạt**. CSDL gồm **18 bảng, 22 quan hệ khóa ngoại**; WinForms có 7 Form, 15 màn hình/tab. Đã build Release, chạy đạt 46/46 ca nghiệp vụ/CSDL và cập nhật ảnh thực chạy vào Word A4. Hướng dẫn, quy ước tiền cọc/đền bù và giới hạn hiện thực nằm trong README LAB3.
 
 LAB5 có **9 Form, 8 Service và 16 bảng SQL Server**. Báo cáo trình bày phân tích và thiết kế UML, trong đó có 2 sơ đồ phân rã use case, 2 activity và 2 tuần tự cho các chức năng lịch chuyến và điểm tham quan. Báo cáo dùng A4 dọc, có 17 ảnh Form/tab và 2 ảnh đối chiếu CSDL. Cách cấu hình, chạy ứng dụng và các kịch bản kiểm tra được trình bày trong README của LAB5.
 
