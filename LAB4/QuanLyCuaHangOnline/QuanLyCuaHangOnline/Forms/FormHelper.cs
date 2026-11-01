@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace QuanLyCuaHangOnline
@@ -30,19 +29,6 @@ namespace QuanLyCuaHangOnline
                 if (column.Name == "TenSP") column.FillWeight = 200;
                 if (column.Name == "MaSP" || column.Name == "SoLuong") column.FillWeight = 65;
             }
-        }
-        public static void Capture(Form form, string path)
-        {
-            form.ShowInTaskbar = false;
-            form.Opacity = 0;
-            form.Show();
-            Application.DoEvents();
-            using (var image = new Bitmap(form.Width, form.Height))
-            {
-                form.DrawToBitmap(image, new Rectangle(0, 0, form.Width, form.Height));
-                image.Save(path);
-            }
-            form.Hide();
         }
     }
 }

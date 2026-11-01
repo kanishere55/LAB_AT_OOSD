@@ -123,7 +123,3 @@ Không phát sinh lỗi trong lần rebuild và truy vấn CSDL nêu trên. Các
 [Tải báo cáo Word LAB2](1250080021_NguyenThanhCan_CNPM1_LAB02.docx).
 
 [Quay về danh sách bài Lab](../README.md).
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 14 file của LAB2. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB2](../IMAGES/LAB2).

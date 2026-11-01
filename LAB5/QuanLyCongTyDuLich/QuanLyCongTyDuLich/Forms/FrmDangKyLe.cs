@@ -25,7 +25,7 @@ namespace QuanLyCongTyDuLich.Forms
         private void Tai()
         {
             dgv.DataSource = svc.LayDanhSach();
-            // Giữ 9 cột như Hình P.30; Service vẫn trả đủ thông tin.
+            // Giữ 9 cột như giao diện mẫu; Service vẫn trả đủ thông tin.
             dgv.Columns["NgayVe"].Visible = false;
             dgv.Columns["DienThoai"].Visible = false;
             FormHelper.KichThuocBangThayDoi(dgv, EventArgs.Empty);

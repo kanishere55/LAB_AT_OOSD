@@ -1,5 +1,5 @@
 -- LAB6 - Nguyen Thanh Can - 1250080021
--- SQL Server 2022. Chay lai khong xoa du lieu. So tien mau phuc vu kiem thu.
+-- SQL Server 2022. Chay lai khong xoa du lieu. So tien mau chi dung cho thuc hanh.
 SET QUOTED_IDENTIFIER ON;
 SET ANSI_NULLS ON;
 SET ANSI_PADDING ON;

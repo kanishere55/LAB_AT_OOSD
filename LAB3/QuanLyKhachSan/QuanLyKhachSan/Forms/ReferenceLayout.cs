@@ -5,8 +5,7 @@ using System.Windows.Forms;
 
 namespace QuanLyKhachSan.Forms
 {
-    // The positions here follow the seven reference screens in the lab handout.
-    // Keep the existing controls and events so the forms remain usable with the services.
+    // Bố trí control theo 7 màn hình mẫu trong đề.
     internal static class ReferenceUi
     {
         internal static void Bounds(Control c, int x, int y, int width, int height)
@@ -31,8 +30,7 @@ namespace QuanLyKhachSan.Forms
             }
         }
 
-        // Alternating data is deliberately avoided: the handout uses white cells,
-        // a pale blue header, thin grid lines and Vietnamese column names.
+        // Bảng theo mẫu của đề: ô nền trắng, tiêu đề xanh nhạt, đường kẻ mảnh, tên cột tiếng Việt.
         internal static void Grid(DataGridView grid, params string[] columns)
         {
             grid.AutoGenerateColumns = false;
@@ -80,8 +78,7 @@ namespace QuanLyKhachSan.Forms
                 }
             }
 
-            // Draw the empty rows seen in the reference without inserting fake
-            // records (a fake selected row would trigger database lookups).
+            // Vẽ thêm các dòng trống như màn hình mẫu, không chèn dòng dữ liệu giả.
             grid.Paint += (sender, e) =>
             {
                 if (grid.Rows.Count != 0 || grid.Columns.Count == 0) return;
@@ -288,8 +285,7 @@ namespace QuanLyKhachSan.Forms
             ReferenceUi.Grid(dgvLD, "SoPhieuLapDat", "Phiếu lắp đặt", "MaTienNghi", "Tiện nghi", "SoPhong", "Phòng", "TinhTrang", "Tình trạng", "NgayLap", "Ngày lắp");
             ReferenceUi.Date(dtNgay);
 
-            // Show the main lắp đặt fields below the room list as pictured.
-            // They move back to the detailed tab when that tab is selected.
+            // Hiện các ô lắp đặt chính bên dưới danh sách phòng; khi chọn tab chi tiết thì chuyển lại về tab đó.
             MovePlacementControls(false);
             tabControl1.SelectedIndexChanged += (sender, args) =>
                 MovePlacementControls(tabControl1.SelectedTab == tabLapDat);

@@ -16,8 +16,7 @@ Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiể
 - 18 sơ đồ: 3 hình lớp, 1 use case tổng quát, 2 phân rã chức năng, 1 trạng thái, 1 sequence khen thưởng, 1 lớp thiết kế tổng thể, 4 thiết kế module, 2 activity và 3 ERD. Mỗi sơ đồ là **một file draw.io riêng**.
 - WinForms có **9 Form**, 8 module; màn hình chính 2 cột và nút Thoát.
 - SQL Server có **22 bảng**, PK/FK/UNIQUE/CHECK, 9 stored procedure, TVP và transaction nhiều bảng.
-- **41/41** kiểm thử nghiệp vụ/CSDL và **322/322** kiểm tra Form đạt; build Release thành công.
-- Báo cáo A4 dọc, không footer; 20 ảnh Form/tab của ứng dụng chạy với dữ liệu SQL Server.
+- Build Release thành công; báo cáo có 20 ảnh Form/tab của ứng dụng chạy với dữ liệu SQL Server.
 
 ## Các file chính
 
@@ -29,7 +28,7 @@ Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiể
 
 ## Môi trường
 
-Windows 11, Visual Studio Community 2022, C# WinForms **.NET Framework 4.7.2**, Any CPU; ADO.NET `System.Data.SqlClient`. SQL Server 2022 Developer **16.0.1000.6**, instance `.\MSSQLSERVER01`, Windows Authentication. CSDL ứng dụng `QuanLyNhanSu`; kiểm thử `QuanLyNhanSu_Test`. Project không cần NuGet; cần workload .NET desktop development và targeting pack 4.7.2.
+Windows 11, Visual Studio Community 2022, C# WinForms **.NET Framework 4.7.2**, Any CPU; ADO.NET `System.Data.SqlClient`. SQL Server 2022 Developer **16.0.1000.6**, instance `.\MSSQLSERVER01`, Windows Authentication. CSDL ứng dụng `QuanLyNhanSu`. Project không cần NuGet; cần workload .NET desktop development và targeting pack 4.7.2.
 
 UI gọi `NhanSuService`, Service chuyển xử lý tới `Data/Db` và stored procedure bằng tham số. Form bố trí bằng C# qua `ModuleForm`. Mô hình lớp thực thể ánh xạ sang SQL; source dùng DataTable để hiển thị dữ liệu. Các vai trò UML là vai trò nghiệp vụ, chưa triển khai đăng nhập/phân quyền.
 
@@ -72,13 +71,9 @@ Bốn tác nhân trực tiếp trong mô hình là phòng nhân sự, trưởng 
 
 Mẫu NV001: mức tháng 10 triệu, 208 giờ công, 8 giờ PT, công chuẩn 26 × 8 giờ → công 10 triệu, PT 576923; BH 8000000 × (0,015 + 0,08) = 760000; thưởng 300000, phạt 100000 → **10016923 đ**.
 
-## Kết quả kiểm tra
+## Kết quả
 
-Ngày 23/10/2026: build Release thành công; **41/41** ca kiểm tra nghiệp vụ/CSDL và **322/322** kiểm tra Form đạt. Các ca ghi dữ liệu dùng CSDL kiểm thử riêng. Kiểm tra Form mở đủ 9 Form và 20 màn hình/tab, đọc dữ liệu SQL và kiểm tra vùng nhập/cột ở kích thước mặc định, nhỏ nhất.
-
-Để kiểm tra lại trực tiếp, chạy script SQL, mở solution và thực hiện các tình huống trong bảng Module ở trên. Đối chiếu BL092026 của NV001: công 208 giờ, phụ trội 8 giờ, tiền công 10.000.000 đ, tiền phụ trội 576.923 đ, bảo hiểm 760.000 đ, thưởng 300.000 đ, phạt 100.000 đ, thực lĩnh **10.016.923 đ**.
-
-Ảnh giao diện trong Word được lấy bằng DrawToBitmap từ Form đang chạy với SQL Server. Kiểm tra Form chưa tự động bấm mọi nút ghi dữ liệu, thử mọi hộp thoại hoặc mọi DPI Windows.
+Build Release thành công; mở đủ 9 Form và 20 màn hình/tab, dữ liệu SQL hiển thị đúng. Để kiểm tra lại, chạy script SQL, mở solution và thực hiện các tình huống trong bảng Module ở trên. Đối chiếu BL092026 của NV001: công 208 giờ, phụ trội 8 giờ, tiền công 10.000.000 đ, tiền phụ trội 576.923 đ, bảo hiểm 760.000 đ, thưởng 300.000 đ, phạt 100.000 đ, thực lĩnh **10.016.923 đ**.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -87,15 +82,7 @@ Ngày 23/10/2026: build Release thành công; **41/41** ca kiểm tra nghiệp v
 | Thiếu BH khi ký dài hạn | Nhập đủ mã hồ sơ, số YT/XH, mức đóng và tỷ lệ; transaction rollback khi lỗi. |
 | Trùng mã/quyết định/tháng | Dùng mã mới, kiểm tra lịch sử; PK/UNIQUE ngăn ghi trùng. |
 | Phân bổ sai tổng hoặc sai phòng | Kiểm tra từng dòng MaNV;SoTien; không tự chia đều tập thể. |
-| Cột dài | Wrap hàng/tiêu đề, chia cột, kiểm tra đủ Form và tab. |
+| Cột dài | Wrap hàng/tiêu đề và chia lại độ rộng cột. |
 | Không kết nối SQL | Kiểm tra dịch vụ SQL, Data Source và script đúng LAB7. |
 
-## Nộp bài
-
-LAB7 gồm Word, source WinForms, một script SQL và README; các file nguồn sơ đồ nằm tại [IMAGES/LAB7](../IMAGES/LAB7). Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Việc nộp Word tổng hợp, đặt link repository và duy trì quyền Public thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp). Kiểm tra nội dung trên máy trước khi tự commit/push.
-
 [Quay về danh sách bài Lab](../README.md).
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 18 file của LAB7. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB7](../IMAGES/LAB7).

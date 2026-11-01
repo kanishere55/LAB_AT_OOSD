@@ -13,12 +13,11 @@
 
 Phân tích phòng theo tầng, hợp đồng nhiều phòng, thu trước 6 tháng, thu tiền thuê từ tháng 7, dịch vụ cuối tháng, gia hạn có kiểm tra công nợ, nhân viên có ảnh, thẻ xe và kiểm tra tình trạng phòng hàng năm.
 
-- Báo cáo trả lời đủ 6 câu, trình bày pha phân tích → pha thiết kế → SQL Server → WinForms → kiểm thử và truy vết.
+- Báo cáo trả lời đủ 6 câu, trình bày theo pha phân tích → pha thiết kế → SQL Server → WinForms.
 - **18 lớp/bảng**, **23 quan hệ khóa ngoại**, PK/FK/UNIQUE/CHECK; **9 stored procedure** gồm 8 nghiệp vụ và thủ tục hỗ trợ tạo kỳ thuê; 1 TVP và 1 view công nợ.
 - **22 sơ đồ**, mỗi sơ đồ một file `.drawio` riêng: 3 lớp phân tích, 1 UC tổng quát, 3 UC phân rã chức năng, 1 trạng thái, 3 Sequence, 1 lớp thiết kế tổng thể, 4 thiết kế module, 3 Activity và 3 ERD.
 - **9 Form**, 8 module, 23 màn hình/tab. Form chính 2 cột, 8 nút chức năng và nút Thoát.
-- Build Release thành công; **49/49** kiểm tra nghiệp vụ/CSDL, **11/11** luồng ghi từ nút Form và **324/324** kiểm tra Form đạt.
-- Word A4 dọc, không footer; có 23 ảnh Form/tab thực chạy. Ảnh lấy bằng DrawToBitmap từ Form đang chạy với SQL Server. Cấu trúc và ràng buộc CSDL được trình bày trong báo cáo, ERD và script SQL.
+- Build Release thành công; báo cáo có 23 ảnh Form/tab chụp khi chạy ứng dụng với SQL Server. Cấu trúc và ràng buộc CSDL được trình bày trong báo cáo, ERD và script SQL.
 
 ## Các file chính
 
@@ -31,7 +30,7 @@ Phân tích phòng theo tầng, hợp đồng nhiều phòng, thu trước 6 th�
 
 ## Môi trường
 
-Windows 11; Visual Studio Community 2022; C# WinForms **.NET Framework 4.7.2**, Any CPU; ADO.NET `System.Data.SqlClient`; SQL Server 2022 Developer **16.0.1000.6**, instance `.\MSSQLSERVER01`, Windows Authentication. CSDL ứng dụng **QuanLyVanPhong**, CSDL kiểm thử **QuanLyVanPhong_Test**.
+Windows 11; Visual Studio Community 2022; C# WinForms **.NET Framework 4.7.2**, Any CPU; ADO.NET `System.Data.SqlClient`; SQL Server 2022 Developer **16.0.1000.6**, instance `.\MSSQLSERVER01`, Windows Authentication. CSDL ứng dụng **QuanLyVanPhong**.
 
 Project không cần NuGet. Visual Studio cần workload **.NET desktop development** và targeting pack .NET Framework 4.7.2.
 
@@ -39,7 +38,7 @@ Form gọi `VanPhongService`; Service kiểm tra danh sách và chuyển tham s�
 
 ## Cài đặt và chạy
 
-1. Trong SSMS, kết nối SQL Server bằng tài khoản có quyền tạo database. Chạy toàn bộ `Database/QuanLyVanPhong.sql`. File có cấu trúc và dữ liệu mẫu ở cuối; không xóa bảng hay ghi đè seed đã tồn tại.
+1. Trong SSMS, kết nối SQL Server bằng tài khoản có quyền tạo database. Chạy toàn bộ `Database/QuanLyVanPhong.sql`. File có cấu trúc và dữ liệu mẫu ở cuối; không xóa bảng hay ghi đè dữ liệu mẫu đã tồn tại.
 2. Mở solution trong Visual Studio. Kiểm tra chuỗi kết nối trong App.config:
 
    ```text
@@ -62,7 +61,7 @@ Form gọi `VanPhongService`; Service kiểm tra danh sách và chuyển tham s�
 | Nhân viên/thẻ xe | NV001 thuộc KH001, phòng P101; có ảnh biểu trưng thực hành lưu trong CSDL và thẻ TX001. Khi nhập hồ sơ mới, chọn ảnh PNG/JPG/BMP tối đa 5 MB. |
 | Kiểm tra/phạt | KT2026 ngày 15/10/2026; P101 vi phạm kết cấu, PP001 **2 triệu**; P201 bình thường. Theo dõi hạn kiểm tra lại sau 1 năm tại Thống kê. |
 
-Tên, mã số thuế, liên hệ, biển số và ảnh biểu trưng trong seed là dữ liệu thực hành.
+Tên, mã số thuế, liên hệ, biển số và ảnh biểu trưng trong dữ liệu mẫu đều là dữ liệu thực hành.
 
 Kịch bản kiểm tra gia hạn HD001/P101:
 
@@ -85,11 +84,11 @@ Kịch bản kiểm tra gia hạn HD001/P101:
 - Phạt do tự sửa kết cấu chỉ được lập từ kết quả kiểm tra vi phạm; số tiền nhập theo quy định cao ốc. Phạt theo dõi riêng và không tự thêm vào điều kiện gia hạn của câu 6.
 - Khách và công ty thuê cung cấp hồ sơ qua quản lý; bốn tác nhân trực tiếp là bộ phận quản lý, kế toán, bảo vệ, bộ phận kỹ thuật.
 
-## Kiểm thử và giới hạn
+## Kết quả và giới hạn
 
-Ngày 30/10/2026 đã kiểm tra trên CSDL riêng: 49 ca nghiệp vụ/CSDL, 11 luồng ghi từ nút Form và 324 kiểm tra Form đều đạt. Các ca gồm rollback hợp đồng nhiều phòng, thu trước, kỳ tháng thứ 7, thu từng phần, gia hạn có nợ, hóa đơn chưa lập/chưa trả, giới hạn gia hạn, lịch chồng, ảnh nhân viên, biển số duy nhất và kiểm tra sau 1 năm. Hai ca đồng thời kiểm tra thuê trùng phòng và thu vượt khoản nợ.
+Mở đủ 9 Form và 23 màn hình/tab, dữ liệu SQL hiển thị đúng. Đã chạy thử các nghiệp vụ chính: ký hợp đồng nhiều phòng và thu trước, kỳ thuê từ tháng thứ 7, thu từng phần, gia hạn khi còn nợ, hóa đơn dịch vụ chưa lập/chưa trả, giới hạn số tháng gia hạn, lịch thuê chồng, ảnh nhân viên, biển số trùng và kiểm tra định kỳ sau 1 năm; các trường hợp không hợp lệ đều bị từ chối.
 
-Kiểm tra giao diện mở đủ 9 Form và 23 màn hình/tab, nạp SQL và rà vùng nhập/cột ở kích thước mặc định, nhỏ nhất. Luồng lưu ảnh kiểm tra bằng dữ liệu ảnh đã chọn; chưa tự động thao tác hộp thoại chọn file, xuất CSV, mọi mức DPI hoặc máy in vật lý. Source không có thao tác xóa lịch sử hợp đồng/chứng từ hay điều chỉnh hóa đơn đã chốt.
+Chương trình chưa có thao tác xóa lịch sử hợp đồng/chứng từ hay điều chỉnh hóa đơn đã chốt.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -101,14 +100,6 @@ Kiểm tra giao diện mở đủ 9 Form và 23 màn hình/tab, nạp SQL và r�
 | Thu vượt khoản nợ | Tải lại công nợ, chọn dòng và nạp số còn lại; không dùng số tiền cũ sau khi vừa ghi thu. |
 | Trùng mã, biển số, hóa đơn tháng | Dùng mã mới, kiểm tra dữ liệu; PK/UNIQUE ngăn ghi trùng. |
 | Ảnh nhân viên không hợp lệ | Chọn đúng định dạng ảnh tối đa 5 MB; phòng phải do công ty thuê tại ngày báo cáo. |
-| Dữ liệu dài trên bảng | Wrap tiêu đề/nội dung và tăng chiều cao hàng; kiểm tra mọi tab ở hai kích thước. |
-
-## Nộp bài
-
-LAB8 gồm Word, source WinForms, một script SQL và README; từng sơ đồ draw.io nằm tại [IMAGES/LAB8](../IMAGES/LAB8). Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp).
+| Dữ liệu dài trên bảng | Wrap tiêu đề/nội dung và tăng chiều cao hàng. |
 
 [Quay về danh sách bài Lab](../README.md).
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 22 file của LAB8. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB8](../IMAGES/LAB8).

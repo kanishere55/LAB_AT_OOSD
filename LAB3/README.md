@@ -6,18 +6,17 @@
 - MSSV: **1250080021**.
 - Lớp: **12_ĐH_CNPM1**.
 - Học phần: Phương pháp phát triển phần mềm hướng đối tượng.
-- Ngày hoàn thiện và kiểm tra: **31/10/2026**.
+- Ngày hoàn thành: **31/10/2026**.
 
 ## Nội dung và kết quả
 
 Bài làm phân tích phòng theo khu vực, tiện nghi và lịch sử lắp đặt/luân chuyển, khách đại diện, đặt/nhận phòng, người lưu trú, dịch vụ, đền bù, hóa đơn, thanh toán và thống kê.
 
-- Báo cáo theo pha **phân tích → thiết kế → CSDL → WinForms → kiểm thử và truy vết**, có đặc tả use case trọng tâm, định danh lớp, association và multiplicity.
-- **37 file draw.io riêng**, nền vàng nhạt, viền hồng: 1 use case tổng quát, 4 phân rã chức năng, 4 hình lớp phân tích, 2 trạng thái, 8 Sequence, 4 hình lớp chi tiết, 6 thiết kế module, 3 Activity, 4 ERD và 1 điều hướng Form. Những lớp lặp ở các nhóm vẫn là cùng một lớp.
+- Báo cáo trình bày theo pha **phân tích → thiết kế → CSDL → WinForms**, có đặc tả use case trọng tâm, định danh lớp, association và multiplicity; các biểu mẫu nghiệp vụ được đặt ở phụ lục.
+- **37 sơ đồ draw.io**, mỗi sơ đồ một file: 1 use case tổng quát, 4 phân rã chức năng, 4 hình lớp phân tích, 2 trạng thái, 8 Sequence, 4 hình lớp chi tiết, 6 thiết kế module, 3 Activity, 4 ERD và 1 điều hướng Form.
 - SQL Server có **18 bảng và 22 quan hệ khóa ngoại**, PK, UNIQUE, CHECK; nghiệp vụ nhiều bảng dùng transaction tại Service.
 - Ứng dụng **7 Form**, 6 module; source theo **UI → Service → Data**, C# WinForms .NET Framework 4.7.2.
-- Build Release thành công; **46/46** ca nghiệp vụ/CSDL đạt. Đã mở và rà 15 màn hình/tab với SQL Server, sửa control tràn vùng chứa và cập nhật ảnh vào Word.
-- Báo cáo A4 dọc, không footer; có **15 ảnh Form/tab thực chạy** và giữ các biểu mẫu nghiệp vụ ở phụ lục.
+- Báo cáo có **15 ảnh Form/tab** chụp khi chạy ứng dụng với SQL Server.
 
 ## Các file chính
 
@@ -61,9 +60,9 @@ Các entity trong UML mô tả mô hình dữ liệu và trách nhiệm nghiệp
 
 5. Kiểm tra danh mục mẫu: A101 sức chứa 2, giá 600.000 đ/ngày; A102 sức chứa 3, giá 800.000 đ; B201 sức chứa 4, giá 1.200.000 đ. DV01 Ăn sáng 120.000 đ/suất; DV02 Tắm hơi 250.000 đ/lượt; DV03 Karaoke 300.000 đ/giờ. Có NV01/NV02/NV03 và TV01/TV02/TL01.
 
-## Kịch bản kiểm tra lại
+## Dữ liệu chạy thử
 
-Script SQL tạo danh mục, chưa tạo khách, phiếu đặt, dịch vụ phát sinh hay hóa đơn. Các mã sau được nhập theo kịch bản; dùng mã mới nếu đã tồn tại.
+Script SQL chỉ tạo danh mục, chưa có khách, phiếu đặt, dịch vụ phát sinh hay hóa đơn. Có thể nhập lần lượt theo bảng dưới để chạy lại toàn bộ quy trình; nếu mã đã tồn tại thì dùng mã mới.
 
 | Bước | Dữ liệu và kết quả đối chiếu |
 | --- | --- |
@@ -78,7 +77,7 @@ Script SQL tạo danh mục, chưa tạo khách, phiếu đặt, dịch vụ ph�
 | Trả phòng | DP01 Đã trả; A101 Trống khi không còn đặt phòng khác. Không nhận thao tác trả lần hai. |
 | Thống kê | Lọc 31/10/2026: đối chiếu HD01 **1.560.000 đ**, đền bù **500.000 đ**, DV01 **3 suất**. |
 
-Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và DP03 đang ở để mở đủ các Form. Ảnh sử dụng CSDL kiểm thử riêng `QuanLyKhachSan_Lab3Review_20261031`; không thay đổi CSDL ứng dụng đã có trên máy.
+Sau phiếu DP01 có thể tạo thêm một phiếu No-show và một phiếu đang ở để xem đủ dữ liệu trên các Form.
 
 ## Quy tắc và transaction
 
@@ -92,11 +91,11 @@ Trong lần chạy kiểm thử, sau chu trình DP01 còn tạo DP02 No-show và
 - Thu tiền hỗ trợ tiền mặt, chuyển khoản, thẻ và ví điện tử. Mỗi lần thu dương, không vượt số còn lại; đủ tiền mới hoàn tất trả phòng.
 - No-show chỉ áp dụng phiếu Đã đặt. Trạng thái Hủy được dự phòng trong CHECK nhưng chưa có thao tác hủy trên Form.
 
-## Kết quả kiểm tra và giới hạn
+## Kết quả và giới hạn
 
-Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đạt. Các ca gồm dữ liệu trùng, vượt sức chứa, ngày đảo, phòng bảo trì, trùng lịch, thiết bị/ngày, số người, cộng dồn dịch vụ, rollback đền bù, chốt hóa đơn, thu một phần/vượt/đủ, No-show, trả hai lần và thống kê.
+Build Release thành công. Chạy đủ **7 Form, 15 màn hình/tab** với dữ liệu SQL Server; các bước trong bảng dữ liệu chạy thử cho kết quả đúng như phần đối chiếu, kể cả các trường hợp bị từ chối như vượt sức chứa, trùng lịch, thu vượt số còn lại hay trả phòng lần hai.
 
-Đã mở **7 Form, 15 màn hình/tab**, nạp dữ liệu SQL và rà control trong vùng chứa ở kích thước mặc định. Các Form cố định kích thước; bảng hỗ trợ wrap tiêu đề/nội dung và hiển thị ngày `dd/MM/yyyy`. Chưa kiểm tra mọi DPI, thao tác đồng thời ở tải lớn, cổng thanh toán thật hoặc máy in. Ảnh Form được ghi bằng DrawToBitmap từ Form đang chạy với dữ liệu SQL Server.
+Các Form cố định kích thước; bảng tự xuống dòng ở tiêu đề/nội dung dài và hiển thị ngày `dd/MM/yyyy`.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -107,15 +106,7 @@ Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đ
 | No-show làm đổi nhầm phòng đang ở | Chỉ đổi phiếu Đã đặt; cập nhật phiếu và phòng trong một transaction, tính lại trạng thái từ các phiếu còn hiệu lực. |
 | Lắp đặt cập nhật dở dang | Ghi phiếu và tình trạng trong cùng transaction; UNIQUE thiết bị/ngày chặn dữ liệu trùng. |
 | Dịch vụ làm lệch hóa đơn đã chốt | Từ chối ghi thêm sau khi lập hóa đơn; giữ giá dòng khi cộng số lượng. |
-| Nút nhận phòng bị khuất, control chồng | Đặt lại kích thước bảng và vị trí nút trên tab, kiểm tra mọi màn hình; thu gọn ô số tiền đền bù để không bị nút Thêm đè lên. |
+| Nút nhận phòng bị khuất, control chồng | Đặt lại kích thước bảng và vị trí nút trên tab; thu gọn ô số tiền đền bù để không bị nút Thêm đè lên. |
 | Không hoàn tất trả phòng | Kiểm tra phiếu Đang ở và tổng thanh toán đủ hóa đơn. |
 
-## Nộp bài
-
-LAB3 gồm Word, từng file draw.io, solution, một script SQL và README. Ảnh giao diện nằm trong Word. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push và kiểm tra repository truy cập được trước hạn theo hướng dẫn của lớp.
-
 [Quay về danh sách bài Lab](../README.md).
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 37 file của LAB3. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB3](../IMAGES/LAB3).

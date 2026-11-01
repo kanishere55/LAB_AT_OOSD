@@ -46,6 +46,7 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04.docx): nội dung phân tích, thiết kế, SQL, giao diện và các quy tắc hiện thực.
+- [Bài tập](1250080021_NguyenThanhCan_CNPM1_BT.docx): chuyển sơ đồ lớp nhân viên kinh doanh – đơn hàng sang lược đồ cơ sở dữ liệu.
 - [12 sơ đồ draw.io riêng](../IMAGES/LAB4): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
 - [Solution](QuanLyCuaHangOnline/QuanLyCuaHangOnline.sln).
 - [Script khởi tạo CSDL](Database/SQL.sql).
@@ -62,30 +63,19 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 6. Để thử từ chối thanh toán, dùng CSV `000` với VISA đúng định dạng. Ứng dụng giữ giỏ và không ghi đơn. Có thể sửa CSV thành `123` và xác nhận lại.
 7. Kiểm tra các bảng DonHang, ChiTietDonHang, ThanhToan trong SSMS. Đối chiếu TienHang với tổng ThanhTien của chi tiết; đối chiếu TongTien với SoTien thanh toán. Có email thì kiểm tra thêm bảng EmailXacNhan.
 
-Kiểm tra lại bằng các bước chạy ứng dụng ở trên và các kịch bản trong báo cáo Word. Đối chiếu dữ liệu đơn, chi tiết, thanh toán và email trên SQL Server sau mỗi tình huống.
-
-## Kết quả kiểm tra
+## Kết quả
 
 - Rebuild Release thành công với target .NET Framework 4.7.2.
-- Chạy lại bộ kiểm thử ngày **03/10/2026**: **34 đạt, 0 lỗi**.
-- Đã mở đủ **8 Form**, kiểm tra **9 nội dung đạt**, gồm kết nối SQL, nạp dữ liệu, giỏ phiên, phí giao, che mật khẩu/CSV và đọc đơn đã lưu.
-- Các trường hợp đã kiểm tra gồm giỏ trống, chưa đăng nhập, sai thông tin thẻ, thanh toán bị từ chối, giá đổi/hết hàng, miễn phí giao đúng ngưỡng, rollback, email thất bại và gửi lại cùng mã yêu cầu.
+- Chạy đủ **8 Form**: kết nối SQL, nạp dữ liệu, giỏ hàng theo phiên, tính phí giao, che mật khẩu/CSV và đọc lại đơn đã lưu đều hoạt động đúng.
+- Đã thử các trường hợp giỏ trống, chưa đăng nhập, sai thông tin thẻ, thanh toán bị từ chối, giá đổi/hết hàng, miễn phí giao đúng ngưỡng, rollback khi lỗi, email gửi thất bại và gửi lại cùng mã yêu cầu.
 
 ## Lỗi gặp và cách khắc phục
 
 | Tình huống | Cách xử lý |
 | --- | --- |
 | Kết nối lỗi do tên instance hoặc chưa tạo CSDL | Chạy SQL.sql trên đúng instance; điều chỉnh Data Source trong App.config |
-| Thẻ bị từ chối, sửa CSV rồi xác nhận lại cùng yêu cầu | Adapter chỉ lưu kết quả đã được chấp nhận; kết quả từ chối không chặn lần thử sau. TC34 đã đạt |
+| Thẻ bị từ chối, sửa CSV rồi xác nhận lại cùng yêu cầu | Adapter chỉ lưu kết quả đã được chấp nhận; kết quả từ chối không chặn lần thử sau |
 | Giá thay đổi sau khi thêm giỏ | Đọc lại giá, cập nhật giỏ và yêu cầu xác nhận lại trước thanh toán |
 | Dịch vụ email lỗi sau khi lưu đơn | Ghi trạng thái LoiGui; giữ nguyên đơn đã commit |
 
-## Tổ chức và nộp bài
-
-Báo cáo chính và bài tập bổ sung nằm trong LAB4; các file nguồn sơ đồ nằm trong [IMAGES/LAB4](../IMAGES/LAB4). Dùng báo cáo được liên kết tại mục Các file chính. Không đưa thông tin thẻ thật, mật khẩu, dữ liệu cá nhân nhạy cảm, file database hoặc các thư mục bin/obj/.vs vào repository.
-
-Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp). Repository phải Public và chứa đầy đủ file nguồn sơ đồ để giảng viên đối chiếu.
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 12 file của LAB4. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB4](../IMAGES/LAB4).
+[Quay về danh sách bài Lab](../README.md).

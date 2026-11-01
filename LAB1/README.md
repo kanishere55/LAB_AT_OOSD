@@ -66,8 +66,6 @@ Dien tich: 25.132742
 Chu vi: 19.869177
 ```
 
-
-
 ## Lỗi gặp phải và cách khắc phục
 
 Lần biên dịch và chạy nêu trên không phát sinh lỗi. Nếu chạy trên máy khác gặp các tình huống sau:

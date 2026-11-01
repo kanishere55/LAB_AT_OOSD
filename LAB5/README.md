@@ -56,7 +56,7 @@ Visual Studio cần workload **.NET desktop development** và targeting/develope
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB5.docx): phân tích nghiệp vụ, mô hình UML, thiết kế CSDL, SQL và ảnh kết quả chạy ứng dụng.
-- [20 sơ đồ draw.io riêng](../IMAGES/LAB5): đủ các sơ đồ UML, ERD và điều hướng Form trong báo cáo. Hai biểu đồ trạng thái ChuyenLe và PhieuKhaoSat lần lượt ở Hình P.6 và P.7, mỗi hình được lưu thành một file nguồn riêng.
+- [20 sơ đồ draw.io riêng](../IMAGES/LAB5): đủ các sơ đồ UML, ERD và điều hướng Form trong báo cáo, mỗi sơ đồ một file.
 - [Solution](QuanLyCongTyDuLich/QuanLyCongTyDuLich.sln).
 - [Script tạo CSDL và dữ liệu mẫu](Database/QuanLyCongTyDuLich.sql).
 - [Cấu hình kết nối](QuanLyCongTyDuLich/QuanLyCongTyDuLich/App.config).
@@ -80,9 +80,9 @@ Có thể chạy SQL bằng `sqlcmd` từ thư mục LAB5. Tham số `-f 65001` 
 sqlcmd -S '.\MSSQLSERVER01' -E -f 65001 -b -i '.\Database\QuanLyCongTyDuLich.sql'
 ```
 
-## Kịch bản kiểm tra nhanh
+## Dữ liệu chạy thử
 
-Dùng các mã chưa tồn tại. Các ngày dưới đây phù hợp lần kiểm tra **09/10/2026**; nếu chạy sau ngày khởi hành, đổi ngày thử sang tương lai.
+Dùng các mã chưa tồn tại. Ngày đi của đoàn phải sau ngày chạy thử; nếu ngày trong ví dụ đã qua thì đổi sang một ngày trong tương lai.
 
 1. **Khách lẻ:** DKL003, CL002, DB01, Hoàng Văn Phúc, điện thoại mẫu 0912000003, 4 người. Thành tiền **10.000.000 đ**; đăng ký và thanh toán vé.
 2. **Đoàn:** DK03/DD003, T003, đi 05/01/2027, 15 người, cọc 30.000.000 đ. Nhập đầy đủ cơ quan, địa chỉ, điện thoại, đại diện và nơi đón. Kết thúc dự kiến 09/01/2027, tổng **133.500.000 đ**. Tích bảo hiểm thì nhập đủ 15 dòng họ tên; ngày sinh dùng dd/MM/yyyy hoặc để trống.
@@ -93,36 +93,22 @@ Dùng các mã chưa tồn tại. Các ngày dưới đây phù hợp lần ki�
 
 Các thao tác này ghi vào database ứng dụng. Dùng database riêng được tạo từ script SQL nếu cần thử mà không ảnh hưởng dữ liệu đang sử dụng.
 
-## Kết quả kiểm tra
-
-Kết quả ngày **09/10/2026**:
+## Kết quả
 
 - Build Release thành công.
-- **41 kiểm tra nghiệp vụ/CSDL đạt, 0 lỗi**, gồm đăng ký, rollback, bảo hiểm, cọc, ngày, hạng sao, HDV, khảo sát trùng và thanh toán.
-- **28 kiểm tra Form đạt, 0 lỗi**: mở 9 Form, đọc SQL, tính lương/thống kê, kiểm tra vùng control và độ rõ của bảng.
-- **68 tình huống bố cục đạt, 0 vấn đề**: 17 màn hình/tab × dữ liệu mẫu/dài × kích thước gốc/mô phỏng 125%. Kiểm tra cột, hàng, nhãn, nút, combobox, số tiền và chồng lấn. 125% là mô phỏng control/font trong harness, không thay DPI Windows.
-- Đã chạy và chụp trực tiếp đủ 9 Form cùng mọi tab; báo cáo có **17 ảnh cửa sổ ứng dụng và 2 ảnh CSDL**.
+- Chạy đủ 9 Form cùng các tab với dữ liệu SQL Server; báo cáo có **17 ảnh cửa sổ ứng dụng và 2 ảnh CSDL**.
+- Các nghiệp vụ đăng ký lẻ/đoàn, cọc, bảo hiểm, phân công HDV, thanh toán, khảo sát và lương cho kết quả khớp với dữ liệu chạy thử ở trên; các trường hợp không hợp lệ đều bị từ chối và rollback.
 - Script SQL chạy lại thành công, không nhân đôi mã mẫu.
-
-Kiểm tra nghiệp vụ gọi Service rồi truy vấn SQL đối chiếu. Kiểm tra Form gồm khởi tạo/hiển thị và các nút đọc dữ liệu; chưa tự động bấm mọi nút ghi dữ liệu và xử lý mọi hộp thoại. Với các kịch bản đăng ký đoàn, chọn ngày đi trong tương lai khi chạy lại.
 
 ## Lỗi gặp và cách khắc phục
 
 | Tình huống | Cách xử lý |
 | --- | --- |
-| Cột dữ liệu hoặc tiêu đề bị che | Chia độ rộng theo tiêu đề/nội dung; wrap ô dài; tính lại chiều cao hàng sau khi chia cột; rà mọi Form và tab |
+| Cột dữ liệu hoặc tiêu đề bị che | Chia độ rộng theo tiêu đề/nội dung; wrap ô dài; tính lại chiều cao hàng sau khi chia cột |
 | Nhãn chạm ô nhập | Điều chỉnh khoảng cách nhãn và control trong 8 Form nghiệp vụ |
 | SQL lỗi dấu tiếng Việt | NVARCHAR, literal N và sqlcmd UTF-8 `-f 65001` |
 | Không kết nối SQL | Kiểm tra instance, dịch vụ, database và Data Source trong App.config |
 | EXE đang chạy làm build không chép được | Shift+F5, đóng bản đang chạy, Rebuild rồi F5 |
 | Mã trùng hoặc dữ liệu không hợp lệ | Service trả thông báo; PK/FK/CHECK/UNIQUE ngăn ghi sai; transaction rollback khi cần |
 
-## Tổ chức và nộp bài
-
-Thư mục LAB5 gồm báo cáo Word, README, script SQL và project C# WinForms. Dữ liệu trong script SQL là dữ liệu mẫu. Không đưa bin/obj/.vs, mật khẩu, file database MDF/LDF, bản backup hoặc file khóa Word lên GitHub.
-
-Báo cáo tổng hợp được nộp theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp): ghép LAB1 đến LAB8 đúng thứ tự, có mục lục và số trang, đặt link repository ở đầu Word. Repository phải Public; file nguồn sơ đồ được lưu trong thư mục gốc IMAGES. Kiểm tra nội dung trên máy trước khi tự commit/push và nộp file Word qua đường dẫn giảng viên cung cấp.
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 20 file của LAB5. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB5](../IMAGES/LAB5).
+[Quay về danh sách bài Lab](../README.md).

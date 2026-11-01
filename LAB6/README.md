@@ -11,7 +11,7 @@
 
 ## Mục tiêu và nội dung thực hiện
 
-Bài làm gồm phân tích đăng ký bệnh nhân, lệ phí năm, cấp/tra cứu hồ sơ bệnh án, khám bệnh, xét nghiệm, toa thuốc, hẹn định kỳ và hoàn tất đợt điều trị sau thanh toán viện phí. Phần phân tích và thiết kế trả lời sáu câu trong đề; phần hiện thực bổ sung SQL Server, WinForms và kiểm thử theo yêu cầu trên lớp.
+Bài làm gồm phân tích đăng ký bệnh nhân, lệ phí năm, cấp/tra cứu hồ sơ bệnh án, khám bệnh, xét nghiệm, toa thuốc, hẹn định kỳ và hoàn tất đợt điều trị sau thanh toán viện phí. Phần phân tích và thiết kế trả lời sáu câu trong đề; phần hiện thực bổ sung SQL Server và WinForms theo yêu cầu trên lớp.
 
 | Sản phẩm | Kết quả |
 | --- | --- |
@@ -20,11 +20,10 @@ Bài làm gồm phân tích đăng ký bệnh nhân, lệ phí năm, cấp/tra c
 | Đặc tả trọng tâm | Đăng ký/cấp hồ sơ, hẹn/khám định kỳ, hoàn tất; đặc tả lập toa tại Câu 6 |
 | SQL Server | 13 bảng, PK/FK/UNIQUE/CHECK, 11 stored procedure và kiểu bảng `DongToa` |
 | WinForms | 9 Form, 8 module nghiệp vụ; UI → HoSoService → Data/Db → SQL Server |
-| Kiểm thử | 50 kiểm thử nghiệp vụ/CSDL, 12 luồng ghi dữ liệu từ Form, 265 kiểm tra bố cục |
-| Bằng chứng | 20 ảnh màn hình/tab ứng dụng và 2 ảnh truy vấn metadata CSDL thực tế |
-| Báo cáo | A4 dọc, 8 hình UML và 22 ảnh ứng dụng/CSDL; có truy vết yêu cầu |
+| Ảnh kết quả | 20 ảnh màn hình/tab ứng dụng và 2 ảnh truy vấn CSDL |
+| Báo cáo | 8 sơ đồ UML và 22 ảnh ứng dụng/CSDL |
 
-Phân rã use case thể hiện **chức năng**. `include` hướng tới chức năng bắt buộc; `extend` hướng từ chức năng mở rộng về use case cơ sở, có điều kiện. Các đường nối được bố trí theo góc vuông; activity làm rõ thứ tự, điều kiện và các nhánh có/không xét nghiệm, có/không kê thuốc.
+Phân rã use case thể hiện **chức năng**. `include` hướng tới chức năng bắt buộc; `extend` hướng từ chức năng mở rộng về use case cơ sở, có điều kiện. Activity làm rõ thứ tự, điều kiện và các nhánh có/không xét nghiệm, có/không kê thuốc.
 
 ## Môi trường và phiên bản
 
@@ -37,7 +36,6 @@ Phân rã use case thể hiện **chức năng**. `include` hướng tới chứ
 | SQL Server | 2022 Developer **16.0.1000.6** |
 | Instance | `.\MSSQLSERVER01` |
 | CSDL ứng dụng | `QuanLyHoSoBenhAn` |
-| CSDL kiểm thử ghi dữ liệu | `QuanLyHoSoBenhAn_Test` |
 
 Visual Studio cần workload **.NET desktop development** và targeting pack .NET Framework 4.7.2. Project không cần cài NuGet. Form được bố trí bằng C# trong thư mục `Forms`; `ModuleForm` cung cấp bố cục và bảng dùng chung. Mã nguồn hiện dùng `BenhNhanInput` cho đăng ký và `DataTable` cho dữ liệu hiển thị; các lớp phân tích ánh xạ tới các bảng SQL.
 
@@ -49,7 +47,7 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
 - [Cấu hình kết nối](QuanLyHoSoBenhAn/QuanLyHoSoBenhAn/App.config).
 - [SQL cấu trúc, thủ tục và danh mục mẫu](Database/QuanLyHoSoBenhAn.sql).
 - [8 file draw.io riêng, mỗi file một sơ đồ](../IMAGES/LAB6): 2 hình lớp, use case tổng quát, 2 phân rã chức năng, 2 activity và sequence lập toa thuốc.
-- Kịch bản kiểm thử, truy vết yêu cầu và ảnh chạy ứng dụng/CSDL nằm trong báo cáo Word.
+- Ảnh chạy ứng dụng và ảnh CSDL nằm trong báo cáo Word.
 
 ## Các module
 
@@ -68,7 +66,7 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
 ## Quy tắc nghiệp vụ
 
 - Đăng ký chỉ cấp hồ sơ khi đủ thông tin, ảnh 3×4 và lệ phí dương. Bốn bảng bệnh nhân/đăng ký/lệ phí/hồ sơ cùng commit hoặc rollback.
-- Lệ phí có hiệu lực một năm; không thu chồng thời hạn. Số tiền mẫu 100.000 đ và phí khám điều trị 150.000 đ phục vụ kiểm thử, có thể nhập mức khác.
+- Lệ phí có hiệu lực một năm; không thu chồng thời hạn. Số tiền mẫu 100.000 đ và phí khám điều trị 150.000 đ chỉ là dữ liệu thực hành, có thể nhập mức khác.
 - Quyền khám định kỳ tính một lần trong mỗi **quý dương lịch**, tại ngày còn hiệu lực lệ phí năm; phí khám bằng 0. UNIQUE có lọc ngăn trùng lịch chưa hủy và trùng lần khám định kỳ theo hồ sơ/năm/quý.
 - Có lịch hẹn còn hiệu lực trong quý thì tiếp nhận phải chọn đúng mã hẹn, hồ sơ và ngày; tạo phiếu và chuyển trạng thái hẹn trong cùng transaction.
 - Xét nghiệm và toa phải gắn với phiếu khám. Chỉ kê toa sau kết luận và có đủ kết quả xét nghiệm; bác sĩ kê phải là bác sĩ phụ trách phiếu. Một phiếu tối đa một toa; toa đã lưu có ít nhất một dòng hợp lệ.
@@ -104,25 +102,17 @@ Danh mục mẫu gồm K01/K02, BS01/BS02, T01/T02 và XN01/XN02. Dữ liệu b�
 | Hoàn tất điều trị | Thử hoàn tất khi chưa xác nhận thanh toán; sau đó xác nhận xuất viện và viện phí đã trả | Chặn khi chưa đủ điều kiện; hoàn tất khi hợp lệ và khóa nội dung điều trị |
 | Tra cứu lịch sử | Chọn hồ sơ vừa thực hành | Hiển thị đúng các phiếu khám, kết quả xét nghiệm, toa và dòng thuốc liên quan |
 
-Kết quả kiểm tra đã ghi nhận ngày 16/10/2026 trong báo cáo: 50/50 ca nghiệp vụ/CSDL, 12/12 luồng ghi từ Form và 265/265 kiểm tra giao diện đạt; build Release thành công. Bộ nộp hiện tại hướng dẫn kiểm tra lại qua ứng dụng và SQL Server theo các kịch bản trên. Chưa kiểm thử mọi tổ hợp dữ liệu, mọi mức DPI hoặc in ra máy in vật lý.
+Build Release thành công; các kịch bản trên chạy đúng khi đối chiếu trên ứng dụng và SQL Server.
 
 ## Lỗi gặp và cách khắc phục
 
 | Tình huống | Cách xử lý |
 | --- | --- |
 | Index trên cột tính toán/có lọc yêu cầu tùy chọn SET | Khai báo QUOTED_IDENTIFIER, ANSI_NULLS, ANSI_WARNINGS, ARITHABORT và các tùy chọn cần thiết trước DDL |
-| CHECK với NULL có thể cho trạng thái xét nghiệm thiếu kết quả | Kiểm tra tường minh `IS NOT NULL` cùng nội dung và ngày trả; T48 xác nhận bị chặn |
-| Cột/tiêu đề dài | Fill theo trọng số, wrap và tăng chiều cao hàng; rà tất cả tab ở hai kích thước |
+| CHECK với NULL có thể cho trạng thái xét nghiệm thiếu kết quả | Kiểm tra tường minh `IS NOT NULL` cùng nội dung và ngày trả |
+| Cột/tiêu đề dài | Fill theo trọng số, wrap và tăng chiều cao hàng |
 | Trùng mã/quý hoặc lỗi nhiều bảng | Service trả thông báo; PK/FK/UNIQUE/CHECK và transaction ngăn lưu dở dang |
 | Không kết nối CSDL | Kiểm tra dịch vụ, instance, script và Data Source |
 | EXE đang chạy khi build | Đóng chương trình, Rebuild rồi chạy lại |
 
-## Nộp bài
-
-Thư mục LAB6 gồm Word, source C#, SQL và README; file nguồn sơ đồ nằm tại [IMAGES/LAB6](../IMAGES/LAB6). Không đưa `bin/obj/.vs`, file khóa Word, thông tin xác thực, MDF/LDF hoặc backup lên GitHub. Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp).
-
 [Quay về danh sách bài Lab](../README.md).
-
-## File nguồn sơ đồ cho báo cáo tổng hợp
-
-[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 8 file của LAB6. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB6](../IMAGES/LAB6).
