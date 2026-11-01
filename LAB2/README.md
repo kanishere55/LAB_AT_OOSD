@@ -34,7 +34,7 @@ Visual Studio cần workload **.NET desktop development** và bộ targeting/dev
 
 ## Các file chính
 
-- [14 sơ đồ draw.io riêng](UML): use case tổng quát, lớp, 5 activity, 5 sequence, ERD và điều hướng Form. Mỗi file chứa một sơ đồ, có thể sửa các đối tượng và nhãn trong diagrams.net.
+- [14 sơ đồ draw.io riêng](../IMAGES/LAB2): use case tổng quát, lớp, 5 activity, 5 sequence, ERD và điều hướng Form. Mỗi file chứa một sơ đồ, có thể sửa các đối tượng và nhãn trong diagrams.net.
 - [QuanLyThuVien.sln](QuanLyThuVien.sln): solution mở bằng Visual Studio.
 - [QuanLyThuVien.csproj](QuanLyThuVien/QuanLyThuVien.csproj): project ứng dụng.
 - [SQL.sql](QuanLyThuVien/SQL.sql): khởi tạo 9 bảng, các ràng buộc và dữ liệu mẫu.
@@ -123,3 +123,7 @@ Không phát sinh lỗi trong lần rebuild và truy vấn CSDL nêu trên. Các
 [Tải báo cáo Word LAB2](1250080021_NguyenThanhCan_CNPM1_LAB02.docx).
 
 [Quay về danh sách bài Lab](../README.md).
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 14 file của LAB2. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB2](../IMAGES/LAB2).

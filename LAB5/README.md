@@ -56,7 +56,7 @@ Visual Studio cần workload **.NET desktop development** và targeting/develope
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB5.docx): phân tích nghiệp vụ, mô hình UML, thiết kế CSDL, SQL và ảnh kết quả chạy ứng dụng.
-- [20 sơ đồ draw.io riêng](UML): đủ các sơ đồ UML, ERD và điều hướng Form trong báo cáo. Hai biểu đồ trạng thái ChuyenLe và PhieuKhaoSat ở Hình P.6 được lưu thành hai file riêng.
+- [20 sơ đồ draw.io riêng](../IMAGES/LAB5): đủ các sơ đồ UML, ERD và điều hướng Form trong báo cáo. Hai biểu đồ trạng thái ChuyenLe và PhieuKhaoSat ở Hình P.6 được lưu thành hai file riêng.
 - [Solution](QuanLyCongTyDuLich/QuanLyCongTyDuLich.sln).
 - [Script tạo CSDL và dữ liệu mẫu](Database/QuanLyCongTyDuLich.sql).
 - [Cấu hình kết nối](QuanLyCongTyDuLich/QuanLyCongTyDuLich/App.config).
@@ -122,3 +122,7 @@ Kiểm tra nghiệp vụ gọi Service rồi truy vấn SQL đối chiếu. Ki�
 Thư mục LAB5 gồm báo cáo Word, README, script SQL và project C# WinForms. Dữ liệu trong script SQL là dữ liệu mẫu. Không đưa bin/obj/.vs, mật khẩu, file database MDF/LDF, bản backup hoặc file khóa Word lên GitHub.
 
 Theo yêu cầu học phần, repository nộp có tên **LAB_OOSD** và để Public nếu lớp không có quy định khác. Remote hiện tại là **LAB_AT_OOSD**; cần đối chiếu tên với quy định lớp trước khi nộp. Commit và push báo cáo, source code, SQL và README; mở GitHub kiểm tra thư mục LAB5 truy cập được rồi dán URL repository vào Google Classroom. Nếu giảng viên yêu cầu video, đặt link ở đầu báo cáo. Sau hạn nộp, giữ nội dung đã nộp khi chưa được phép sửa.
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 20 file của LAB5. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB5](../IMAGES/LAB5).

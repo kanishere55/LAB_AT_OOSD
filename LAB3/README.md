@@ -25,7 +25,7 @@ Bài làm phân tích phòng theo khu vực, tiện nghi và lịch sử lắp �
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB03.docx).
 - [Đề bài khách sạn](../CacBaiLab/Bai_3_He_thong_quan_ly_khach_san.pdf).
 - [Workbook Use Case và Screen Design](LAB3_UseCase_ScreenDesign.xlsx).
-- [37 sơ đồ draw.io](UML).
+- [37 sơ đồ draw.io](../IMAGES/LAB3).
 - [Solution Visual Studio](QuanLyKhachSan/QuanLyKhachSan.sln).
 - [Cấu hình kết nối](QuanLyKhachSan/QuanLyKhachSan/App.config).
 - [SQL cấu trúc và danh mục mẫu](Database/SQL.sql).
@@ -117,3 +117,7 @@ Ngày 31/10/2026: build Release thành công, **46/46** ca nghiệp vụ/CSDL đ
 LAB3 gồm Word, workbook, từng file draw.io, solution, một script SQL và README. Ảnh giao diện/CSDL nằm trong Word. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push và kiểm tra repository truy cập được trước hạn theo hướng dẫn của lớp.
 
 [Quay về danh sách bài Lab](../README.md).
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 37 file của LAB3. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB3](../IMAGES/LAB3).

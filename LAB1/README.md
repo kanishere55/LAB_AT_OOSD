@@ -1,4 +1,4 @@
-# LAB1 — Lập trình hướng đối tượng với các lớp hình học
+# LAB1 — Các lớp hình học và Use Case thư viện trực tuyến
 
 ## Thông tin sinh viên
 
@@ -21,6 +21,13 @@ Xây dựng các lớp hình học bằng Java, sử dụng lớp trừu tượn
 | [Main.java](Baitap_oop/Main.java) | Tạo mảng `CHinhVe[]` và gọi các phương thức của từng hình |
 
 Phương thức `ve()` hiện in tên hình ra console. Chu vi ellipse sử dụng công thức xấp xỉ trong mã nguồn.
+
+## Phân tích hệ thống thư viện trực tuyến
+
+Phần bài tập 2 trong báo cáo xác định 2 tác nhân Độc giả, Thủ thư và 15 use case UC01–UC15; có mô hình use case tổng quát và đặc tả từng use case. Thủ thư kế thừa các chức năng của Độc giả. UC03 và UC04 bao gồm kiểm tra mã thẻ thư viện; UC07 bao gồm đăng nhập; hệ thống gửi email nhắc trước hạn trả 3 ngày.
+
+- [Sơ đồ Use Case thư viện trực tuyến](../IMAGES/LAB1/01_UseCaseThuVienTrucTuyen.drawio): một file nguồn draw.io riêng, có các đối tượng chỉnh sửa được.
+- [Đối chiếu hình trong báo cáo và file nguồn](../IMAGES/README.md).
 
 ## Môi trường và phiên bản
 

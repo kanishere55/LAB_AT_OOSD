@@ -11,7 +11,7 @@
 
 Phân tích hệ thống e-SHOPPING của cửa hàng ABC, xác định các chức năng trong ứng dụng và ba hệ thống bên ngoài: quản lý sản phẩm, thanh toán trực tuyến, email.
 
-Báo cáo trình bày pha phân tích và pha thiết kế, gồm biểu đồ use case, lớp phân tích, trạng thái, tuần tự, lớp thiết kế chi tiết, thiết kế riêng từng chức năng và hoạt động. Thư mục UML có 11 file draw.io cho các sơ đồ e-SHOPPING trong báo cáo và 1 file cho sơ đồ lớp của bài tập tổng hợp nhân viên kinh doanh – đơn hàng. Mỗi sơ đồ nằm trong một file riêng.
+Báo cáo trình bày pha phân tích và pha thiết kế, gồm biểu đồ use case, lớp phân tích, trạng thái, tuần tự, lớp thiết kế chi tiết, thiết kế riêng từng chức năng và hoạt động. Thư mục `../IMAGES/LAB4` có 11 file draw.io cho các sơ đồ e-SHOPPING trong báo cáo và 1 file cho sơ đồ lớp của bài tập tổng hợp nhân viên kinh doanh – đơn hàng. Mỗi sơ đồ nằm trong một file riêng.
 
 Ứng dụng C# WinForms tổ chức theo UI → Service/Adapter → Data. Giỏ lưu theo phiên; tài khoản và đơn hàng lưu trên SQL Server. Danh mục sản phẩm mô phỏng nguồn bên ngoài trong schema catalog. Thanh toán và email dùng adapter giả lập; không trừ tiền hoặc gửi email thật.
 
@@ -46,13 +46,11 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB04.docx): nội dung phân tích, thiết kế, SQL, giao diện, kiểm thử và truy vết.
-- [12 sơ đồ draw.io riêng](UML): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
+- [12 sơ đồ draw.io riêng](../IMAGES/LAB4): mở bằng diagrams.net; các lớp, thuộc tính, đường nối và nhãn đều sửa được.
 - [Solution](QuanLyCuaHangOnline/QuanLyCuaHangOnline.sln).
 - [Script khởi tạo CSDL](Database/SQL.sql).
 - [Cấu hình kết nối](QuanLyCuaHangOnline/QuanLyCuaHangOnline/App.config).
-- [Mã kiểm thử](Tests/Tests.cs), [script chạy kiểm thử](Tests/RunTests.ps1).
-- [Kết quả Service và CSDL](Tests/TestResults.txt), [kết quả kiểm tra Form](Tests/FormResults.txt).
-- [Ảnh giao diện và dữ liệu thực chạy](Evidence/): được dùng trong báo cáo Word.
+- Ảnh giao diện, ảnh đối chiếu CSDL, kịch bản kiểm thử và bảng truy vết nằm trong báo cáo Word.
 
 ## Hướng dẫn kiểm tra và chạy lại
 
@@ -64,13 +62,7 @@ Visual Studio cần workload .NET desktop development và targeting/developer pa
 6. Để thử từ chối thanh toán, dùng CSV `000` với VISA đúng định dạng. Ứng dụng giữ giỏ và không ghi đơn. Có thể sửa CSV thành `123` và xác nhận lại.
 7. Kiểm tra các bảng DonHang, ChiTietDonHang, ThanhToan trong SSMS. Đối chiếu TienHang với tổng ThanhTien của chi tiết; đối chiếu TongTien với SoTien thanh toán. Có email thì kiểm tra thêm bảng EmailXacNhan.
 
-Để chạy bộ kiểm thử, mở PowerShell tại thư mục LAB4 sau khi đã build Release:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\Tests\RunTests.ps1
-```
-
-Bộ kiểm thử tạo tài khoản và đơn thử trong CSDL. Các ca đổi giá/hết hàng dùng mã TEST01 riêng và xóa mã sản phẩm thử sau khi hoàn tất; đơn thử được giữ để đối chiếu dữ liệu.
+Kiểm tra lại bằng các bước chạy ứng dụng ở trên và các kịch bản trong báo cáo Word. Đối chiếu dữ liệu đơn, chi tiết, thanh toán và email trên SQL Server sau mỗi tình huống.
 
 ## Kết quả kiểm tra
 
@@ -91,6 +83,10 @@ Bộ kiểm thử tạo tài khoản và đơn thử trong CSDL. Các ca đổi 
 
 ## Tổ chức và nộp bài
 
-Toàn bộ nội dung Lab 4 nằm trong thư mục LAB4. Khi cập nhật GitHub, dùng báo cáo có hậu tố **HOANCHINH** được liên kết ở trên. Không đưa ảnh chụp bài mẫu của giảng viên, thông tin thẻ thật, mật khẩu, dữ liệu cá nhân nhạy cảm, file database hoặc các thư mục bin/obj/.vs vào repository.
+Báo cáo chính và bài tập bổ sung nằm trong LAB4; các file nguồn sơ đồ nằm trong [IMAGES/LAB4](../IMAGES/LAB4). Dùng báo cáo được liên kết tại mục Các file chính. Không đưa thông tin thẻ thật, mật khẩu, dữ liệu cá nhân nhạy cảm, file database hoặc các thư mục bin/obj/.vs vào repository.
 
-Theo quy định học phần, repository nộp bài có tên LAB_OOSD và để Public nếu giảng viên không có yêu cầu khác. Repository hiện tại đang dùng tên LAB_AT_OOSD; cần đối chiếu tên với quy định của lớp trước khi nộp. Commit và push đầy đủ, mở GitHub kiểm tra các file trong LAB4 có truy cập được, rồi dán URL repository vào bài tương ứng trên Google Classroom. Nếu có yêu cầu video, đặt link ở đầu báo cáo. Sau hạn nộp, giữ nguyên nội dung đã nộp khi chưa được giảng viên cho phép sửa.
+Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp). Repository phải Public và chứa đầy đủ file nguồn sơ đồ để giảng viên đối chiếu.
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 12 file của LAB4. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB4](../IMAGES/LAB4).

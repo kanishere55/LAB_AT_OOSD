@@ -18,16 +18,16 @@ Phân tích phòng theo tầng, hợp đồng nhiều phòng, thu trước 6 th�
 - **22 sơ đồ**, mỗi sơ đồ một file `.drawio` riêng: 3 lớp phân tích, 1 UC tổng quát, 3 UC phân rã chức năng, 1 trạng thái, 3 Sequence, 1 lớp thiết kế tổng thể, 4 thiết kế module, 3 Activity và 3 ERD.
 - **9 Form**, 8 module, 23 màn hình/tab. Form chính 2 cột, 8 nút chức năng và nút Thoát.
 - Build Release thành công; **49/49** kiểm tra nghiệp vụ/CSDL, **11/11** luồng ghi từ nút Form và **324/324** kiểm tra Form đạt.
-- Word A4 dọc, không footer; có 23 ảnh Form/tab và 2 ảnh đối chiếu CSDL thực chạy. Ảnh lấy bằng DrawToBitmap từ Form đang chạy với SQL Server; ảnh CSDL là cửa sổ hiển thị kết quả truy vấn metadata.
+- Word A4 dọc, không footer; có 23 ảnh Form/tab thực chạy. Ảnh lấy bằng DrawToBitmap từ Form đang chạy với SQL Server. Cấu trúc và ràng buộc CSDL được trình bày trong báo cáo, ERD và script SQL.
 
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB8.docx).
-- [Đề bài](Bai_4_Cho_thue_van_phong_cao_oc.docx).
+- [Đề bài](../CacBaiLab/Bai_4_Cho_thue_van_phong_cao_oc.docx).
 - [Solution](QuanLyVanPhong/QuanLyVanPhong.sln).
 - [Cấu hình kết nối](QuanLyVanPhong/QuanLyVanPhong/App.config).
 - [SQL cấu trúc, thủ tục và dữ liệu mẫu](Database/QuanLyVanPhong.sql).
-- [Thư mục 22 sơ đồ draw.io riêng](UML).
+- [Thư mục 22 sơ đồ draw.io riêng](../IMAGES/LAB8).
 
 ## Môi trường
 
@@ -105,6 +105,10 @@ Kiểm tra giao diện mở đủ 9 Form và 23 màn hình/tab, nạp SQL và r�
 
 ## Nộp bài
 
-LAB8 gồm Word, từng sơ đồ draw.io, source WinForms, một script SQL và README. Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Commit/push trước hạn, mở repository kiểm tra file truy cập được rồi nộp URL trên Classroom; nếu được yêu cầu video thì đặt link đầu báo cáo.
+LAB8 gồm Word, source WinForms, một script SQL và README; từng sơ đồ draw.io nằm tại [IMAGES/LAB8](../IMAGES/LAB8). Không đưa bin/obj/.vs, file khóa Word, MDF/LDF, backup hay thông tin xác thực lên GitHub. Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp).
 
 [Quay về danh sách bài Lab](../README.md).
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 22 file của LAB8. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB8](../IMAGES/LAB8).

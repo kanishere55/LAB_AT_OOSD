@@ -22,10 +22,10 @@ Bài làm phân tích tuyển dụng/thử việc, hợp đồng và bảo hiể
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB7.docx).
-- [Đề bài](Bai_7_Quan_ly_nhan_su.docx).
+- [Đề bài](../CacBaiLab/Bai_7_Quan_ly_nhan_su.docx).
 - [Solution](QuanLyNhanSu/QuanLyNhanSu.sln), [cấu hình](QuanLyNhanSu/QuanLyNhanSu/App.config).
 - [SQL cấu trúc, thủ tục và dữ liệu mẫu](Database/QuanLyNhanSu.sql).
-- [18 sơ đồ draw.io riêng](UML).
+- [18 sơ đồ draw.io riêng](../IMAGES/LAB7).
 
 ## Môi trường
 
@@ -95,3 +95,7 @@ Ngày 23/10/2026: build Release thành công; **41/41** ca kiểm tra nghiệp v
 Lưu riêng LAB7 gồm Word, source WinForms, một script SQL, các file draw.io và README. Bỏ bin/obj/.vs, file khóa Word, MDF/LDF, backup và thông tin xác thực khỏi Git. Commit/push trước hạn, mở repository kiểm tra truy cập được rồi nộp URL trên Classroom theo yêu cầu lớp. Nếu có yêu cầu video, đặt link đầu báo cáo.
 
 [Quay về danh sách bài Lab](../README.md).
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 18 file của LAB7. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB7](../IMAGES/LAB7).

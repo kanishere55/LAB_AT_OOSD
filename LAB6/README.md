@@ -44,13 +44,12 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
 ## Các file chính
 
 - [Báo cáo Word](1250080021_NguyenThanhCan_CNPM1_LAB6.docx).
-- [Đề thực hành gốc](Bai_5_Quan_ly_ho_so_benh_an.docx).
+- [Đề thực hành gốc](../CacBaiLab/Bai_5_Quan_ly_ho_so_benh_an.docx).
 - [Solution WinForms](QuanLyHoSoBenhAn/QuanLyHoSoBenhAn.sln).
 - [Cấu hình kết nối](QuanLyHoSoBenhAn/QuanLyHoSoBenhAn/App.config).
-- [SQL cấu trúc và thủ tục](Database/QuanLyHoSoBenhAn.sql), [dữ liệu mẫu](Database/DuLieuMau.sql), [truy vấn đối chiếu](Database/KiemTra.sql).
-- [8 file draw.io riêng, mỗi file một sơ đồ](UML): 2 hình lớp, use case tổng quát, 2 phân rã chức năng, 2 activity và sequence lập toa thuốc.
-- [Kịch bản kiểm thử](Tests/KichBanKiemThu.md) và [truy vết yêu cầu](Tests/TruyVetYeuCau.md).
-- [Bằng chứng chạy ứng dụng và CSDL](Evidence/README.md).
+- [SQL cấu trúc, thủ tục và danh mục mẫu](Database/QuanLyHoSoBenhAn.sql).
+- [8 file draw.io riêng, mỗi file một sơ đồ](../IMAGES/LAB6): 2 hình lớp, use case tổng quát, 2 phân rã chức năng, 2 activity và sequence lập toa thuốc.
+- Kịch bản kiểm thử, truy vết yêu cầu và ảnh chạy ứng dụng/CSDL nằm trong báo cáo Word.
 
 ## Các module
 
@@ -78,7 +77,7 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
 
 ## Cài đặt và chạy lại
 
-1. Kết nối SQL Server bằng Windows Authentication với quyền tạo database. Chạy `Database/QuanLyHoSoBenhAn.sql`, sau đó `Database/DuLieuMau.sql`. Script chạy lại không xóa bảng hay ghi đè dữ liệu mẫu đã tồn tại.
+1. Kết nối SQL Server bằng Windows Authentication với quyền tạo database. Chạy toàn bộ `Database/QuanLyHoSoBenhAn.sql`. Script tạo cấu trúc, thủ tục và bốn danh mục mẫu Khoa, BacSi, Thuoc, LoaiXetNghiem; có thể chạy lại mà không xóa bảng hay ghi đè các mã danh mục đã tồn tại.
 2. Mở solution bằng Visual Studio. Trong `App.config`, đổi `Data Source` nếu instance khác; giữ `Initial Catalog=QuanLyHoSoBenhAn`:
 
    ```text
@@ -86,43 +85,26 @@ Visual Studio cần workload **.NET desktop development** và targeting pack .NE
    ```
 
 3. Chọn project `QuanLyHoSoBenhAn` làm Startup Project, Rebuild rồi F5. Thanh trạng thái phải báo kết nối thành công.
-4. Dùng các mẫu dưới đây để kiểm tra đọc dữ liệu. Khi thử ghi, dùng mã mới và chọn ngày phù hợp quyền lợi; thao tác Form ghi trực tiếp vào CSDL ứng dụng.
+4. Kiểm tra bốn danh mục mẫu trước, sau đó tạo bệnh nhân và hồ sơ qua Form theo các kịch bản bên dưới. Khi thử ghi, dùng mã mới và chọn ngày phù hợp quyền lợi; thao tác Form ghi trực tiếp vào CSDL ứng dụng.
 
 ```powershell
 sqlcmd -S '.\MSSQLSERVER01' -E -f 65001 -b -i '.\Database\QuanLyHoSoBenhAn.sql'
-sqlcmd -S '.\MSSQLSERVER01' -E -f 65001 -b -i '.\Database\DuLieuMau.sql'
 ```
 
-| Mẫu | Dữ liệu |
-| --- | --- |
-| BN001 / HS001 | Lệ phí 01/01–31/12/2026; PK001 đã hoàn tất, CD001 đã trả kết quả, TOA001 có 2 dòng |
-| PK002 / HS001 | Khám điều trị 16/10/2026, có kết luận, chưa hoàn tất và chưa có toa |
-| BN002 / HS002 | LH001 đã thực hiện thành PK003 ngày 15/10/2026; định kỳ quý IV, phí 0, không có toa |
-| LH002 / HS001 | Hẹn 10/12/2026 lúc 08:30; khi tiếp nhận chọn đúng hồ sơ, mã hẹn và ngày |
+Danh mục mẫu gồm K01/K02, BS01/BS02, T01/T02 và XN01/XN02. Dữ liệu bệnh nhân, lịch hẹn, phiếu khám, xét nghiệm và toa thuốc được tạo qua các Form. Các mã BN001, HS001, PK001 và TOA001 trong ảnh báo cáo là dữ liệu của lần thực hành đã chụp.
 
-Ảnh, tên, thuốc, chỉ số và kết quả trong seed đều là dữ liệu thực hành.
+## Kiểm tra lại nghiệp vụ
 
-## Chạy kiểm thử
+| Kịch bản | Thao tác | Kết quả cần đối chiếu |
+| --- | --- | --- |
+| Đăng ký lần đầu | Nhập mã bệnh nhân mới, thông tin, ảnh 3×4 và lệ phí dương; cấp hồ sơ | Tạo đồng thời BenhNhan, PhieuDangKy, PhieuThuLePhi, HoSoBenhAn; lỗi thì rollback |
+| Khám định kỳ theo quý | Đặt lịch và tiếp nhận trong quý còn hiệu lực lệ phí năm; thử đăng ký thêm lần nữa cùng quý | Lần định kỳ hợp lệ có phí 0; không cho trùng quyền lợi theo hồ sơ/năm/quý |
+| Phiếu khám và xét nghiệm | Lập phiếu, chọn bác sĩ/khoa; chỉ định loại xét nghiệm và ghi kết quả | ChiDinhXetNghiem gắn đúng MaPhieuKham; không ghi kết quả cho phiếu đã hoàn tất |
+| Lập toa thuốc | Chọn phiếu có kết luận, đủ kết quả xét nghiệm, đúng bác sĩ; thêm ít nhất một dòng thuốc rồi lưu | ToaThuoc và ChiTietToaThuoc cùng được lưu; mỗi phiếu tối đa một toa |
+| Hoàn tất điều trị | Thử hoàn tất khi chưa xác nhận thanh toán; sau đó xác nhận xuất viện và viện phí đã trả | Chặn khi chưa đủ điều kiện; hoàn tất khi hợp lệ và khóa nội dung điều trị |
+| Tra cứu lịch sử | Chọn hồ sơ vừa thực hành | Hiển thị đúng các phiếu khám, kết quả xét nghiệm, toa và dòng thuốc liên quan |
 
-Từ thư mục LAB6, dùng PowerShell:
-
-```powershell
-.\Tests\Run-Checks.ps1
-.\Tests\Capture-Forms.ps1
-```
-
-`Run-Checks.ps1` tạo hoặc cập nhật CSDL `QuanLyHoSoBenhAn_Test`, build Release và chạy 50 kiểm thử Service/SQL cùng 12 luồng nút Form. Mỗi lần chạy dùng mã riêng. Nếu SQL instance khác, dùng `-Instance 'TEN_INSTANCE'`; cấu hình ứng dụng và script chụp Form đọc `App.config`. Script build hiện dùng đường dẫn Visual Studio 2022 Community; điều chỉnh biến `$buildTool`/`$compiler` nếu cài edition hoặc vị trí khác.
-
-`Capture-Forms.ps1` chạy sau khi đã build Release và nạp seed. Script mở đủ Form/tab, kiểm tra bố cục ở kích thước mặc định/nhỏ nhất, rồi ghi ảnh vào `Evidence`. Ảnh lấy bằng **DrawToBitmap từ Form đang chạy**, đọc dữ liệu SQL thật. Hai ảnh CSDL là kết quả truy vấn metadata trong cửa sổ kiểm tra riêng; không phải cửa sổ SSMS.
-
-Kết quả ngày 16/10/2026:
-
-- **50/50** kiểm thử nghiệp vụ/CSDL đạt: đăng ký, rollback, quyền lợi, quý, FK, toa, trạng thái hoàn tất và hai ca đồng thời.
-- **12/12** luồng ghi từ nút Form đạt.
-- **265/265** kiểm tra giao diện đạt trên 20 màn hình/tab ở hai kích thước; không thay đổi DPI Windows.
-- Build Release thành công; SQL cấu trúc và seed chạy lại thành công.
-
-Kết quả chi tiết: [BusinessResults.csv](Tests/BusinessResults.csv), [UiWorkflowResults.csv](Tests/UiWorkflowResults.csv), [FormResults.csv](Evidence/FormResults.csv). Chưa kiểm thử mọi tổ hợp dữ liệu, mọi mức DPI hoặc in ra máy in vật lý.
+Kết quả kiểm tra đã ghi nhận ngày 16/10/2026 trong báo cáo: 50/50 ca nghiệp vụ/CSDL, 12/12 luồng ghi từ Form và 265/265 kiểm tra giao diện đạt; build Release thành công. Bộ nộp hiện tại hướng dẫn kiểm tra lại qua ứng dụng và SQL Server theo các kịch bản trên. Chưa kiểm thử mọi tổ hợp dữ liệu, mọi mức DPI hoặc in ra máy in vật lý.
 
 ## Lỗi gặp và cách khắc phục
 
@@ -137,6 +119,10 @@ Kết quả chi tiết: [BusinessResults.csv](Tests/BusinessResults.csv), [UiWor
 
 ## Nộp bài
 
-Thư mục LAB6 gồm Word, UML, source C#, SQL, Tests, Evidence và README. Không đưa `bin/obj/.vs`, file khóa Word, thông tin xác thực, MDF/LDF hoặc backup lên GitHub. Repository của học phần được yêu cầu tên LAB_OOSD, Public nếu lớp không quy định khác; remote hiện tại của bộ bài là LAB_AT_OOSD. Sau commit/push, mở GitHub kiểm tra file truy cập được rồi nộp URL trên Classroom theo yêu cầu lớp. Nếu có video, chèn link ở đầu báo cáo.
+Thư mục LAB6 gồm Word, source C#, SQL và README; file nguồn sơ đồ nằm tại [IMAGES/LAB6](../IMAGES/LAB6). Không đưa `bin/obj/.vs`, file khóa Word, thông tin xác thực, MDF/LDF hoặc backup lên GitHub. Việc nộp bài tổng hợp thực hiện theo [hướng dẫn chung](../README.md#quy-định-cập-nhật-và-nộp-bài-tổng-hợp).
 
 [Quay về danh sách bài Lab](../README.md).
+
+## File nguồn sơ đồ cho báo cáo tổng hợp
+
+[Danh mục hình và file nguồn](../IMAGES/README.md) liệt kê 8 file của LAB6. Mỗi sơ đồ là một file `.drawio` riêng tại [IMAGES/LAB6](../IMAGES/LAB6).
